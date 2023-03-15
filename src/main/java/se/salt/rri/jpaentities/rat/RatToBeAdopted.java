@@ -5,8 +5,6 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 
-import java.util.List;
-
 @Entity
 public class RatToBeAdopted {
 
@@ -21,7 +19,7 @@ public class RatToBeAdopted {
   String clinicalStatus;
   boolean spayed;
   Long city;
-  List<String> pictures;
+  String pictures;
 
 
 }
