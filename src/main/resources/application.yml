@@ -1,0 +1,27 @@
+## DB config goes here
+spring:
+  output:
+    ansi:
+      enabled: always
+  sql:
+    init:
+      platform: postgresql
+  datasource:
+    url: jdbc:postgresql://localhost/rri
+    hikari:
+      connectionTimeout: 20000
+      maximumPoolSize: 5
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+    defer-datasource-initialization: true
+
+## Logging settings
+debug: true
+logging:
+  level:
+    org:
+      springframework:
+        boot:
+          autoconfigure: ERROR
