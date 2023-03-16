@@ -7,9 +7,12 @@ spring:
     init:
       platform: postgresql
   datasource:
-    url: jdbc:postgresql://mouse.db.elephantsql.com/hzjiemrt
-    username: hzjiemrt
-    password: sffIht84O7WVCZRB4rfaOM9J6mIdZWCn
+#    url: jdbc:postgresql://mouse.db.elephantsql.com/hzjiemrt
+#    username: hzjiemrt
+#    password: sffIht84O7WVCZRB4rfaOM9J6mIdZWCn
+    url: jdbc:postgresql://localhost:5432/rri
+    username: postgres
+    password: pgpwd
     hikari:
       connectionTimeout: 20000
       maximumPoolSize: 5

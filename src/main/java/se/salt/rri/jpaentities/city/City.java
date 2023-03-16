@@ -12,6 +12,11 @@ public class City {
   Long id;
 
   String name;
-  String region;
+  String country;
+
+  public City(String name, String country){
+    this.name = name;
+    this.country = country;
+  }
 
 }
