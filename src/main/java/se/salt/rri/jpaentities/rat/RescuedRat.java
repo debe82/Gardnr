@@ -9,7 +9,7 @@ import java.util.List;
 public class RescuedRat {
 
   @Id
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  //@GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
 
   private String name;
@@ -18,15 +18,15 @@ public class RescuedRat {
   private String sex;
   private String clinicalStatus;
   private boolean spayed;
-  @ManyToOne
-  @JoinColumn(name = "city_id")
-  private City city;
+//  @OneToOne(cascade = CascadeType.ALL)
+//  @JoinColumn(name = "city_id", referencedColumnName = "id")
+  private String city;
 //  @ElementCollection
 //  List<String> pictures;
 
   public RescuedRat(){};
 
-  public RescuedRat(String name, String breed, int age, String sex, String clinicalStatus, boolean spayed, City city) {
+  public RescuedRat(Long id, String name, String breed, int age, String sex, String clinicalStatus, boolean spayed, String city) {
     this.id = id;
     this.name = name;
     this.breed = breed;
@@ -93,11 +93,11 @@ public class RescuedRat {
     this.spayed = spayed;
   }
 
-  public City getCity() {
+  public String getCity() {
     return city;
   }
 
-  public void setCity(City city) {
+  public void setCity(String city) {
     this.city = city;
   }
 }

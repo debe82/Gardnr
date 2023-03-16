@@ -9,4 +9,5 @@ import java.util.List;
 public interface JpaRatRepository extends CrudRepository<RescuedRat, Long> {
 
   RescuedRat findRescuedRatByName(String name);
+
 }

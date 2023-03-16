@@ -3,12 +3,14 @@ package se.salt.rri.jpaentities.rat;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.lang.Nullable;
 import org.springframework.web.bind.annotation.*;
+import se.salt.rri.jpaentities.city.AddCityDto;
+import se.salt.rri.jpaentities.city.City;
 
 import java.net.URI;
 import java.util.List;
 
+@CrossOrigin(origins = "http://localhost:3000")
 @RestController
 @RequestMapping("/api/rats")
 public class RatController {
@@ -16,46 +18,42 @@ public class RatController {
   RatService service;
 
   @GetMapping
-  ResponseEntity<List<RatDto>> getAllRats(){
-    List<RatDto> listOfRatDto = service.convertListToDto(service.getAllRats());
-    return ResponseEntity.ok().body(listOfRatDto);
+  ResponseEntity<List<RescuedRat>> getAllRats(){
+    List<RescuedRat> listOfRats = service.getAllRats();
+    return ResponseEntity.ok().body(listOfRats);
+  }
+
+  @GetMapping("{id}")
+  ResponseEntity<RescuedRat> getRats(@PathVariable Long id){
+    return ResponseEntity.ok(service.getRescuedRatById(id));
   }
 
   @PostMapping
   ResponseEntity<RescuedRat> addRescuedRat(@RequestBody RescuedRat rat, HttpServletRequest req){
-    RescuedRat ratToAdd =
-    service.addRescuedRat(
-      new RescuedRat(
-        rat.getName(), rat.getBreed(), rat.getAge(), rat.getSex(), rat.getClinicalStatus(), rat.isSpayed(), rat.getCity()));
-    URI location = URI.create(req.getRequestURL() + "/" + ratToAdd.getId());
+
+    service.addRescuedRat(rat);
+    URI location = URI.create(req.getRequestURL() + "/" + rat.getId());
     System.out.println("location");
-    return ResponseEntity.created(location).body(ratToAdd);
+    return ResponseEntity.created(location).body(rat);
   }
 
-/*
-    this.id = id;
-    this.name = name;
-    this.breed = breed;
-    this.age = age;
-    this.sex = sex;
-    this.clinicalStatus = clinicalStatus;
-    this.spayed = spayed;
-    this.city = city;
-*/
-
-
-//  @GetMapping("{id}")
-//  ResponseEntity<RatDto> getRatByName(@PathVariable long id){
-//    if(id < 1) return null;
-//      RescuedRat rat = service.getRescuedRatById(id);
-//      RescuedRat rat = service.getRatByName(rat.getName());
-//      return null;
-//    }
-//    return null;
+  @PatchMapping(path="{id}")
+  ResponseEntity<RescuedRat> updateRescuedRat(@PathVariable int id){
+    return null;
+  }
+//  @PostMapping("/city")
+//  ResponseEntity<City> addCity(@RequestBody AddCityDto cityDto, HttpServletRequest req){
+//    City newCity = service.cityRepository.addNewCity(cityDto.cityName());
+//
+//    URI location = URI.create(req.getRequestURL() + "/" + newCity.getId());
+//    System.out.println("location");
+//    return ResponseEntity.created(location).body(newCity);
 //  }
 
+
+
   @DeleteMapping("{id}")
-  ResponseEntity<RescuedRat> deleteRescuedRat(@PathVariable long id){
+  ResponseEntity<RescuedRat> deleteRescuedRat(@PathVariable Long id){
     if(id < 1) return ResponseEntity.notFound().build();
     RescuedRat rat = service.getRescuedRatById(id);
     service.deleteRescuedRat(id);

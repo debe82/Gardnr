@@ -12,52 +12,52 @@ INSERT INTO city (id, name, country)VALUES (10, 'Goteborg', 'Sweden')ON CONFLICT
 INSERT into rescued_rat
     (id, age, breed, city, clinical_status, name, sex, spayed)
 VALUES
-    (1,12, 'Standard', 1, 'health: good', 'Squall', 'male', true) ON CONFLICT DO NOTHING;
+    (1,12, 'Standard', 'Trieste', 'health: good', 'Squall', 'male', true) ON CONFLICT DO NOTHING;
 INSERT into rescued_rat
     (id, age, breed, city, clinical_status, name, sex, spayed)
 VALUES
-    (2, 5, 'Rex', 2, 'health: underweight', 'Duke', 'male', true) ON CONFLICT DO NOTHING;
+    (2, 5, 'Rex', 'Rome', 'health: underweight', 'Duke', 'male', true) ON CONFLICT DO NOTHING;
 INSERT into rescued_rat
 (id, age, breed, city, clinical_status, name, sex, spayed)
 VALUES
-    (3,12, 'Manx', 3, 'health: good', 'Doom Slayer', 'male', true) ON CONFLICT DO NOTHING;
+    (3,12, 'Manx', 'Milan', 'health: good', 'Doom Slayer', 'male', true) ON CONFLICT DO NOTHING;
 INSERT into rescued_rat
 (id, age, breed, city, clinical_status, name, sex, spayed)
 VALUES
-    (4, 5, 'Sphynx', 4, 'health: terminal', 'Link', 'male', false) ON CONFLICT DO NOTHING;
+    (4, 5, 'Sphynx', 'Stockholm', 'health: terminal', 'Link', 'male', false) ON CONFLICT DO NOTHING;
 INSERT into rescued_rat
 (id, age, breed, city, clinical_status, name, sex, spayed)
 VALUES
-    (5,12, 'Satin', 5, 'health: good', 'Prophet', 'male', false) ON CONFLICT DO NOTHING;
+    (5,12, 'Satin', 'Lisbon', 'health: good', 'Prophet', 'male', false) ON CONFLICT DO NOTHING;
 INSERT into rescued_rat
 (id, age, breed, city, clinical_status, name, sex, spayed)
 VALUES
-    (6, 5, 'Dumbo', 6, 'health: pregnant', 'Zoija', 'female', false) ON CONFLICT DO NOTHING;
+    (6, 5, 'Dumbo', 'Rome', 'health: pregnant', 'Zoija', 'female', false) ON CONFLICT DO NOTHING;
 INSERT into rescued_rat
 (id, age, breed, city, clinical_status, name, sex, spayed)
 VALUES
-    (7,12, 'Bristle Coat', 7, 'health: good', 'Zelda', 'female', true) ON CONFLICT DO NOTHING;
+    (7,12, 'Bristle Coat', 'Stockholm', 'health: good', 'Zelda', 'female', true) ON CONFLICT DO NOTHING;
 INSERT into rescued_rat
 (id, age, breed, city, clinical_status, name, sex, spayed)
 VALUES
-    (8, 5, 'Topaz', 8, 'health: good', 'Lara', 'female', true) ON CONFLICT DO NOTHING;
+    (8, 5, 'Topaz', 'Rome', 'health: good', 'Lara', 'female', true) ON CONFLICT DO NOTHING;
 INSERT into rescued_rat
 (id, age, breed, city, clinical_status, name, sex, spayed)
 VALUES
-    (9,12, 'Lilac Agouti', 9, 'health: catatonic', 'Ellie', 'female', true) ON CONFLICT DO NOTHING;
+    (9,12, 'Lilac Agouti', 'Berlin', 'health: catatonic', 'Ellie', 'female', true) ON CONFLICT DO NOTHING;
 INSERT into rescued_rat
 (id, age, breed, city, clinical_status, name, sex, spayed)
 VALUES
-    (10, 5, 'Cinnamon Pearl', 10, 'health: good', 'Ripley', 'female', true) ON CONFLICT DO NOTHING;
+    (10, 5, 'Cinnamon Pearl', 'Berlin', 'health: good', 'Ripley', 'female', true) ON CONFLICT DO NOTHING;
 INSERT into rescued_rat
 (id, age, breed, city, clinical_status, name, sex, spayed)
 VALUES
-    (11,12, 'Silver Fawn', 1, 'health: pregnant', 'Sarah', 'female', false) ON CONFLICT DO NOTHING;
+    (11,12, 'Silver Fawn', 'Madrid', 'health: pregnant', 'Sarah', 'female', false) ON CONFLICT DO NOTHING;
 INSERT into rescued_rat
 (id, age, breed, city, clinical_status, name, sex, spayed)
 VALUES
-    (12, 5, 'Powder Blue', 2, 'health: meh', 'Shodan', 'female', false) ON CONFLICT DO NOTHING;
+    (12, 5, 'Powder Blue', 'Turin', 'health: meh', 'Shodan', 'female', false) ON CONFLICT DO NOTHING;
 INSERT into rescued_rat
 (id, age, breed, city, clinical_status, name, sex, spayed)
 VALUES
-    (13,12, 'Quicksilver', 3, 'health: good', 'Big Sister', 'female', true) ON CONFLICT DO NOTHING;
+    (13,12, 'Quicksilver', 'Pisa', 'health: good', 'Big Sister', 'female', true) ON CONFLICT DO NOTHING;

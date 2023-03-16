@@ -21,7 +21,6 @@ spring:
     hibernate:
       ddl-auto: update
     defer-datasource-initialization: true
-
 ## Logging settings
 debug: true
 logging:
