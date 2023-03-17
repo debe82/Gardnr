@@ -19,9 +19,9 @@ const Form = () => {
 
   const handleSubmit = (e: SyntheticEvent) => {
     e.preventDefault();
-    const id = Math.floor(Math.random()*10)+1;
+    //const id = Math.floor(Math.random()*10)+1;
     const newRat: Rat = {
-      id, name, breed, age, sex, clinicalStatus, spayed, city
+      name, breed, age, sex, clinicalStatus, spayed, city
     }
     addRat(newRat);
     window.location.reload();

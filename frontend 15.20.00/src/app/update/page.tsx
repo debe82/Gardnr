@@ -30,24 +30,12 @@ const Update = () => {
     
     
     const newRat: Rat = {
-      id, name, breed, age, sex, clinicalStatus, spayed, city
+      name, breed, age, sex, clinicalStatus, spayed, city
     }
     updateRat(id, newRat);
     window.location.reload();
 
-
-
   }
-
-/*   useEffect(() => {
-    setName("");
-    setBreed("");
-    setAge(0);
-    setSex("");
-    setClinicalStatus("");
-    setSpayed(false);
-    setCity("");
-  }) */
 
 
   return(

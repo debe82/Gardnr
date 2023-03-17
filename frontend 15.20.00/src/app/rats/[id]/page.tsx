@@ -6,8 +6,7 @@ const ratsDetail = async ({params}: any) => {
   //const [rat, setRat] = useState();
 
   const rat = await getRat(params.id);
-  //console.log("id: ", rat.id);
-
+  console.log("id: ", rat.id);
 
   return (
     <div>

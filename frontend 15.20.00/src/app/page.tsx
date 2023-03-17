@@ -22,7 +22,12 @@ const Home = () => {
         < button className='btn-home'>Update rat in db</button>
         </Link>
       </main>  
-        <footer>contacts:</footer>
+        <footer>Contacts:
+          <br /> <br />
+          <label>Email: erp@gmail.com</label>
+          <br />
+          <label>Phone: (+46)(0)1234567</label>
+        </footer>
      </>   
   )};
 

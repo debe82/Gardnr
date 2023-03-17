@@ -8,14 +8,14 @@ export async function getRats(){
 };
 
 export async function getRat(id: number){
-  const newUrl = BASE_URL + `/${id}`
-  const apiResponse = await fetch(newUrl);
+  const newUrl = BASE_URL + `/${id}`;
+  const apiResponse = await fetch(newUrl, { cache: 'no-store' });
   const ratData = await apiResponse.json();
  return ratData;
 }
 
 export type Rat = {
-  id: number;
+  //id: number;
   name: string;
   breed: string;
   age: number;
