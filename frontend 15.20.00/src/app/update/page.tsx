@@ -22,10 +22,12 @@ const Update = () => {
 
     const listOfRats = await getRats();
     const rat: Rat = listOfRats.filter(r => r.name === name);
-    console.log(rat);
+    const stringRat = JSON.stringify(rat);
 
-    const id  = rat.id;
-    console.log(id);
+    const colonPositon = stringRat.indexOf(':')+1;
+    const commaPosition = stringRat.indexOf(',');
+    const id = parseInt(stringRat.substring(colonPositon, commaPosition));
+    
     
     const newRat: Rat = {
       id, name, breed, age, sex, clinicalStatus, spayed, city
