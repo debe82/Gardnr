@@ -1,0 +1,181 @@
+*{
+  box-sizing: border-box;
+  margin: 0px;
+  padding: 0px;
+  margin: 5px;
+}
+
+header {
+  margin: 10px;
+  text-align: left;
+  font-size:xx-large;
+}
+
+body{
+  align-items: center;
+}
+
+.rat-list {
+  width: 100vh;
+  height: 70vh;
+  overflow: scroll;
+}
+
+.main-add{
+  align-items: center;
+  overflow: scroll;
+}
+
+.main-rat{
+
+}
+
+
+.add-rat-form {
+  align-items: center;
+  min-width: 100%;
+  height: 80vh;
+  border: 1px solid gray;
+  margin: 0vw;
+  position: relative;
+
+  text-align: center;
+  color: black;
+  margin: 0 0 0.5vh 0;;
+
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  font-size: 15px;
+  margin: 0 0 2vh 0;
+  overflow: scroll;
+}
+
+.upd-rat-form {
+  align-items: center;
+  min-width: 100%;
+  height: 80vh;
+  border: 1px solid gray;
+  margin: 0vw;
+  position: relative;
+
+  text-align: center;
+  color: black;
+  margin: 0 0 0.5vh 0;;
+
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  font-size: 15px;
+  margin: 0 0 2vh 0;
+  overflow: scroll;
+}
+
+.rem-rat-form {
+  align-items: center;
+  min-width: 100%;
+  height: 10vh;
+  border: 1px solid gray;
+  margin: 0vw;
+  position: relative;
+
+  text-align: center;
+  color: black;
+  margin: 0 0 0.5vh 0;;
+
+  flex-direction: column;
+  text-align: center;
+  font-size: 20px;
+  margin: 0 0 2vh 0;
+  overflow: scroll;
+}
+
+.rats-list {
+  border: 1px solid gray;
+  margin-bottom: 10px;
+  padding-bottom: 10px;
+  text-align: center;
+}
+
+.btn-submit {
+  width: 10%;
+  font-size: 20px;
+}
+
+.btn-submit:hover  {
+  background-color: darkgrey;
+  color: white;
+  cursor: pointer;
+}
+
+.btn-home {
+  align-items: center;
+  width: 15%;
+  cursor: pointer;
+
+}
+
+.btn-home:hover  {
+  background-color: darkgrey;
+  color: white;
+}
+
+.btn-list {
+  align-items: center;
+  width: 15%;
+  cursor: pointer;
+
+}
+
+.btn-list:hover  {
+  background-color: darkgrey;
+  color: white;
+}
+
+.btn-rem {
+  width: 10%;
+  font-size: 20px;
+}
+
+
+.btn-rem:hover  {
+  background-color: darkgrey;
+  color: white;
+  cursor: pointer;
+}
+
+.btn-upd {
+  width: 10%;
+  font-size: 20px;
+}
+
+
+.btn-upd:hover  {
+  background-color: darkgrey;
+  color: white;
+  cursor: pointer;
+}
+
+.btn-rat {
+  width: 95%;
+}
+
+.btn-rat:hover {
+  background-color: darkgrey;
+  color: white;
+}
+
+
+.input-health {
+  min-width: 20%;
+  min-height: 20%;
+  text-align: left;
+}
+
+.div-bottom{
+  display: flex;
+  flex-direction: column;
+}
+
+
+
