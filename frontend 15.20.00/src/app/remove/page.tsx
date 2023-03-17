@@ -45,7 +45,7 @@ const Form = () => {
       <br/>
 
       <Link  href={`/`}> 
-        <button className='btn-home'> To home page   </button>
+        <button className='btn-to-home'> To home page   </button>
       </Link>
 
     </>
