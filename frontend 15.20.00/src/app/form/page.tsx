@@ -24,7 +24,7 @@ const Form = () => {
       id, name, breed, age, sex, clinicalStatus, spayed, city
     }
     addRat(newRat);
-
+    window.location.reload();
  // useEffect(()=>{})
 
   }

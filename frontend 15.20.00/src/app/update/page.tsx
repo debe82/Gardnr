@@ -31,6 +31,7 @@ const Update = () => {
       id, name, breed, age, sex, clinicalStatus, spayed, city
     }
     updateRat(id, newRat);
+    window.location.reload();
 
 
 

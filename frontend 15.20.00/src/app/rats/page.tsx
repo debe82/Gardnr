@@ -6,9 +6,14 @@ import React from 'react';
 
 import {getRats} from '../api/dataManagenent'
 
-const RatsPage = async () => {
+function refresh() {
+  window.location.reload();
+}
 
+const RatsPage = async () => {
+  //refresh();
   const rats = await getRats();
+
   
   return (
     <>

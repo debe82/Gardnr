@@ -25,6 +25,7 @@ const Form = () => {
     const id = parseInt(stringRat.substring(colonPositon, commaPosition));
     
     removeRat(id);
+    window.location.reload();
 
   }
 
