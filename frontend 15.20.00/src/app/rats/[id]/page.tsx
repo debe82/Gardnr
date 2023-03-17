@@ -1,12 +1,11 @@
 import { getRat } from "@/app/api/dataManagenent";
+import Update from "@/app/update/page";
 import Link from "next/link";
 
 const ratsDetail = async ({params}: any) => {
 
-  //const [rat, setRat] = useState();
-
   const rat = await getRat(params.id);
-  console.log("id: ", rat.id);
+
 
   return (
     <div>
@@ -20,7 +19,7 @@ const ratsDetail = async ({params}: any) => {
         <li key="spayed">Spayed: {String(rat.spayed)}</li>
         <li key={rat.city}>City: {rat.city}</li>
       </article>
-
+      <br/>
       <p>
         <Link  href={`/rats`}> 
           <button className='btn-list'>Go to rat list</button>

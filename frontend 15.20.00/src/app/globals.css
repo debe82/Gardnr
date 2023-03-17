@@ -129,6 +129,7 @@ body{
 }
 
 .btn-to-home {
+  text-align: center;
   align-items: center;
   vertical-align: middle;
   width: 15%;
@@ -210,7 +211,10 @@ body{
 .div-bottom{
   display: flex;
   flex-direction: column;
+  text-align: center;
 }
 
-
+.section-main-bottom{
+  text-align: center;
+}
 

@@ -12,7 +12,7 @@ const Home = () => {
         <Link href="/rats">
           <button className='btn-home'>Rescued rats</button>
         </Link>
-        <Link href="/form">
+        <Link href="/add">
           <button className='btn-home'>Add rat to db</button>
         </Link>
         <Link href="/remove">

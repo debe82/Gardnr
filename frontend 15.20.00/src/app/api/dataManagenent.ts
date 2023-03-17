@@ -46,6 +46,7 @@ export async function removeRat(id: number){
 };
 
 export async function updateRat(id: number, rat: Rat){
+  console.log("id: ", id);
   const response = await fetch(`http://localhost:8080/api/rats/${id}`, {
     method: "PATCH",
     body: JSON.stringify(rat),

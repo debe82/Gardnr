@@ -43,11 +43,11 @@ const Form = () => {
         </form>
       </main> 
       <br/>
-
-      <Link  href={`/`}> 
-        <button className='btn-to-home'> To home page   </button>
-      </Link>
-
+      <div className="div-bottom">
+        <Link  href={`/`}> 
+          <button className='btn-to-home'> To home page   </button>
+        </Link>
+      </div>
     </>
   )
 }

@@ -33,9 +33,20 @@ const RatsPage = async () => {
         </div>
         <></>
       </main>
-      <Link href={`/`}>
-        <button className="btn-to-home"> To home page </button>
-      </Link>
+      <section className="section-main-bottom">
+        <Link href={`/`}>
+          <button className="btn-to-home"> To home page </button>
+        </Link>
+        <Link href={`/add`}>
+          <button className="btn-to-home"> Add rat </button>
+        </Link>
+        <Link href={`/update`}>
+          <button className="btn-to-home"> Update rat </button>
+        </Link>       
+        <Link href={`/remove`}>
+          <button className="btn-to-home"> Remove rat </button>
+        </Link>
+      </section>
     </>
   );
 };
