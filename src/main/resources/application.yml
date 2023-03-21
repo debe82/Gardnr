@@ -1,0 +1,33 @@
+
+## default connection pool
+debug: true
+spring:
+  sql:
+    init:
+      platform: postgresql
+      mode: always
+  output:
+    ansi:
+      enabled: always
+  datasource:
+    url: jdbc:postgresql://mouse.db.elephantsql.com/embtszfx
+    username: embtszfx
+    password: cSJdByTBzKK7BgesMyme8X3JYegZbRAu
+    hikari:
+      connectionTimeout: 20000
+      maximumPoolSize: 5
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: create
+    defer-datasource-initialization: true
+  data:
+    mongodb:
+      uri: mongodb+srv://user:pwd@atlascluster.a0y9dkm.mongodb.net/test
+      database: test
+logging:
+  level:
+    org:
+      springframework:
+        boot:
+          autoconfigure: ERROR
