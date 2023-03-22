@@ -9,5 +9,6 @@ public interface IRatRepository {
   RescuedRat findRescuedRatById(Long id);
 
   RescuedRat addNewRat(RescuedRat rat);
+  RescuedRat update(RescuedRat rat);
   void deleteRescuedRat(RescuedRat rat);
 }

@@ -1,5 +1,7 @@
 package se.salt.rri.jpaentities.rat;
 
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import se.salt.rri.jpaentities.city.City;
@@ -53,10 +55,49 @@ public class RatService {
 
   }
 
-  public RescuedRat convertForSave(AddRatDto ratToAdd) {
+  public RescuedRat updateRat(Long id, RescuedRat rat) {
+    RescuedRat ratToUpdate = getRescuedRatById(id);
+
+    if(rat.getName() != null || rat.getName() == "") {
+      ratToUpdate.setName(rat.getName());
+    } else {
+      ratToUpdate.setName(ratToUpdate.getName());
+    }
+    if(rat.getAge() > 0 || rat.getAge() < 36) {
+      ratToUpdate.setAge(rat.getAge());
+    } else {
+      return null;
+    }
+    if(rat.getBreed() != null || rat.getBreed() == "") {
+      ratToUpdate.setBreed(rat.getBreed());
+    } else {
+      ratToUpdate.setBreed(ratToUpdate.getBreed());
+    }
+    if(rat.getSex() != null || rat.getSex() == "") {
+      ratToUpdate.setSex(ratToUpdate.getSex());
+    } else {
+      ratToUpdate.setSex(ratToUpdate.getSex());
+    }
+    if(rat.getClinicalStatus() != null || rat.getClinicalStatus() == "") {
+      ratToUpdate.setClinicalStatus(rat.getClinicalStatus());
+    } else {
+      ratToUpdate.setClinicalStatus(ratToUpdate.getClinicalStatus());
+    }
+    ratToUpdate.setSpayed(rat.isSpayed());
+
+    if(rat.getCity() != null || rat.getCity() == "") {
+      ratToUpdate.setCity(rat.getCity());
+    } else {
+      ratToUpdate.setCity(ratToUpdate.getCity());
+    }
+
+    return repo.update(ratToUpdate);
+  }
+
+/*  public RescuedRat convertForSave(AddRatDto ratToAdd) {
     City city = cityRepository.addNewCity(ratToAdd.cityName());
     return
       new RescuedRat(
-        99L, ratToAdd.name(), ratToAdd.breed(), ratToAdd.age(), ratToAdd.sex(), ratToAdd.clinicalStatus(), ratToAdd.spayed(), ratToAdd.cityName());
-  }
+        ratToAdd.name(), ratToAdd.breed(), ratToAdd.age(), ratToAdd.sex(), ratToAdd.clinicalStatus(), ratToAdd.spayed(), ratToAdd.cityName());
+  }*/
 }

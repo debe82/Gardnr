@@ -49,6 +49,8 @@ const Update = () => {
     setInputName(e.target.value)
 
     
+
+
    }
 
   return(

@@ -4,6 +4,7 @@ export async function getRats(){
    const apiResponse = await fetch(BASE_URL, { cache: 'no-store' });
    // const apiResponse = await fetch(`/api/employees/${id}`);
    const ratsData = await apiResponse.json();
+   console.log("dataManagement.getRats.ratsData: ", ratsData)
   return ratsData;
 };
 
@@ -15,7 +16,7 @@ export async function getRat(id: number){
 }
 
 export type Rat = {
-  //id: number;
+  id: number;
   name: string;
   breed: string;
   age: number;

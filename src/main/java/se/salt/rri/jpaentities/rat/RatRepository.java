@@ -35,6 +35,11 @@ public class RatRepository implements IRatRepository{
   }
 
   @Override
+  public RescuedRat update(RescuedRat rat) {
+    return ratRepo.save(rat);
+  }
+
+  @Override
   public void deleteRescuedRat(RescuedRat rat) {
     ratRepo.delete(rat);
   }

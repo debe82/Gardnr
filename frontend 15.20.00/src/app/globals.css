@@ -2,7 +2,8 @@
   box-sizing: border-box;
   margin: 0px;
   padding: 0px;
-  margin: 5px;
+  color: black;
+  background-color: white;
   border-radius: 5px;
 }
 
@@ -12,8 +13,114 @@ header {
   font-size:xx-large;
 }
 
-body{
+h1 {
+  margin: 0%;;
+}
+
+.body-home {
   align-items: center;
+  vertical-align: middle;
+  height: 100vh;
+  border: 1px solid lightblue;
+  position: relative;
+
+  text-align: center;
+  color: black;
+  margin: 0 0 0.5vh 0;;
+
+  text-align: center;
+  font-size: 25px;
+  margin: 0 0 2vh 0;
+  overflow: scroll;
+}
+
+.main-containere-section-outer {
+  border: 1px solid lightblue;
+  display: flex;
+  flex-direction: row;
+  border-radius: 5px;
+}
+
+.main-container-section-left{
+  display: flex;
+  flex-direction: column;
+  width: 35vw;
+  column-count: auto;
+  align-items: center;
+  border: 1px solid lightblue;
+}
+
+.left-link {
+  text-decoration: none;
+  color: black;
+  width: 100%;
+  border: 1px solid lightblue;
+  vertical-align: middle;
+}
+
+.left-link:hover  {
+  color: black;
+  background-color: lightblue;
+  cursor: pointer;
+}
+
+.main-container-section-center{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  column-count: auto;
+  width: 100vw;
+  flex-direction: column;
+  border: 1px solid lightblue;
+  border: 1px solid lightblue;
+}
+
+
+.label-random-stuff {
+  width: 100%;
+  height: 33%;
+  border: 1px solid lightblue;
+  vertical-align: middle;
+}
+
+.label-random-stuff:hover {
+  color: black;
+  background-color: lightblue;
+  cursor: pointer;}
+
+.main-container-section-right{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  column-count: auto;
+  width: 35vw;
+  flex-direction: column;
+  border: 1px solid lightblue;
+}
+
+.right-link {
+  text-decoration: none;
+  color: black;
+  width: 100%;
+  border: 1px solid lightblue;
+  vertical-align: middle;
+}
+
+.right-link:hover  {
+  color: black;
+  background-color: lightblue;
+  cursor: pointer;
+}
+
+.footer-main {
+  display: flex;
+  align-content: flex-start; 
+  flex-direction: row;
+}
+
+.rats-addToList {
+  display: flex;
+  flex-direction: row;
 }
 
 .rat-list {
@@ -27,12 +134,11 @@ body{
   overflow: scroll;
 }
 
-
 .add-rat-form {
   align-items: center;
   min-width: 100%;
   height: 80vh;
-  border: 1px solid gray;
+  border: 1px solid lightblue;
   margin: 0vw;
   position: relative;
 
@@ -52,7 +158,7 @@ body{
   align-items: center;
   min-width: 100%;
   height: 80vh;
-  border: 1px solid gray;
+  border: 1px solid lightblue;
   margin: 0vw;
   position: relative;
 
@@ -68,30 +174,11 @@ body{
   overflow: scroll;
 }
 
-.main-home {
-  align-items: center;
-  vertical-align: middle;
-  min-width: 100%;
-  height: 20vh;
-  border: 1px solid gray;
-  margin: 0vw;
-  position: relative;
-
-  text-align: center;
-  color: black;
-  margin: 0 0 0.5vh 0;;
-
-  text-align: center;
-  font-size: 25px;
-  margin: 0 0 2vh 0;
-  overflow: scroll;
-}
-
 .rem-rat-form {
   align-items: center;
   min-width: 100%;
   height: 15vh;
-  border: 1px solid gray;
+  border: 1px solid lightblue;
   margin: 0vw;
   position: relative;
 
@@ -107,7 +194,7 @@ body{
 }
 
 .rats-list {
-  border: 1px solid gray;
+  border: 1px solid lightblue;
   margin-bottom: 10px;
   padding-bottom: 10px;
   text-align: center;
@@ -118,87 +205,77 @@ body{
 }
 
 .btn-submit {
-  width: 10%;
   font-size: 20px;
+  border: 1px solid lightblue;
 }
 
 .btn-submit:hover  {
-  background-color: darkgrey;
-  color: white;
+  color: black;
+  background-color: lightblue;
   cursor: pointer;
 }
 
 .btn-to-home {
+  border: 1px solid lightblue;
   text-align: center;
   align-items: center;
   vertical-align: middle;
-  width: 15%;
   cursor: pointer;
   min-height: 50%;
 }
 
 .btn-to-home:hover  {
-  background-color: darkgrey;
-  color: white;
-}
-
-.btn-home {
-  margin-top: 35px;
-  align-items: center;
-  vertical-align: middle;
-  width: 23%;
+  color: black;
+  background-color: lightblue;
   cursor: pointer;
-  min-height: 50%;
-}
-
-.btn-home:hover  {
-  background-color: darkgrey;
-  color: white;
 }
 
 .btn-list {
+  border: 1px solid lightblue;
   align-items: center;
-  width: 15%;
   cursor: pointer;
 
 }
 
 .btn-list:hover  {
-  background-color: darkgrey;
-  color: white;
+  color: black;
+  background-color: lightblue;
+  cursor: pointer;
 }
 
 .btn-rem {
-  width: 10%;
+  border: 1px solid lightblue;
   font-size: 20px;
 }
 
 
 .btn-rem:hover  {
-  background-color: darkgrey;
-  color: white;
+  color: black;
+  background-color: lightblue;
   cursor: pointer;
 }
 
 .btn-upd {
-  width: 10%;
+  border: 1px solid lightblue;
   font-size: 20px;
 }
 
 
 .btn-upd:hover  {
-  background-color: darkgrey;
-  color: white;
+  color: black;
+  background-color: lightblue;
   cursor: pointer;
 }
 
 .btn-rat {
-  width: 95%;
+  background-color: lightblue;
+  cursor: pointer;
 }
 
 .btn-rat:hover {
-  background-color: darkgrey;
-  color: white;
+  color: black;
+  background-color: lightblue;
+  cursor: pointer;
 }
 
 

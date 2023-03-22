@@ -9,8 +9,8 @@ import java.util.List;
 public class RescuedRat {
 
   @Id
-  //@GeneratedValue(strategy = GenerationType.IDENTITY)
-  private Long id;
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  private long id;
 
   private String name;
   private String breed;
@@ -18,7 +18,7 @@ public class RescuedRat {
   private String sex;
   private String clinicalStatus;
   private boolean spayed;
-//  @OneToOne(cascade = CascadeType.ALL)
+//  @OneToOne(cascade = CascçadeType.ALL)
 //  @JoinColumn(name = "city_id", referencedColumnName = "id")
   private String city;
 //  @ElementCollection
@@ -26,8 +26,7 @@ public class RescuedRat {
 
   public RescuedRat(){};
 
-  public RescuedRat(Long id, String name, String breed, int age, String sex, String clinicalStatus, boolean spayed, String city) {
-    this.id = id;
+  public RescuedRat(String name, String breed, int age, String sex, String clinicalStatus, boolean spayed, String city) {
     this.name = name;
     this.breed = breed;
     this.age = age;
