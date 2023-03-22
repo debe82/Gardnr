@@ -31,3 +31,12 @@ logging:
       springframework:
         boot:
           autoconfigure: ERROR
+okta:
+  oauth2:
+    issuer: ${env.ISSUER} #dev-98888155.okta.com
+    client-id: ${env.CLIENT_ID} #0oa8tbhsa7ecapYI65d7
+    client-secret: ${env.CLIENT_SECRET} #pNijfBuFXsPKybqBaMrDc4ZL88sIoXihbMvTk89K
+#    scope: openid,courses,email,profile
+#    groupsClaim: grp
+.env:
+  filename: .okta.env
