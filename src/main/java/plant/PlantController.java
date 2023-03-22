@@ -3,6 +3,8 @@ package plant;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.oauth2.core.oidc.user.OidcUser;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
@@ -18,6 +20,10 @@ public class PlantController {
 
     @GetMapping
     ResponseEntity<List<Plant>> getAllPlants() {
+//        if(oidcUser == null){
+//            return ResponseEntity.badRequest().build();
+//        }
+
         List<Plant> listOfAllPlants = service.getAllPlants();
         return ResponseEntity.ok().body(listOfAllPlants);
     }

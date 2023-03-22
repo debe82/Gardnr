@@ -10,9 +10,9 @@ spring:
     ansi:
       enabled: always
   datasource:
-    url: jdbc:postgresql://mouse.db.elephantsql.com/embtszfx
-    username: embtszfx
-    password: cSJdByTBzKK7BgesMyme8X3JYegZbRAu
+    url: jdbc:postgresql://localhost/postgres
+    username: salt-dev
+    password:
     hikari:
       connectionTimeout: 20000
       maximumPoolSize: 5
@@ -21,23 +21,17 @@ spring:
     hibernate:
       ddl-auto: create
     defer-datasource-initialization: true
-  data:
-    mongodb:
-      uri: mongodb+srv://user:pwd@atlascluster.a0y9dkm.mongodb.net/test
-      database: test
 logging:
   level:
     org:
       springframework:
         boot:
           autoconfigure: ERROR
-okta:
-  oauth2:
-    issuer: https://dev-98888155.okta.com/oauth2/default
-    client-id: 0oa8tbhsa7ecapYI65d7
-    client-secret: pNijfBuFXsPKybqBaMrDc4ZL88sIoXihbMvTk89K
+#okta:
+#  oauth2:
+#    issuer: https://dev-98888155.okta.com/oauth2/default
+#    client-id: 0oa8tbhsa7ecapYI65d7
+#    client-secret: pNijfBuFXsPKybqBaMrDc4ZL88sIoXihbMvTk89K
 
 #    scope: openid,courses,email,profile
 #    groupsClaim: grp
-.env:
-  filename: .okta.env
