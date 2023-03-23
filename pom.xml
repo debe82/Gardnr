@@ -11,8 +11,8 @@
 	<groupId>se.salt</groupId>
 	<artifactId>rri</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>rri</name>
-	<description>rri</description>
+	<name>grdnr</name>
+	<description>grdnr</description>
 	<properties>
 		<java.version>19</java.version>
 	</properties>
