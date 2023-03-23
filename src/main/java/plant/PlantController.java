@@ -5,6 +5,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.oauth2.core.oidc.user.OidcUser;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
@@ -14,18 +15,17 @@ import java.util.Map;
 @RestController
 @RequestMapping("/api/plants")
 public class PlantController {
-
     @Autowired
     PlantService service;
 
     @GetMapping
-    ResponseEntity<List<Plant>> getAllPlants() {
+    String getAllPlants(Model model, @AuthenticationPrincipal OidcUser principal) {
 //        if(oidcUser == null){
 //            return ResponseEntity.badRequest().build();
 //        }
 
         List<Plant> listOfAllPlants = service.getAllPlants();
-        return ResponseEntity.ok().body(listOfAllPlants);
+        return "index";
     }
 
     @GetMapping("{id}")
@@ -40,5 +40,4 @@ public class PlantController {
         json.put("message", nfe.getMessage());
         return new ResponseEntity(json, HttpStatus.NOT_FOUND);
     }
-
 }
