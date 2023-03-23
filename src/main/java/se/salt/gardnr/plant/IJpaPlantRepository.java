@@ -1,4 +1,4 @@
-package plant;
+package se.salt.gardnr.plant;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 

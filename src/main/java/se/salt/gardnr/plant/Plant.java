@@ -1,4 +1,4 @@
-package plant;
+package se.salt.gardnr.plant;
 
 import jakarta.persistence.*;
 
