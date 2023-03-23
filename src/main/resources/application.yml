@@ -1,5 +1,5 @@
 
-## default connection pool
+#### default connection pool
 debug: true
 spring:
   sql:
@@ -21,12 +21,12 @@ spring:
     hibernate:
       ddl-auto: update
     defer-datasource-initialization: true
-logging:
-  level:
-    org:
-      springframework:
-        boot:
-          autoconfigure: ERROR
+  logging:
+    level:
+      org:
+        springframework:
+          boot:
+            autoconfigure: ERROR
 
   security:
     oauth2:
