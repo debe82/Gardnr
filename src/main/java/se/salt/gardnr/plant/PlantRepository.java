@@ -31,4 +31,8 @@ public class PlantRepository {
   public Plant updatePlant(Plant plantToUpdate) {
     return repo.save((plantToUpdate));
   }
+
+  public void deletePlant(Plant plant) {
+    repo.delete(plant);
+  }
 }

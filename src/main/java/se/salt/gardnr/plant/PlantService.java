@@ -31,4 +31,9 @@ public class PlantService {
     }
     return null;
   }
+
+  public void deletePlant(int id) {
+    Plant plant = getPlantById(id);
+    repo.deletePlant(plant);
+  }
 }

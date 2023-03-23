@@ -49,4 +49,16 @@ public class PlantController {
 
         return ResponseEntity.accepted().body(updatedPlant);
     }
+
+
+    @DeleteMapping("{id}")
+    ResponseEntity deletePlantFor(@PathVariable int id) {
+        if (id < 1) return ResponseEntity.badRequest().build();
+        Plant plantToDelete = service.getPlantById(id);
+        if (plantToDelete == null) return ResponseEntity.unprocessableEntity().build();
+        service.deletePlant(id);
+        return ResponseEntity.noContent().build();
+    }
+
+
 }
