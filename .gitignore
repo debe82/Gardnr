@@ -4,6 +4,7 @@ target/
 !**/src/main/**/target/
 !**/src/test/**/target/
 
+
 ### STS ###
 .apt_generated
 .classpath
@@ -30,5 +31,4 @@ build/
 !**/src/test/**/build/
 
 ### VS Code ###
-.vscode/
-.okta.env
+/frontend/node_modules
