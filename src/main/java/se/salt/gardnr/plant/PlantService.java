@@ -19,21 +19,4 @@ public class PlantService {
     return repo.getPlantById(id);
   }
 
-  public Plant addNewPlant(Plant plant) {
-    return repo.addNewPlant(plant);
-  }
-
-  public Plant updatePlant(int id, Plant plant) {
-    Plant plantToUpdate = getPlantById(id);
-    if (plant.getPlantName() != null && plant.getPlantName() != "") {
-      plantToUpdate.setPlantName(plant.getPlantName());
-      return repo.updatePlant(plantToUpdate);
-    }
-    return null;
-  }
-
-  public void deletePlant(int id) {
-    Plant plant = getPlantById(id);
-    repo.deletePlant(plant);
-  }
 }

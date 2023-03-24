@@ -23,16 +23,4 @@ public class PlantRepository {
     return repo.findById(id).orElse(null);
   }
 
-
-  public Plant addNewPlant(Plant plant) {
-    return repo.save(plant);
-  }
-
-  public Plant updatePlant(Plant plantToUpdate) {
-    return repo.save((plantToUpdate));
-  }
-
-  public void deletePlant(Plant plant) {
-    repo.delete(plant);
-  }
 }

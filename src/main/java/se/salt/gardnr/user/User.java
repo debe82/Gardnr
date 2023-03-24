@@ -2,6 +2,7 @@ package se.salt.gardnr.user;
 
 import jakarta.persistence.*;
 import se.salt.gardnr.plant.Plant;
+import se.salt.gardnr.userplant.UserPlant;
 
 import java.util.List;
 
@@ -15,5 +16,5 @@ public class User {
   private String userName;
   private String userEmail;
   @OneToMany(mappedBy="plantId")
-  private List<Plant> plants;
+  private List<UserPlant> userPlants;
 }

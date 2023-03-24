@@ -1,22 +1,18 @@
-package se.salt.gardnr.plant;
+package se.salt.gardnr.userplant;
 
 import jakarta.persistence.*;
 import se.salt.gardnr.user.User;
-import se.salt.gardnr.userplant.UserPlant;
 
 import java.time.LocalDateTime;
-import java.util.List;
 
 @Entity
-@Table(name = "api_plants")
-public class Plant {
+@Table(name = "user_plants")
+public class UserPlant {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int plantId;
     private String plantName;
     private String plantNameLatin;
-//    @ElementCollection
-//    private List<String> instructions;
     private String watering;
     private int tempMax;
     private int tempMin;
@@ -25,10 +21,12 @@ public class Plant {
     private String description;
     private LocalDateTime startDate;
 //    private String pictureLink;
+    @ManyToOne
+    @JoinColumn(name = "plants")
+    private User user;
 
 
-
-    public Plant() {
+    public UserPlant() {
     }
 
     public int getPlantId() {
@@ -82,6 +80,14 @@ public class Plant {
     public void setIdealLight(String idealLight) {
         this.idealLight = idealLight;
     }
+
+    //    public List<String> getInstructions() {
+//        return instructions;
+//    }
+//
+//    public void setInstructions(List<String> instructions) {
+//        this.instructions = instructions;
+//    }
 
     public String getDescription() {
         return description;
