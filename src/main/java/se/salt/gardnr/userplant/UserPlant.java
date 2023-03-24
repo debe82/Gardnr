@@ -20,7 +20,7 @@ public class UserPlant {
     @Column(columnDefinition="TEXT")
     private String description;
     private LocalDateTime startDate;
-//    private String pictureLink;
+    private String pictureLink;
     @ManyToOne
     @JoinColumn(name = "plants")
     private User user;

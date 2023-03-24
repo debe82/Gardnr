@@ -9,6 +9,7 @@ import java.net.URI;
 import java.util.List;
 
 @RestController
+@CrossOrigin
 @RequestMapping("/api/userplants") //previously plants, but maybe it's better to keep that name for the api
 public class UserPlantController {
 
