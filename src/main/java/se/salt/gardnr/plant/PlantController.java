@@ -9,7 +9,7 @@ import java.net.URI;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/plants")
+@RequestMapping("/api/plants") //previously plants, but maybe it's better to keep that name for the api
 public class PlantController {
 
     @Autowired

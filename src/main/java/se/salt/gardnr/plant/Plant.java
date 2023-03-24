@@ -1,24 +1,32 @@
 package se.salt.gardnr.plant;
 
 import jakarta.persistence.*;
+import se.salt.gardnr.user.User;
 
 import java.time.LocalDateTime;
 import java.util.List;
 
 @Entity
-@Table(name = "plants")
+@Table(name = "user_plants")
 public class Plant {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int plantId;
     private String plantName;
     private String plantNameLatin;
-    @ElementCollection
-    private List<String> instructions;
+//    @ElementCollection
+//    private List<String> instructions;
+    private String watering;
+    private int tempMax;
+    private int tempMin;
+    private String idealLight;
+    @Column(columnDefinition="TEXT")
     private String description;
     private LocalDateTime startDate;
-//    private User user;
+//    private String pictureLink;
+    @ManyToOne
+    @JoinColumn(name = "plants")
+    private User user;
 
 
     public Plant() {
@@ -44,13 +52,45 @@ public class Plant {
         this.plantNameLatin = plantNameLatin;
     }
 
-    public List<String> getInstructions() {
-        return instructions;
+    public String getWatering() {
+        return watering;
     }
 
-    public void setInstructions(List<String> instructions) {
-        this.instructions = instructions;
+    public void setWatering(String watering) {
+        this.watering = watering;
     }
+
+    public int getTempMax() {
+        return tempMax;
+    }
+
+    public void setTempMax(int tempMax) {
+        this.tempMax = tempMax;
+    }
+
+    public int getTempMin() {
+        return tempMin;
+    }
+
+    public void setTempMin(int tempMin) {
+        this.tempMin = tempMin;
+    }
+
+    public String getIdealLight() {
+        return idealLight;
+    }
+
+    public void setIdealLight(String idealLight) {
+        this.idealLight = idealLight;
+    }
+
+    //    public List<String> getInstructions() {
+//        return instructions;
+//    }
+//
+//    public void setInstructions(List<String> instructions) {
+//        this.instructions = instructions;
+//    }
 
     public String getDescription() {
         return description;
@@ -71,12 +111,15 @@ public class Plant {
     @Override
     public String toString() {
         return "Plant{" +
-                "plantId=" + plantId +
-                ", plantName='" + plantName + '\'' +
-                ", plantNameLatin='" + plantNameLatin + '\'' +
-                ", instructions=" + instructions +
-                ", description='" + description + '\'' +
-                ", startDate=" + startDate +
-                '}';
+          "plantId=" + plantId +
+          ", plantName='" + plantName + '\'' +
+          ", plantNameLatin='" + plantNameLatin + '\'' +
+          ", watering='" + watering + '\'' +
+          ", tempMax=" + tempMax +
+          ", tempMin=" + tempMin +
+          ", idealLight='" + idealLight + '\'' +
+          ", description='" + description + '\'' +
+          ", startDate=" + startDate +
+          '}';
     }
 }
