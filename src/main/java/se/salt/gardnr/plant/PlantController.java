@@ -20,6 +20,10 @@ public class PlantController {
 
     @GetMapping
     String getAllPlants(Model model, @AuthenticationPrincipal OidcUser principal) {
+        if (principal != null) {
+            model.addAttribute("profile", principal.getClaims());
+        }
+        System.out.println(principal.getName());
         return "hello world";
     }
 

@@ -1,6 +1,7 @@
 package se.salt.gardnr.plant;
 
 import jakarta.persistence.*;
+import se.salt.gardnr.userplant.UserPlant;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -11,14 +12,16 @@ public class Plant {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int plantId;
-    private String plantName;
-    private String plantNameLatin;
+    private int PlantId;
+    private String PlantName;
+    private String PlantNameLatin;
     @ElementCollection
     private List<String> instructions;
+    @Column(columnDefinition="TEXT")
     private String description;
-    private LocalDateTime startDate;
-//    private User user;
+
+    @OneToMany(mappedBy="plantId")
+    private List<UserPlant> userPlants;
 
 
     public Plant() {

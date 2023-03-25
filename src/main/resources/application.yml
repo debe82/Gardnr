@@ -43,3 +43,16 @@ spring:
           auth0:
             # trailing slash is important!
             issuer-uri: https://dev-b1zvhq6qtydtr80k.us.auth0.com/
+
+#  logging.level.org.hibernate.SQL=DEBUG
+#  datasource:
+#    url: jdbc:postgresql://${POSTGRES_URL}:5432/postgres?sslmode=require
+#    username: ${POSTGRES_USER}
+#    password: ${POSTGRES_PWD}
+#
+#  jpa:
+#    hibernate:
+#      ddl-auto: create-drop
+#    properties:
+#      hibernate:
+#        dialect:org.hibernate.dialect.PostgreSQLDialect
