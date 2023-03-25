@@ -15,3 +15,6 @@ INSERT into plants (plant_id, plant_name, plant_name_latin, watering, temp_max, 
 VALUES (1, 'plantName1', 'plantNameLatin1', 'every day1', '30', '10', 'xxx lumen', 'a very nice plant') ON CONFLICT DO NOTHING;
 INSERT into plants (plant_id, plant_name, plant_name_latin, watering, temp_max, temp_min, ideal_light, description)
 VALUES (2, 'plantName2', 'plantNameLatin2', 'every day2', '30', '10', 'xxx lumen', 'a very nice plant') ON CONFLICT DO NOTHING;
+
+
+SELECT * FROM plants

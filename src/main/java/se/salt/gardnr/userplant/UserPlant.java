@@ -1,5 +1,6 @@
 package se.salt.gardnr.userplant;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import se.salt.gardnr.plant.Plant;
 import se.salt.gardnr.user.User;
@@ -33,8 +34,7 @@ public class UserPlant {
         this.userPlantId = userPlantId;
         this.userPlantName = userPlantName;
         this.startDate = startDate;
-        this.plant = plant;
-        this.user = user;
+
     }
 
     public int getUserPlantId() {
@@ -61,19 +61,31 @@ public class UserPlant {
         this.startDate = startDate;
     }
 
-    public Plant getPlant() {
-        return plant;
-    }
+//    public Plant getPlant() {
+//        return plant;
+//    }
+//
+//    public void setPlant(Plant plant) {
+//        this.plant = plant;
+//    }
+//
+//    public User getUser() {
+//        return user;
+//    }
+//
+//    public void setUser(User user) {
+//        this.user = user;
+//    }
 
-    public void setPlant(Plant plant) {
-        this.plant = plant;
-    }
 
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
-    }
+/*    @Override
+    public String toString() {
+        return "UserPlant{" +
+                "userPlantId=" + userPlantId +
+                ", userPlantName='" + userPlantName + '\'' +
+                ", startDate=" + startDate +
+                ", plant=" + plant +
+                ", user=" + user +
+                '}';
+    }*/
 }

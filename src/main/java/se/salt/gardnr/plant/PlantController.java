@@ -4,8 +4,9 @@ package se.salt.gardnr.plant;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.annotation.AuthenticationPrincipal;
-import org.springframework.security.oauth2.core.oidc.user.OidcUser;
+//import org.springframework.security.core.annotation.AuthenticationPrincipal;
+//import org.springframework.security.oauth2.core.oidc.user.OidcUser;
+import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
@@ -14,8 +15,8 @@ import java.util.List;
 import java.util.Map;
 
 @CrossOrigin(origins = "http://localhost:3000")
-@RestController
-@RequestMapping("api/plants")
+@Controller
+@RequestMapping("/api/plants")
 public class PlantController {
     @Autowired
     PlantService service;
@@ -30,13 +31,15 @@ public class PlantController {
     @GetMapping("{id}")
     ResponseEntity<Plant> getPlantById(@PathVariable int id) throws NotFoundException{
         Plant plant = service.getPlantById(id);
-        return ResponseEntity.ok().body(plant);
+        System.out.println("this is a plant in the controller" + plant);
+        System.out.println("this is plant id class" + plant.getClass());
+        return ResponseEntity.ok(plant);
     }
 
-    @ExceptionHandler({ NotFoundException.class })
-    public ResponseEntity notFound(Exception nfe) {
-        Map<String, Object> json = new HashMap<>();
-        json.put("message", nfe.getMessage());
-        return new ResponseEntity(json, HttpStatus.NOT_FOUND);
-    }
+//    @ExceptionHandler({ NotFoundException.class })
+//    public ResponseEntity notFound(Exception nfe) {
+//        Map<String, Object> json = new HashMap<>();
+//        json.put("message", nfe.getMessage());
+//        return new ResponseEntity(json, HttpStatus.NOT_FOUND);
+//    }
 }

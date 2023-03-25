@@ -11,10 +11,12 @@ public class PlantRepository {
     IJpaPlantRepository jpaRepo;
 
     List<Plant> getAllPlants(){
-        return jpaRepo.findAll();
+        List<Plant> plants = jpaRepo.findAll();
+        System.out.println("lsitOfPlants: " + plants);
+        return plants;
     }
 
     public Plant getPlantById(int id) {
-        return jpaRepo.getReferenceById(id);
+        return jpaRepo.findById(id).orElse(null);
     }
 }

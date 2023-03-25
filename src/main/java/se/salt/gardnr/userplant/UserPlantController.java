@@ -12,7 +12,7 @@ import java.util.Map;
 
 @RestController
 @CrossOrigin(origins = "http://localhost:3000")
-@RequestMapping("api/userplants")
+@RequestMapping("/api/userplants")
 public class UserPlantController {
     @Autowired
     UserPlantService service;
@@ -27,7 +27,7 @@ public class UserPlantController {
     @GetMapping("{id}")
     ResponseEntity<UserPlant> getPlantById(@PathVariable int id) throws NotFoundException {
         UserPlant userPlant = service.getUserPlantById(id);
-        return ResponseEntity.ok().body(userPlant);
+        return ResponseEntity.ok(userPlant);
     }
 
     @ExceptionHandler({ NotFoundException.class })

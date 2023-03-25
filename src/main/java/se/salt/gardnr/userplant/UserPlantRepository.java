@@ -15,6 +15,6 @@ public class UserPlantRepository {
     }
 
     public UserPlant getUserPlantById(int id) {
-        return jpaRepo.getReferenceById(id);
+        return jpaRepo.findById(id).orElse(null);
     }
 }
