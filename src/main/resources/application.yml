@@ -28,21 +28,21 @@ spring:
           boot:
             autoconfigure: ERROR
 
-  security:
-    oauth2:
-      client:
-        registration:
-          auth0:
-            client-id: QnI29kMHbukPpYnxyTSCNB1Pzczax3Ct
-            client-secret: 1L73RmrKpQ323gPUN67SyoWGVAwsgvrWqdS60VeqUeN5ObFX86rPnXYtlaXz6XaC
-            scope:
-              - openid
-              - profile
-              - email
-        provider:
-          auth0:
-            # trailing slash is important!
-            issuer-uri: https://dev-b1zvhq6qtydtr80k.us.auth0.com/
+#  security:
+#    oauth2:
+#      client:
+#        registration:
+#          auth0:
+#            client-id: QnI29kMHbukPpYnxyTSCNB1Pzczax3Ct
+#            client-secret: 1L73RmrKpQ323gPUN67SyoWGVAwsgvrWqdS60VeqUeN5ObFX86rPnXYtlaXz6XaC
+#            scope:
+#              - openid
+#              - profile
+#              - email
+#        provider:
+#          auth0:
+#            # trailing slash is important!
+#            issuer-uri: https://dev-b1zvhq6qtydtr80k.us.auth0.com/
 
 #  logging.level.org.hibernate.SQL=DEBUG
 #  datasource:

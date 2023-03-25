@@ -8,7 +8,6 @@ interface IPlant {
   tempMin: string;
   idealLight: string;
   description: string;
-  startDate?: Date;
   pictureLink: string;
 }
 
@@ -21,15 +20,9 @@ interface IUser {
 }
 
 interface IUserPlants {
-  plantId: number;
-  plantName: string;
-  plantNameLatin: string;
-  watering: string;
-  tempMax: string;
-  tempMin: string;
-  idealLight: string;
-  description: string;
+  UserPlantId: number;
   startDate?: Date;
   pictureLink: string;
   user?: IUser;
+  plant?: IPlant;
 }
