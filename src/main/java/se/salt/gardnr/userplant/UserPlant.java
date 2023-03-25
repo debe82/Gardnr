@@ -23,7 +23,7 @@ public class UserPlant {
     private Plant plant;
 
     @ManyToOne
-    @JoinColumn(name = "userPlants")
+    @JoinColumn(name = "userPlant")
     private User user;
 
 }

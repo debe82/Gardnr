@@ -1,4 +1,4 @@
-package se.salt.gardnr.plant;
+package se.salt.gardnr.userplant;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -6,15 +6,15 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public class PlantRepository {
+public class UserPlantRepository {
     @Autowired
-    IJpaPlantRepository jpaRepo;
+    IJpaUserPlantRepository jpaRepo;
 
-    List<Plant> getAllPlants(){
+    List<UserPlant> getAllUserPlants(){
         return jpaRepo.findAll();
     }
 
-    public Plant getPlantById(int id) {
+    public UserPlant getUserPlantById(int id) {
         return jpaRepo.getReferenceById(id);
     }
 }

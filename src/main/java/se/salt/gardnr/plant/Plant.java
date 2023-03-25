@@ -9,18 +9,17 @@ import java.util.List;
 @Entity
 @Table(name = "plants")
 public class Plant {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int PlantId;
-    private String PlantName;
-    private String PlantNameLatin;
+    private int plantId;
+    private String plantName;
+    private String plantNameLatin;
     @ElementCollection
     private List<String> instructions;
     @Column(columnDefinition="TEXT")
     private String description;
 
-    @OneToMany(mappedBy="plantId")
+    @OneToMany(mappedBy="userPlantId")
     private List<UserPlant> userPlants;
 
 
