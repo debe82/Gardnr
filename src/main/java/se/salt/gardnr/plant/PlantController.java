@@ -10,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @RestController
@@ -19,12 +20,9 @@ public class PlantController {
     PlantService service;
 
     @GetMapping
-    String getAllPlants(Model model, @AuthenticationPrincipal OidcUser principal) {
-        if (principal != null) {
-            model.addAttribute("profile", principal.getClaims());
-        }
-        System.out.println(principal.getName());
-        return "hello world";
+    public ResponseEntity<List<Plant>> getAllPlants() {
+        List<Plant> listOfPlants = service.getAllPlants();
+        return ResponseEntity.ok(listOfPlants);
     }
 
 
