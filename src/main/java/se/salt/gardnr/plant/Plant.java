@@ -14,10 +14,13 @@ public class Plant {
     private int plantId;
     private String plantName;
     private String plantNameLatin;
-    @ElementCollection
-    private List<String> instructions;
+    private String watering;
+    private int tempMax;
+    private int tempMin;
+    private String idealLight;
     @Column(columnDefinition="TEXT")
     private String description;
+    private String pictureLink;
 
     @OneToMany(mappedBy="userPlantId")
     private List<UserPlant> userPlants;
