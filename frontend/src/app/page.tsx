@@ -1,13 +1,14 @@
 'use client'
 
 import { useEffect, useState } from "react";
-import Card from "./components/Card";
+import Card from "./components/SpecificPlantCard";
 import { Carousel } from "./components/Carousel";
 import Header from "./components/Header";
 import { getAllApiPlants, getAllUserPlants } from "./api/hello/dataManagement";
 import UserProfile from "./components/UserProfile";
 import { PlantCard } from "./components/PlantCard";
 import { SearchBar } from "./components/SearchBar";
+import SpecificPlantCard from "./components/SpecificPlantCard";
 
 
 export default function Home() {
@@ -39,7 +40,7 @@ export default function Home() {
       <Header />
       <SearchBar />
       <Carousel />
-      <Card />
+      <SpecificPlantCard />
       <PlantCard />
       <UserProfile />
     </main>
