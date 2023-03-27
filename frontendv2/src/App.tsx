@@ -41,22 +41,19 @@ function App() {
   //   setUserPlants: () => {}
   // })
  
-   
- 
- 
-
-
 
   const userId = 1;
   const [plants, setPlants] = useState<IPlant[]>([]);
   const [userPlants, setUserPlants] = useState<IUserPlants[]>([]);
   const [user, setUser] = useState<IUser>();
 
-  const getApiPlants =async () => {
-    const data = await getAllApiPlants();
-    setPlants(data);
-    console.log("plants:", data);
-  }
+  useEffect(() => {
+    axios.get(`http://localhost:8080/api/plants`)
+    .then((response) => {
+     setPlants(response.data);    
+    });
+  }, []);
+
 
   const getUserPlants =async () => {
     const data = await getAllUserPlants();
@@ -68,7 +65,6 @@ function App() {
         <Routes>
           <Route path="/" element={<Homepage/> }/>
           <Route path="/:id" element={<Userpages />} />
-          <SearchBar/>
         </Routes>
       </Context.Provider>
   );
