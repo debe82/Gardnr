@@ -23,7 +23,13 @@ export interface MyContextValue {
   setUserPlants: Dispatch<SetStateAction<IUserPlants[]>>;
 }
 
-export const Context = createContext<MyContextValue | undefined>(undefined);
+export const Context = createContext<MyContextValue>({
+  plants: [],
+  setPlants: () => {},
+  userPlants: [],
+  setUserPlants: () => {}
+
+});
 
 function App() {
  
@@ -55,22 +61,14 @@ function App() {
   const getUserPlants =async () => {
     const data = await getAllUserPlants();
     setUserPlants(data);
-  } 
-
-useEffect(() => {
-    axios.get(`http://localhost:8080/api/users/${userId}`)
-    .then((response) => {
-     setUser(response.data);    
-    });
-  }, []);
-  console.log("this is user data" ,user)   
-
+  }   
 
   return (    
       <Context.Provider value={{  plants, setPlants, userPlants, setUserPlants }}>  
         <Routes>
           <Route path="/" element={<Homepage/> }/>
           <Route path="/:id" element={<Userpages />} />
+          <SearchBar/>
         </Routes>
       </Context.Provider>
   );
