@@ -9,6 +9,9 @@ import { NextResponse } from 'next/server'
 
 function Home() {
   const router = useRouter();
+
+  const {query, isReady} = useRouter();
+
   const [auth, setAuth] = useState(true);
 
 
@@ -29,15 +32,6 @@ function Home() {
         <Header />
         <Link href="/user/1">login</Link>
       </header>
-
-      <body>
-
-
-        <footer>
-
-
-        </footer>
-      </body>
     </div>
 
     </>

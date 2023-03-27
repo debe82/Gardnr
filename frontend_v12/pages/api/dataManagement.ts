@@ -1,4 +1,5 @@
 import axios from "axios";
+import { IUser } from "../interfaces";
 
 const PLANTS_API_URL = 'http://localhost:8080/api/plants';
 const USER_PLANTS_URL = 'http://localhost:8080/api/userplants';
@@ -14,7 +15,15 @@ export const getAllUserPlants = async () => {
   return (await response).data;
 }
 
-export const getUser = async (userId: string | string[]) => {
-  const response =   axios.get(`http://localhost:8080/api/users/${userId}`);
-  return (await response).data;
-  };
+// export const getUser = async (userId: string | string[]) => {
+//   const response = await axios.get(`http://localhost:8080/api/users/${userId}`);
+//   return response.data;
+// };
+
+export async function getUser(userId: string){
+  const apiResponse = await fetch(`http://localhost:8080/api/users/${userId}`, { cache: 'no-store' });
+  // const apiResponse = await fetch(`/api/employees/${id}`);
+  const data = await apiResponse.json();
+  //console.log("dataManagement.getRats.ratsData: ", ratsData)
+  return data;
+};  
