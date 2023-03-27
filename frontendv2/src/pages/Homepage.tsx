@@ -1,14 +1,21 @@
 import React from 'react'
-import { Carousel } from 'react-bootstrap'
 import { CarouselPlants } from '../components/CarouselPlants'
+import Header from '../components/Header'
+import { PlantCard } from '../components/PlantCard'
+import { SearchBar } from '../components/SearchBar'
+import SpecificPlantCard from '../components/SpecificPlantCard'
+import UserProfile from '../components/UserProfile'
 
 function Homepage() {
 
 
   return (
     <>
-    <div>Homepage</div>
-    <CarouselPlants/> 
+      <CarouselPlants /> 
+      <PlantCard />
+      <SearchBar />
+      <UserProfile />
+      <SpecificPlantCard />
     </>
   )
 }
