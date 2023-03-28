@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom';
 import { IUser } from '../interfaces';
 import { Context, MyContextValue } from '../App';
+import UserProfile from '../components/UserProfile';
 
 export default function Userpages() {
 
@@ -30,11 +31,7 @@ export default function Userpages() {
 
   return (
   <>
-    <p> this is user id:</p>
-    {user? (
-      user.userId
-      ):null 
-    };
+    <UserProfile />
   
   </>
    

@@ -1,5 +1,6 @@
 import React from "react";
 import { Container, Nav, Navbar, NavDropdown } from "react-bootstrap";
+import { SearchBar } from "./SearchBar";
 
 const Header = () => {
   return (
@@ -11,10 +12,11 @@ const Header = () => {
           <Nav>
             <Nav.Link href="#">Features</Nav.Link>
             <Nav.Link href="#">Pricing</Nav.Link>
-            <Nav.Link href="#">More deets</Nav.Link>
+            <Nav.Link href="#"><SearchBar></SearchBar></Nav.Link>
             <Nav.Link eventKey={2} href="#">
               link
             </Nav.Link>
+            <Nav.Link href="/1">Login</Nav.Link>
           </Nav>
         </Navbar.Collapse>
       </Container>

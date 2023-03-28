@@ -18,6 +18,8 @@ export interface MyContextValue {
   setPlants: Dispatch<SetStateAction<IPlant[]>>;
   userPlants: IUserPlants[];
   setUserPlants: Dispatch<SetStateAction<IUserPlants[]>>;
+  user: IUser | undefined;
+  setUser: Dispatch<SetStateAction<IUser| any>>;
 }
 
 export const Context = createContext<MyContextValue>({
@@ -25,6 +27,15 @@ export const Context = createContext<MyContextValue>({
   setPlants: () => {},
   userPlants: [],
   setUserPlants: () => {},
+  user: {
+    userId: 0,
+    authId: "",
+    userName: "",
+    userEmail: "", 
+    userPlants: []
+  }, 
+  setUser: () => {}
+
 });
 
 function App() {
@@ -52,7 +63,7 @@ function App() {
   };
 
   return (
-    <Context.Provider value={{ plants, setPlants, userPlants, setUserPlants }}>
+    <Context.Provider value={{ plants, setPlants, userPlants, setUserPlants, user, setUser }}>
       <Routes>
         <Route path="/" element={<Homepage />} />
         <Route path="/:id" element={<Userpages />} />
