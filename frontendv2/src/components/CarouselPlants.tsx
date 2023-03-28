@@ -1,47 +1,32 @@
-import React from 'react'
-import Carousel from 'react-multi-carousel';
-import 'react-multi-carousel/lib/styles.css';
+import React, { FC } from "react";
+import Carousel from "react-multi-carousel";
+import "react-multi-carousel/lib/styles.css";
+import { IPlant } from "../interfaces";
 
 export const CarouselPlants = () => {
-const responsive = {
-  superLargeDesktop: {
-    // the naming can be any, depends on you.
-    breakpoint: { max: 4000, min: 3000 },
-    items: 10
-  },
-  desktop: {
-    breakpoint: { max: 3000, min: 1024 },
-    items: 10
-  },
-  tablet: {
-    breakpoint: { max: 1024, min: 464 },
-    items: 4
-  },
-  mobile: {
-    breakpoint: { max: 464, min: 0 },
-    items: 3
-  }
-
-  //href={'/user/${id}/userplants/...'}
-};
-
   return (
     <>
-    <div>Carousel</div>
-    <Carousel responsive={responsive}>
-      <div><img src="https://picsum.photos/100/100" alt="" /></div>
-      <div><img src="https://picsum.photos/100/100" alt="" /></div>
-      <div><img src="https://picsum.photos/100/100" alt="" /></div>
-      <div><img src="https://picsum.photos/100/100" alt="" /></div>
-      <div><img src="https://picsum.photos/100/100" alt="" /></div>
-      <div><img src="https://picsum.photos/100/100" alt="" /></div>
-      <div><img src="https://picsum.photos/100/100" alt="" /></div>
-      <div><img src="https://picsum.photos/100/100" alt="" /></div>
-      <div><img src="https://picsum.photos/100/100" alt="" /></div>
-      <div><img src="https://picsum.photos/100/100" alt="" /></div>
-      <div><img src="https://picsum.photos/100/100" alt="" /></div>
-      <div><img src="https://picsum.photos/100/100" alt="" /></div>
-    </Carousel>
+      <h3>Let's take care of your plants!</h3>
+      <div className="carousel-plants-container">
+        <a href="#image1">
+          <img src="https://picsum.photos/85/85" alt="" />
+        </a>
+        <a href="#image2">
+          <img src="https://picsum.photos/85/85" alt="" />
+        </a>
+        <a href="#image3">
+          <img src="https://picsum.photos/85/85" alt="" />
+        </a>
+        <a href="#image4">
+          <img src="https://picsum.photos/85/85" alt="" />
+        </a>
+        <a href="#image5">
+          <img src="https://picsum.photos/85/85" alt="" />
+        </a>
+        <a href="#image6">
+          <img src="https://picsum.photos/85/85" alt="" />
+        </a>
+      </div>
     </>
-  )
-}
+  );
+};

@@ -1,38 +1,70 @@
-.App {
+#root {
+  height: 100%;
+}
+
+body {
+  height: 100vh;
+  width: 100%;
+  margin: 0;
+  background-color: black;
+  font-family: Roboto, "Times New Roman";
+}
+
+.user-profile-card {
+  margin-top: 30px;
   text-align: center;
 }
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.user-profile-card h3 {
+  font-family: Unna;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.carousel-plants-container {
   display: flex;
-  flex-direction: column;
-  align-items: center;
+  overflow: scroll;
+  margin-top: 20px;
+  margin-bottom: 30px;
+}
+
+.carousel-plants-container::-webkit-scrollbar {
+  display: none;
+}
+
+.carousel-plants-container img {
+  margin: 5px;
+  border-radius: 20px;
+  opacity: 30%;
+}
+
+.carousel-plants-container img:hover {
+  opacity: 100%;
+}
+
+.specific-plant-card {
+  display: flex;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  align-items: center;
+  flex-wrap: wrap;
+  font-size: 10px;
 }
 
-.App-link {
-  color: #61dafb;
+.specific-plant-card img {
+  border-radius: 20px;
+  margin-bottom: 15px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.specific-plant-card p {
+  width: 60%;
+}
+
+.specific-plant-card-status-watered {
+  display: flex;
+  justify-content: center;
+  border: 1px solid rgba(0, 0, 0, 0.253);
+  border-radius: 20px;
+  background-color: rgba(157, 255, 127, 0.615);
+}
+
+.specific-plant-card-status-watered p {
+  margin: 0;
+  font-size: 8px;
 }

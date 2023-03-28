@@ -10,9 +10,9 @@ spring:
     ansi:
       enabled: always
   datasource:
-    url: jdbc:postgresql://localhost/postgres
-    username: salt-dev
-    password:
+    url: jdbc:postgresql://${POSTGRES_URL}:5432/postgres?sslmode=require
+    username: ${POSTGRES_USER}
+    password: ${POSTGRES_PWD}
     hikari:
       connectionTimeout: 20000
       maximumPoolSize: 5
