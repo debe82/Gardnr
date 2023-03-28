@@ -5,6 +5,15 @@ import React, {
   useEffect,
   useState,
 } from "react";
+
+const initUser = {
+  userId: 0,
+  authId: "",
+  name: "",
+  email: "", 
+  plants: [] 
+}
+
 import { getAllUserPlants } from "./api/dataManagement";
 import { IPlant, IUser, IUserPlants } from "./interfaces";
 import Homepage from "./pages/Homepage";
@@ -19,8 +28,8 @@ export interface MyContextValue {
   setPlants: Dispatch<SetStateAction<IPlant[]>>;
   userPlants: IUserPlants[];
   setUserPlants: Dispatch<SetStateAction<IUserPlants[]>>;
-  user: IUser | undefined;
-  setUser: Dispatch<SetStateAction<IUser | undefined>>;
+  user: IUser;
+  setUser: Dispatch<SetStateAction<IUser>>;
 }
 
 export const Context = createContext<MyContextValue>({
@@ -31,9 +40,9 @@ export const Context = createContext<MyContextValue>({
   user: {
     userId: 0,
     authId: "",
-    userName: "",
-    userEmail: "", 
-    userPlants: []
+    name: "",
+    email: "", 
+    plants: []
   }, 
   setUser: () => {}
 
@@ -50,7 +59,7 @@ function App() {
   const userId = 1;
   const [plants, setPlants] = useState<IPlant[]>([]);
   const [userPlants, setUserPlants] = useState<IUserPlants[]>([]);
-  const [user, setUser] = useState<IUser>();
+  const [user, setUser] = useState<IUser>(initUser);
 
   useEffect(() => {
     axios.get(`http://localhost:8080/api/plants`).then((response) => {
@@ -59,11 +68,11 @@ function App() {
   }, []);
 
 
-  useEffect(() => {
-    axios.get(`http://localhost:8080/api/userplants`).then((response) => {
-      setUserPlants(response.data);
-    });
-  }, []);
+  // useEffect(() => {
+  //   axios.get(`http://localhost:8080/api/userplants`).then((response) => {
+  //     setUserPlants(response.data);
+  //   });
+  // }, []);
 
 //  console.log("userplants", userPlants)
 

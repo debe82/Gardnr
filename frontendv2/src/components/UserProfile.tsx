@@ -14,7 +14,7 @@ const UserProfile = () => {
   } = useContext(Context);
   return (
     <div className="user-profile-card">
-      <h3>Welcome {user ? user.userName : "no name found"}!</h3>
+      <h3>Welcome {user && user.name}!</h3>
       
       <CarouselPlants />
       <SpecificPlantCard />

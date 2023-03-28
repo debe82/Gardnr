@@ -27,14 +27,6 @@ export default function Userpages() {
         });
       }, []);
 
-      
-
-  
-
-  
-  console.log("this is user data" ,user);   
-  console.log()
-
   return (
   <>
     <UserProfile />

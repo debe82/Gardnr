@@ -15,12 +15,12 @@ export const CarouselPlants = () => {
   } = useContext(Context);
   
   // const filtered = userPlants.filter(e => {
-     console.log("userPlants: ", user && user.userPlants);
-  //   return true
-  // });
+     console.log("user: ", user.plants.length);
+     const listOfPlants: IPlant[] = user.plants;
+     //const plant: IPlant = user.plants[0];
+    // console.log("plant: ", plant && plant.description);
 
-   //  if( user?.userId == undefined ){return null}
-   //console.log(user ? user.userId  : undefined);
+    listOfPlants.map(e => console.log("plant: ", e));
 
 
 
@@ -28,33 +28,19 @@ export const CarouselPlants = () => {
   <>
     <div className="carousel-plants-container">
       {
-        user && user.userPlants.map(
-          (e) => <a key={e.UserPlantId}><img src={e.pictureLink} alt={"" + e.pictureLink} /> <p>bvbb</p></a>
-        )
+           listOfPlants.map(e => {
+            
+            return (
+              <>
+            <p>{e.plantName}</p>
+            <img src={e.pictureLink} alt="" />
+</>
+            )
+           })
       }
     </div>
     </>
   )};
-
-
-  
-  // return (
-  //   userPlants | user ? (
-  //     userPlants.filter(e => e.user?.userId  === user.userId  )
-  //     .map(e =>  {e.pictureLink}
-  //      return (
-  //       <div className="carousel-plants-container">
-  //         <a href="#image1">
-  //           <img src={e.pictureLink} alt="" />
-  //         </a>
-  //       </div>
-  //       )
-  //     }
-  //     )
-  //     ) : null
-  //     )
-
-
 
 
    /* { <>{
