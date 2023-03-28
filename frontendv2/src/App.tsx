@@ -12,6 +12,7 @@ import { Route, Routes } from "react-router-dom";
 
 import axios from "axios";
 import Userpages from "./pages/Userpages";
+import Header from "./components/Header";
 
 export interface MyContextValue {
   plants: IPlant[];
@@ -19,7 +20,7 @@ export interface MyContextValue {
   userPlants: IUserPlants[];
   setUserPlants: Dispatch<SetStateAction<IUserPlants[]>>;
   user: IUser | undefined;
-  setUser: Dispatch<SetStateAction<IUser| any>>;
+  setUser: Dispatch<SetStateAction<IUser | undefined>>;
 }
 
 export const Context = createContext<MyContextValue>({
@@ -57,13 +58,23 @@ function App() {
     });
   }, []);
 
-  const getUserPlants = async () => {
-    const data = await getAllUserPlants();
-    setUserPlants(data);
-  };
+
+  useEffect(() => {
+    axios.get(`http://localhost:8080/api/userplants`).then((response) => {
+      setUserPlants(response.data);
+    });
+  }, []);
+
+//  console.log("userplants", userPlants)
+
+  // const getUserPlants = async () => {
+  //   const data = await getAllUserPlants();
+  //   setUserPlants(data);
+  // };
 
   return (
     <Context.Provider value={{ plants, setPlants, userPlants, setUserPlants, user, setUser }}>
+      <Header/>
       <Routes>
         <Route path="/" element={<Homepage />} />
         <Route path="/:id" element={<Userpages />} />

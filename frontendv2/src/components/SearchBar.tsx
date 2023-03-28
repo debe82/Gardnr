@@ -48,7 +48,7 @@ export const SearchBar = () => {
               
               const plantNames = e.plantName.toLowerCase();
               if(search === ""){return plantNames.startsWith("type here to start searching..."); }else{
-              console.log("-- this is search", search);              
+              console.log("-- this is search", search);          
               return plantNames.startsWith(search.toLowerCase());}
             })
             .map((e) => (
