@@ -52,6 +52,7 @@ public class User {
         this.userEmail = userEmail;
     }
 
+
     public List<UserPlant> getUserPlants() {
         return userPlants;
     }
@@ -59,6 +60,7 @@ public class User {
     public void setUserPlants(List<UserPlant> userPlants) {
         this.userPlants = userPlants;
     }
+
 
     @Override
     public String toString() {

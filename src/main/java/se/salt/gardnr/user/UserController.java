@@ -4,6 +4,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
+import java.util.Map;
+
 @RestController
 @CrossOrigin(origins = "http://localhost:3000")
 @RequestMapping("/api/users")
@@ -19,9 +22,16 @@ public class UserController {
 //    }
 
     @GetMapping("{id}")
-    ResponseEntity<User> getUserById(@PathVariable int id) {
+    ResponseEntity<Map<String, Object>> getUserById(@PathVariable int id) {
         User user = service.getUserById(id);
-        return ResponseEntity.ok(user);
+        Map<String, Object> json = new HashMap<>();
+        json.put("name", user.getUserName());
+        json.put("email", user.getUserEmail());
+        json.put(
+          "plants",
+          user.getUserPlants().stream().map(usrPlant -> usrPlant.plant)
+        );
+        return ResponseEntity.ok(json);
     }
 
 //    @GetMapping("{authid}")

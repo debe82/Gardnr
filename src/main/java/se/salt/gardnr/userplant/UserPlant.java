@@ -13,19 +13,19 @@ public class UserPlant {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int userPlantId;
-    private String userPlantName;
+    public int userPlantId;
+    public String userPlantName;
 
-    private LocalDateTime startDate;
+    public LocalDateTime startDate;
 
-
-    @ManyToOne
-    @JoinColumn(name = "userPlants")
-    private Plant plant;
 
     @ManyToOne
-    @JoinColumn(name = "userPlant")
-    private User user;
+    @JoinColumn(name = "plantId")
+    public Plant plant;
+
+    @ManyToOne
+    @JoinColumn(name = "userId")
+    public User user;
 
     public UserPlant() {
     }

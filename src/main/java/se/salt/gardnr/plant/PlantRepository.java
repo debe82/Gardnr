@@ -10,7 +10,7 @@ public class PlantRepository {
     @Autowired
     IJpaPlantRepository jpaRepo;
 
-    List<Plant> getAllPlants(){
+    public List<Plant> getAllPlants(){
         List<Plant> plants = jpaRepo.findAll();
         System.out.println("lsitOfPlants: " + plants);
         return plants;
