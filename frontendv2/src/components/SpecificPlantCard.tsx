@@ -22,7 +22,7 @@ const SpecificPlantCard = () => {
   listOfPlants.map(e => console.log("plant: ", e.pictureLink));
 
   const deletePlant = () => {
-    axios.delete(`http://localhost:8080/api/userplants/${user.plants[0].plantId}`)
+    axios.delete(`http://localhost:8080/api/userplants/${specificPlant.plantId}`)
     //window.location.reload();
   }
 
