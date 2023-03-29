@@ -37,7 +37,7 @@ public class UserPlantService {
   }
 
   public void deleteUserPlant(int id) throws NotFoundException {
-      UserPlant userPlant = getUserPlantById(id);
+      UserPlant userPlant = plantRepo.getUserPlantByUserPlantId(id);
       plantRepo.deleteUserPLant(userPlant);
   }
 }

@@ -16,7 +16,7 @@ public class User {
     private String authId;
     private String userName;
     private String userEmail;
-    @OneToMany(mappedBy="user", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy="user")
     public List<UserPlant> userPlants;
 
 

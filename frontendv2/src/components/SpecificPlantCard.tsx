@@ -3,6 +3,7 @@ import { Context } from "../App";
 import { IPlant } from "../interfaces";
 import { faCoffee, faTrash } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import axios from "axios";
 
 const SpecificPlantCard = () => {
 
@@ -22,13 +23,16 @@ const SpecificPlantCard = () => {
   
   listOfPlants.map(e => console.log("plant: ", e.pictureLink));
 
+  const deletePlant = () => {
+    axios.delete(`http://localhost:8080/api/userplants/${user.plants[0].plantId}`)
+  }
   //console.log("plants0: ", plants[0]);
   //console.log("plants0: ", plants[0].pictureLink);
 
 
   return (
     <div className="specific-plant-card">
-      <FontAwesomeIcon icon={faTrash} />
+      <FontAwesomeIcon className="h1" onClick={deletePlant} icon={faTrash} />
       <img className="specific-plant-img" src={listOfPlants[0] && listOfPlants[0].pictureLink} alt="" />
       <p>
         Lorem ipsum dolor sit, amet consectetur adipisicing elit. Voluptas

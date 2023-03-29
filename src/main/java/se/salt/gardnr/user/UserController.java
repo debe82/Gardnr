@@ -53,10 +53,6 @@ public class UserController {
 
         UserPlant newUserPlant = service.createNewUserPlant(id, plant);
         System.out.println("newUSerID;: " + newUserPlant.getUserPlantId());
-//        User user = service.addPlantToUser(id,upDTO);
-//        UserDto userDTO = service.convertToUserDto(user);
-        //URI location = URI.create(req.getRequestURL() + "/" + newUserPlant.getUserPlantId());
-        // //return ResponseEntity.created(location).body(newUserPlant);
         URI location = URI.create(("/api/users/" + newUserPlant.getUserPlantId() + "/plants"));
         return ResponseEntity.created(location).body(newUserPlant);
     }

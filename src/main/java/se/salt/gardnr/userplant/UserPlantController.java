@@ -44,10 +44,12 @@ public class UserPlantController {
 //    }
 
     @DeleteMapping("{id}")
-    ResponseEntity deleteRescuedRat(@PathVariable int id) throws NotFoundException {
+    ResponseEntity deleteUserPlants(@PathVariable int id) throws NotFoundException {
         if(id < 1) return ResponseEntity.badRequest().build();
-        UserPlant userPlant = service.getUserPlantById(id);
-        if(userPlant == null) return ResponseEntity.notFound().build();
+
+        //UserPlant userPlant = service.getUserPlantById(id);
+
+        //if(userPlant == null) return ResponseEntity.notFound().build();
         service.deleteUserPlant(id);
         return ResponseEntity.noContent().build();
     }
