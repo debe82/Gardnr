@@ -15,7 +15,7 @@ const UserProfile = () => {
   return (
     <div className="user-profile-card">
       <h3>Welcome {user && user.name}!</h3>
-      
+      <h3>Let's take care of your plants!</h3>
       <CarouselPlants />
       <SpecificPlantCard />
     </div>

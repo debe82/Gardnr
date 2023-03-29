@@ -12,6 +12,7 @@ export const CarouselPlants = () => {
     setUserPlants,
     user,
     setUser,
+    setSpecificPlant
   } = useContext(Context);
   
   // const filtered = userPlants.filter(e => {
@@ -25,6 +26,7 @@ export const CarouselPlants = () => {
 
 
 
+
  return (
   <>
     <div className="carousel-plants-container">
@@ -33,7 +35,7 @@ export const CarouselPlants = () => {
             
             return (
               <>
-                <img key={index} className="carousel-plants-img" src={e.pictureLink} alt="" />
+                <img key={index} onClick={() => setSpecificPlant(e)} className="carousel-plants-img" src={e.pictureLink} alt="" />
               </>
             )
            })
