@@ -19,6 +19,14 @@ public class UserPlantRepository {
         return jpaRepo.findById(id).orElse(null);
     }
 
+  public UserPlant addNewUserPlant(UserPlant userPlant) {
+      return jpaRepo.save(userPlant);
+  }
+
+  public void deleteUserPLant(UserPlant userPlant) {
+      jpaRepo.delete(userPlant);
+  }
+
 //    public List<UserPlantDto> getAllPlantsForUser() {
 //        return jpaRepo.gimmeEverything();
 //    }

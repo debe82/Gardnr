@@ -1,11 +1,13 @@
 package se.salt.gardnr.userplant;
 
 
+import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.net.URI;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -29,6 +31,25 @@ public class UserPlantController {
         UserPlant userPlant = service.getUserPlantById(id);
         return ResponseEntity.ok(userPlant);
     }
+
+    @PostMapping
+    ResponseEntity<UserPlant> addRescuedRat(@RequestBody UserPlant userPlant, HttpServletRequest req){
+
+        service.addUserPlant(userPlant);
+        URI location = URI.create(req.getRequestURL() + "/" + userPlant.getUserPlantId());
+        System.out.println("location");
+        return ResponseEntity.created(location).body(userPlant);
+    }
+
+    @DeleteMapping("{id}")
+    ResponseEntity deleteRescuedRat(@PathVariable int id) throws NotFoundException {
+        if(id < 1) return ResponseEntity.badRequest().build();
+        UserPlant userPlant = service.getUserPlantById(id);
+        if(userPlant == null) return ResponseEntity.notFound().build();
+        service.deleteUserPlant(id);
+        return ResponseEntity.noContent().build();
+    }
+
 
     @ExceptionHandler({ NotFoundException.class })
     public ResponseEntity notFound(Exception nfe) {

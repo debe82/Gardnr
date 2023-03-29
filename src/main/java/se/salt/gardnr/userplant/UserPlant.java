@@ -1,6 +1,5 @@
 package se.salt.gardnr.userplant;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import se.salt.gardnr.plant.Plant;
 import se.salt.gardnr.user.User;

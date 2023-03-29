@@ -28,6 +28,15 @@ public class UserPlantService {
     if (userPlant == null) throw new NotFoundException("No product with id " + id);
     return userPlant;
   }
+
+  public UserPlant addUserPlant(UserPlant userPlant) {
+      return plantRepo.addNewUserPlant(userPlant);
+  }
+
+  public void deleteUserPlant(int id) throws NotFoundException {
+      UserPlant userPlant = getUserPlantById(id);
+      plantRepo.deleteUserPLant(userPlant);
+  }
 }
 
 class NotFoundException extends Exception {

@@ -10,9 +10,12 @@ spring:
     ansi:
       enabled: always
   datasource:
-    url: jdbc:postgresql://${POSTGRES_URL}:5432/postgres?sslmode=require
-    username: ${POSTGRES_USER}
-    password: ${POSTGRES_PWD}
+#    url: jdbc:postgresql://${POSTGRES_URL}:5432/postgres?sslmode=require
+#    username: ${POSTGRES_USER}
+#    password: ${POSTGRES_PWD}
+    url: jdbc:postgresql://localhost:5432/Plants
+    username: postgres
+    password: pgpwd
     hikari:
       connectionTimeout: 20000
       maximumPoolSize: 5
@@ -27,6 +30,8 @@ spring:
         springframework:
           boot:
             autoconfigure: ERROR
+
+
 
 #  security:
 #    oauth2:
@@ -44,12 +49,6 @@ spring:
 #            # trailing slash is important!
 #            issuer-uri: https://dev-b1zvhq6qtydtr80k.us.auth0.com/
 
-#  logging.level.org.hibernate.SQL=DEBUG
-#  datasource:
-#    url: jdbc:postgresql://${POSTGRES_URL}:5432/postgres?sslmode=require
-#    username: ${POSTGRES_USER}
-#    password: ${POSTGRES_PWD}
-#
 #  jpa:
 #    hibernate:
 #      ddl-auto: create-drop
