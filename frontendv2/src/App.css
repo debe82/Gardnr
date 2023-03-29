@@ -33,6 +33,8 @@ body {
   margin: 5px;
   border-radius: 20px;
   opacity: 30%;
+  height: 10vh;
+  width: 20vw;
 }
 
 .carousel-plants-container img:hover {
@@ -50,7 +52,8 @@ body {
 .specific-plant-card img {
   border-radius: 20px;
   margin-bottom: 15px;
-}
+  height: 30vh;
+  width: 50vw;}
 
 .specific-plant-card p {
   width: 60%;

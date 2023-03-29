@@ -33,12 +33,14 @@ public class UserPlantController {
     }
 
     @PostMapping
-    ResponseEntity<UserPlant> addRescuedRat(@RequestBody UserPlant userPlant, HttpServletRequest req){
+    ResponseEntity<UserPlant> addUserPlant(@RequestBody UserPlant userPlant, HttpServletRequest req){
+        UserPlant newUserPlant = service.addUserPlant(userPlant);
+        System.out.println("new userPlatnID: " + newUserPlant.getUserPlantId());
+        System.out.println("new userPlatnName: " + newUserPlant.getUserPlantName());
+        System.out.println("new userPlatnStart: " + newUserPlant.getStartDate());
 
-        service.addUserPlant(userPlant);
-        URI location = URI.create(req.getRequestURL() + "/" + userPlant.getUserPlantId());
-        System.out.println("location");
-        return ResponseEntity.created(location).body(userPlant);
+        URI location = URI.create(req.getRequestURL() + "/" + newUserPlant.getUserPlantId());
+        return ResponseEntity.created(location).body(newUserPlant);
     }
 
     @DeleteMapping("{id}")

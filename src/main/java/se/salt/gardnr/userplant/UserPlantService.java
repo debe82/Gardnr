@@ -29,8 +29,11 @@ public class UserPlantService {
     return userPlant;
   }
 
-  public UserPlant addUserPlant(UserPlant userPlant) {
-      return plantRepo.addNewUserPlant(userPlant);
+  public UserPlant addUserPlant(UserPlant userPlant) {System.out.println();
+      UserPlant newUserPlant = plantRepo.addNewUserPlant(userPlant);
+//      newUserPlant.setUser(userPlant.user);
+//      newUserPlant.setPlant(userPlant.plant);
+      return newUserPlant;
   }
 
   public void deleteUserPlant(int id) throws NotFoundException {

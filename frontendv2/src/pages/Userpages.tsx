@@ -18,7 +18,7 @@ export default function Userpages() {
   } = useContext(Context);
 
   const param = useParams();
-  console.log("this is userid", param)
+  //console.log("this is userid", param)
 
     useEffect(() => {
         axios.get(`http://localhost:8080/api/users/${param.id}`)

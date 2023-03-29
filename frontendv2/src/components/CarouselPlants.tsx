@@ -15,12 +15,13 @@ export const CarouselPlants = () => {
   } = useContext(Context);
   
   // const filtered = userPlants.filter(e => {
-     console.log("user: ", user.plants.length);
+    // console.log("user: ", user.plants.length);
      const listOfPlants: IPlant[] = user.plants;
+     //setPlants(listOfPlants);
      //const plant: IPlant = user.plants[0];
     // console.log("plant: ", plant && plant.description);
 
-    listOfPlants.map(e => console.log("plant: ", e));
+    //plants.map(e => console.log("plant: ", e));
 
 
 
@@ -28,44 +29,19 @@ export const CarouselPlants = () => {
   <>
     <div className="carousel-plants-container">
       {
-           listOfPlants.map(e => {
+           listOfPlants.map((e, index: number) => {
             
             return (
               <>
-            <p>{e.plantName}</p>
-            <img src={e.pictureLink} alt="" />
-</>
+                <img key={index} className="carousel-plants-img" src={e.pictureLink} alt="" />
+              </>
             )
            })
       }
     </div>
     </>
-  )};
+  )
+}
 
 
-   /* { <>{
-      userPlants.filter(e => e.user === user?.userId  )    }
-      <h3>Let's take care of your plants!</h3>      
-      <div className="carousel-plants-container">
-        <a href="#image1">
-          <img src="https://picsum.photos/85/85" alt="" />
-        </a>
-        <a href="#image2">
-          <img src="https://picsum.photos/85/85" alt="" />
-        </a>
-        <a href="#image3">
-          <img src="https://picsum.photos/85/85" alt="" />
-        </a>
-        <a href="#image4">
-          <img src="https://picsum.photos/85/85" alt="" />
-        </a>
-        <a href="#image5">
-          <img src="https://picsum.photos/85/85" alt="" />
-        </a>
-        <a href="#image6">
-          <img src="https://picsum.photos/85/85" alt="" />
-        </a>
-      </div>
-    </>
-  );
-}; */
+   

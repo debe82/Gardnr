@@ -95,10 +95,10 @@ insert into users (user_id, auth_id, user_email, user_name) values
 
 
 insert into userplants (user_plant_id, start_date, user_plant_name, plant_id, user_id) values
-    (1, TO_DATE('20170103','YYYYMMDD') ,'new plant for user1', 5, 1) ON CONFLICT DO NOTHING;
+    (66, TO_DATE('20170103','YYYYMMDD') ,'new plant for user1', 5, 1) ON CONFLICT DO NOTHING;
 
 insert into userplants (user_plant_id, start_date, user_plant_name, plant_id, user_id) values
-    (2, TO_DATE('20221027','YYYYMMDD'),'anonther new plant for user1', 7, 1) ON CONFLICT DO NOTHING;
+    (67, TO_DATE('20221027','YYYYMMDD'),'anonther new plant for user1', 7, 1) ON CONFLICT DO NOTHING;
 
 insert into userplants (user_plant_id, start_date, user_plant_name, plant_id, user_id) values
-    (3, TO_DATE('20010101','YYYYMMDD'),'new plant for user2', 7, 2) ON CONFLICT DO NOTHING;
+    (68, TO_DATE('20010101','YYYYMMDD'),'new plant for user2', 7, 2) ON CONFLICT DO NOTHING;

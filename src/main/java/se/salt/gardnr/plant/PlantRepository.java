@@ -12,7 +12,6 @@ public class PlantRepository {
 
     public List<Plant> getAllPlants(){
         List<Plant> plants = jpaRepo.findAll();
-        System.out.println("lsitOfPlants: " + plants);
         return plants;
     }
 

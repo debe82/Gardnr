@@ -31,8 +31,6 @@ public class PlantController {
     @GetMapping("{id}")
     ResponseEntity<Plant> getPlantById(@PathVariable int id) throws NotFoundException{
         Plant plant = service.getPlantById(id);
-        System.out.println("this is a plant in the controller" + plant);
-        System.out.println("this is plant id class" + plant.getClass());
         return ResponseEntity.ok(plant);
     }
 
