@@ -1,3 +1,4 @@
+import axios from "axios";
 import React, {
   ChangeEvent,
   SyntheticEvent,
@@ -28,11 +29,21 @@ export const SearchBar = () => {
   const addUserPlant = (plantname: string) => {
     //console.log(user?.userEmail)
     plants.map((e) => console.log(e.plantName));
-    const plantToAdd: IPlant[] = plants.filter((p) =>
+    const plantsToAdd: IPlant[] = plants.filter((p) =>
       p.plantName.includes(plantname)
     );
-    console.log(plantToAdd[0]);
-    console.log("search", plantname);
+
+    axios.post(`http://localhost:8080/api/users/1/plants`, {
+      plantId: plantsToAdd[0].plantId,
+      plantName: plantsToAdd[0].plantName,
+      plantNameLatin: plantsToAdd[0].plantNameLatin,
+      watering: plantsToAdd[0].watering,
+      tempMax: plantsToAdd[0].tempMax,
+      tempMin:  plantsToAdd[0].tempMin,
+      idealLight: plantsToAdd[0].idealLight,
+      description: plantsToAdd[0].description,
+      pictureLink: plantsToAdd[0].pictureLink,
+    });
   };
 
   return (

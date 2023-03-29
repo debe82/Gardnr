@@ -20,7 +20,9 @@ public class UserPlantRepository {
     }
 
   public UserPlant addNewUserPlant(UserPlant userPlant) {
-      return jpaRepo.save(userPlant);
+    System.out.println("im in userPlantService.addNewUSerPlant");
+
+    return jpaRepo.save(userPlant);
   }
 
   public void deleteUserPLant(UserPlant userPlant) {

@@ -32,16 +32,16 @@ public class UserPlantController {
         return ResponseEntity.ok(userPlant);
     }
 
-    @PostMapping
-    ResponseEntity<UserPlant> addUserPlant(@RequestBody UserPlant userPlant, HttpServletRequest req){
-        UserPlant newUserPlant = service.addUserPlant(userPlant);
-        System.out.println("new userPlatnID: " + newUserPlant.getUserPlantId());
-        System.out.println("new userPlatnName: " + newUserPlant.getUserPlantName());
-        System.out.println("new userPlatnStart: " + newUserPlant.getStartDate());
-
-        URI location = URI.create(req.getRequestURL() + "/" + newUserPlant.getUserPlantId());
-        return ResponseEntity.created(location).body(newUserPlant);
-    }
+//    @PostMapping
+//    ResponseEntity<UserPlant> addUserPlant(@RequestBody UserPlant userPlant, HttpServletRequest req){
+//        UserPlant newUserPlant = service.addUserPlant(userPlant);
+//        System.out.println("new userPlatnID: " + newUserPlant.getUserPlantId());
+//        System.out.println("new userPlatnName: " + newUserPlant.getUserPlantName());
+//        System.out.println("new userPlatnStart: " + newUserPlant.getStartDate());
+//
+//        URI location = URI.create(req.getRequestURL() + "/" + newUserPlant.getUserPlantId());
+//        return ResponseEntity.created(location).body(newUserPlant);
+//    }
 
     @DeleteMapping("{id}")
     ResponseEntity deleteRescuedRat(@PathVariable int id) throws NotFoundException {

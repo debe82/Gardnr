@@ -1,8 +1,8 @@
 import React, { useContext } from "react";
 import { Context } from "../App";
 import { IPlant } from "../interfaces";
-
-
+import { faCoffee, faTrash } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const SpecificPlantCard = () => {
 
@@ -16,11 +16,11 @@ const SpecificPlantCard = () => {
   } = useContext(Context);
 
   const listOfPlants: IPlant[] = user.plants;
-  setPlants(listOfPlants);
+  //setPlants(listOfPlants);
 
   //console.log("plants:", plants);
   
-  plants.map(e => console.log("plant: ", e.pictureLink));
+  listOfPlants.map(e => console.log("plant: ", e.pictureLink));
 
   //console.log("plants0: ", plants[0]);
   //console.log("plants0: ", plants[0].pictureLink);
@@ -28,7 +28,8 @@ const SpecificPlantCard = () => {
 
   return (
     <div className="specific-plant-card">
-      <img className="specific-plant-img" src={plants[0] && plants[0].pictureLink} alt="" />
+      <FontAwesomeIcon icon={faTrash} />
+      <img className="specific-plant-img" src={listOfPlants[0] && listOfPlants[0].pictureLink} alt="" />
       <p>
         Lorem ipsum dolor sit, amet consectetur adipisicing elit. Voluptas
         reiciendis aperiam dolorum ducimus, natus laboriosam voluptatum ab

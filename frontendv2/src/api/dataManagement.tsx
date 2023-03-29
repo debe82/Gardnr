@@ -19,3 +19,5 @@ export const getUser = async (userId: number) => {
     const response = axios.get( `http://localhost:3001/users/${userId}`);
     return (await response).data;
   };
+
+  

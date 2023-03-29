@@ -1,9 +1,15 @@
 package se.salt.gardnr.user;
 
 import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import se.salt.gardnr.model.UserPlantDto;
+import se.salt.gardnr.plant.NotFoundException;
+import se.salt.gardnr.plant.Plant;
+import se.salt.gardnr.plant.PlantService;
 import se.salt.gardnr.userplant.UserPlant;
 
 import java.net.URI;
@@ -17,6 +23,9 @@ public class UserController {
 
     @Autowired
     UserService service;
+
+    @Autowired
+    PlantService plantService;
 
 //    @GetMapping
 //    public ResponseEntity<List<User>> getAllUsers() {
@@ -37,13 +46,20 @@ public class UserController {
         return ResponseEntity.ok(json);
     }
 
-//    @PostMapping("{id}")
-//    ResponseEntity<UserPlant> addUserPlant(@PathVariable int id, @RequestBody UserPlant userPlant, HttpServletRequest req){
-//        User user = service.getUserById(id);
-//        user.userPlants.add(userPlant);
-//        URI location = URI.create(req.getRequestURL() + "/" + user.userPlants.indexOf(userPlant));
-//        return ResponseEntity.created(location).body(userPlant);
-//    }
+    @PostMapping("{id}/plants")
+    public ResponseEntity<UserPlant> addProductToCart(@PathVariable int id, @RequestBody Plant plant
+    ) throws NotFoundException {
+        //return service.createNewUserPlant(id, plant);
+
+        UserPlant newUserPlant = service.createNewUserPlant(id, plant);
+        System.out.println("newUSerID;: " + newUserPlant.getUserPlantId());
+//        User user = service.addPlantToUser(id,upDTO);
+//        UserDto userDTO = service.convertToUserDto(user);
+        //URI location = URI.create(req.getRequestURL() + "/" + newUserPlant.getUserPlantId());
+        // //return ResponseEntity.created(location).body(newUserPlant);
+        URI location = URI.create(("/api/users/" + newUserPlant.getUserPlantId() + "/plants"));
+        return ResponseEntity.created(location).body(newUserPlant);
+    }
 
 //    @GetMapping("{authid}")
 //    ResponseEntity<User> getUserById(@PathVariable String authid) {

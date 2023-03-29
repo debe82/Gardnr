@@ -24,7 +24,7 @@ public class Plant {
     private String pictureLink;
 
 
-    @OneToMany(mappedBy="plant")
+    @OneToMany(mappedBy="plant", cascade = CascadeType.ALL)
     private List<UserPlant> userPlants;
 
 
