@@ -38,6 +38,8 @@ public class UserPlantService {
 
   public void deleteUserPlant(int id) throws NotFoundException {
       UserPlant userPlant = plantRepo.getUserPlantByUserPlantId(id);
+      System.out.println("passed id:");
+      System.out.println("id from found userPlanrts: " +userPlant.getUserPlantId());
       plantRepo.deleteUserPLant(userPlant);
   }
 }

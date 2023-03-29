@@ -76,38 +76,17 @@ export const Context = createContext<MyContextValue>({
 });
 
 function App() {
-  // const value = createContext<MyContextValue>({
-  //   plants: {},
-  //   setPlants: () => {},
-  //   userPlants: {},
-  //   setUserPlants: () => {}
-  // })
-
   const userId = 1;
   const [plants, setPlants] = useState<IPlant[]>([]);
   const [userPlants, setUserPlants] = useState<IUserPlants[]>([]);
   const [user, setUser] = useState<IUser>(initUser);
-  const [specificPlant, setSpecificPlant] = useState<IPlant>(plants[0])
+  const [specificPlant, setSpecificPlant] = useState<IPlant>(plants[0]);
 
   useEffect(() => {
     axios.get(`http://localhost:8080/api/plants`).then((response) => {
       setPlants(response.data);
     });
   }, []);
-
-
-  // useEffect(() => {
-  //   axios.get(`http://localhost:8080/api/userplants`).then((response) => {
-  //     setUserPlants(response.data);
-  //   });
-  // }, []);
-
-//  console.log("userplants", userPlants)
-
-  // const getUserPlants = async () => {
-  //   const data = await getAllUserPlants();
-  //   setUserPlants(data);
-  // };
 
   return (
     <Context.Provider value={{ plants, setPlants, userPlants, setUserPlants, user, setUser, specificPlant, setSpecificPlant  }}>

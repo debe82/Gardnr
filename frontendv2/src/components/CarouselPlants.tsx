@@ -15,35 +15,21 @@ export const CarouselPlants = () => {
     setSpecificPlant
   } = useContext(Context);
   
-  // const filtered = userPlants.filter(e => {
-    // console.log("user: ", user.plants.length);
-     const listOfPlants: IPlant[] = user.plants;
-     //setPlants(listOfPlants);
-     //const plant: IPlant = user.plants[0];
-    // console.log("plant: ", plant && plant.description);
+  const listOfPlants: IPlant[] = user.plants;
 
-    //plants.map(e => console.log("plant: ", e));
-
-
-
-
- return (
-  <>
-    <div className="carousel-plants-container">
-      {
-           listOfPlants.map((e, index: number) => {
-            
+  return (
+    <>
+      <div className="carousel-plants-container">
+        {
+          listOfPlants.map((e, index: number) => {
             return (
               <>
                 <img key={index} onClick={() => setSpecificPlant(e)} className="carousel-plants-img" src={e.pictureLink} alt="" />
               </>
             )
-           })
-      }
-    </div>
-    </>
+          })
+        }
+      </div>
+      </>
   )
 }
-
-
-   

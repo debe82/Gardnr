@@ -28,7 +28,7 @@ export const SearchBar = () => {
 
   const addUserPlant = (plantname: string) => {
     //console.log(user?.userEmail)
-    plants.map((e) => console.log(e.plantName));
+    //plants.map((e) => console.log(e.plantName));
     const plantsToAdd: IPlant[] = plants.filter((p) =>
       p.plantName.includes(plantname)
     );
@@ -62,8 +62,8 @@ export const SearchBar = () => {
               console.log("-- this is search", search);          
               return plantNames.startsWith(search.toLowerCase());}
             })
-            .map((e) => (
-              <li onClick={() => addUserPlant(e.plantName)}> {e.plantName} </li>
+            .map((e, index: number) => (
+              <li key={index} onClick={() => addUserPlant(e.plantName)}> {e.plantName} </li>
             ))}
         </div>
       </div>

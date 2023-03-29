@@ -18,20 +18,15 @@ const SpecificPlantCard = () => {
   } = useContext(Context);
 
   const listOfPlants: IPlant[] = user.plants;
-  //setPlants(listOfPlants);
-
-  //console.log("plants:", plants);
   
   listOfPlants.map(e => console.log("plant: ", e.pictureLink));
 
   const deletePlant = () => {
     axios.delete(`http://localhost:8080/api/userplants/${user.plants[0].plantId}`)
+    //window.location.reload();
   }
-  //console.log("plants0: ", plants[0]);
-  //console.log("plants0: ", plants[0].pictureLink);
 
   useEffect(() => {
-  
     console.log(specificPlant)
   }, [specificPlant])
   
