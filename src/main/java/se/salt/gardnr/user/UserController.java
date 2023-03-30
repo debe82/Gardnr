@@ -37,7 +37,8 @@ public class UserController {
         //json.put("start date", up.getStartDate());
         //json.put("user plant name", up.getUserPlantName());
         System.out.println("user userplants:");
-        user.getUserPlants().stream().forEach(s -> System.out.println(s.userPlantId));
+        //user.getUserPlants().stream().forEach(s -> System.out.println(s.userPlantId));
+        json.put("listOfUserPlants", user.getUserPlants());
         json.put(
           "plants",
           user.getUserPlants().stream().map(usrPlant -> usrPlant.plant)
@@ -55,5 +56,11 @@ public class UserController {
         URI location = URI.create(("/api/users/" + newUserPlant.getUserPlantId() + "/plants"));
         System.out.println("location: " +location);
         return ResponseEntity.created(location).body(newUserPlant);
+    }
+
+    @DeleteMapping("{id}/plants")
+    ResponseEntity deleteUserPlants(@PathVariable int id)  {
+
+        return ResponseEntity.noContent().build();
     }
 }

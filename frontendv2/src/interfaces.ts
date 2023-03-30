@@ -16,14 +16,15 @@ export interface IUser {
   authId: string;
   name: string;
   email: string;
-  plants: IPlant[];
+  //plants: IPlant[];
+  listOfUserPlants: IUserPlants[];
 }
 
 
 export interface IUserPlants {
-  UserPlantId: number;
+  userPlantId: number;
   startDate?: Date;
-  pictureLink: string;
+  userPlantName: string;
   user?: IUser;
-  plant?: IPlant;
+  plant: IPlant;
 }

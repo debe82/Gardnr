@@ -11,7 +11,7 @@ const initUser = {
   authId: "",
   name: "",
   email: "", 
-  plants: [] 
+  listOfUserPlants: []
 }
 
 const initSpecPlant = {
@@ -24,7 +24,14 @@ const initSpecPlant = {
   idealLight: "",
   description: "",
   pictureLink: ""
+}
 
+const initUserPlant = {
+  UserPlantId: 0,
+  startDate: {},
+  userPlantName: "",
+  user: initUser,
+  plant: []
 }
 
 import { getAllUserPlants } from "./api/dataManagement";
@@ -57,7 +64,7 @@ export const Context = createContext<MyContextValue>({
     authId: "",
     name: "",
     email: "", 
-    plants: []
+    listOfUserPlants: []
   }, 
   setUser: () => {},
   specificPlant: {

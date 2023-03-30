@@ -2,7 +2,7 @@ import React, { FC, useContext } from "react";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import { Context } from "../App";
-import { IPlant } from "../interfaces";
+import { IPlant, IUserPlants } from "../interfaces";
 
 export const CarouselPlants = () => {
   const {
@@ -15,7 +15,7 @@ export const CarouselPlants = () => {
     setSpecificPlant
   } = useContext(Context);
   
-  const listOfPlants: IPlant[] = user.plants;
+  const listOfPlants: IUserPlants[] = user.listOfUserPlants;
 
   return (
     <>
@@ -24,7 +24,11 @@ export const CarouselPlants = () => {
           listOfPlants.map((e, index: number) => {
             return (
               <>
-                <img key={index} onClick={() => setSpecificPlant(e)} className="carousel-plants-img" src={e.pictureLink} alt="" />
+                <img key={index} onClick={() => 
+                  {
+                    setSpecificPlant(e.plant);
+                    console.log(e.userPlantId)
+                  }} className="carousel-plants-img" src={e.plant.pictureLink} alt="" />
               </>
             )
           })
