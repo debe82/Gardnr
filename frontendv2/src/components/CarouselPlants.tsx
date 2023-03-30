@@ -12,7 +12,8 @@ export const CarouselPlants = () => {
     setUserPlants,
     user,
     setUser,
-    setSpecificPlant
+    setSpecificPlant,
+    setToggleShowSpecificPlant
   } = useContext(Context);
   
   const listOfPlants: IUserPlants[] = user.listOfUserPlants;
@@ -27,7 +28,8 @@ export const CarouselPlants = () => {
                 <img key={index} onClick={() => 
                   {
                     setSpecificPlant(e);
-                    console.log(e.userPlantId)
+                    setToggleShowSpecificPlant(true);
+                    //console.log(e.userPlantId)
                   }} className="carousel-plants-img" src={e.plant.pictureLink} alt="" />
               </>
             )

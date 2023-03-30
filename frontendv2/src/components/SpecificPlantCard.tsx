@@ -14,7 +14,8 @@ const SpecificPlantCard = () => {
     setUserPlants,
     user,
     setUser,
-    specificPlant
+    specificPlant,
+    toggleShowSpecificPlant
   } = useContext(Context);
 
   console.log("userInfo: ", user);
@@ -39,7 +40,8 @@ const SpecificPlantCard = () => {
     <div className="specific-plant-card">
       <img className="specific-plant-img" src={specificPlant && specificPlant.plant.pictureLink} alt="" />
       
-        {specificPlant && (
+        {toggleShowSpecificPlant ?
+        specificPlant && (
           <>
             <li key={1}>Name: {specificPlant.plant.plantName}</li>
             <li key={2}>Ideal light: {specificPlant.plant.idealLight}</li>
@@ -47,7 +49,7 @@ const SpecificPlantCard = () => {
             <li key={4}>TMax: {specificPlant.plant.tempMax}</li>
             <li key={5}>Tmin: {specificPlant.plant.tempMin}</li>
           </>
-        )}
+        ): null}
       
       <div className="specific-plant-card-status-watered">
       <FontAwesomeIcon className="h1 specific-plant-card-trashcan" onClick={deletePlant} icon={faTrash} />

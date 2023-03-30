@@ -52,13 +52,17 @@ export interface MyContextValue {
   setUser: Dispatch<SetStateAction<IUser>>;
   specificPlant: IUserPlants;
   setSpecificPlant: Dispatch<SetStateAction<IUserPlants>>;
+  toggleShowSpecificPlant: boolean;
+  setToggleShowSpecificPlant: Dispatch<SetStateAction<boolean>>;
 }
 
 export const Context = createContext<MyContextValue>({
   plants: [],
   setPlants: () => {},
+
   userPlants: [],
   setUserPlants: () => {},
+
   user: {
     userId: 0,
     authId: "",
@@ -75,7 +79,10 @@ export const Context = createContext<MyContextValue>({
     user: initUser,
     plant: initPlant
   },
-  setSpecificPlant: () => {}
+  setSpecificPlant: () => {},
+
+  toggleShowSpecificPlant: false,
+  setToggleShowSpecificPlant: () => {}
 
 });
 
@@ -85,6 +92,7 @@ function App() {
   const [userPlants, setUserPlants] = useState<IUserPlants[]>([]);
   const [user, setUser] = useState<IUser>(initUser);
   const [specificPlant, setSpecificPlant] = useState<IUserPlants>(initUserPlant);
+  const [toggleShowSpecificPlant, setToggleShowSpecificPlant] = useState(false);
 
   useEffect(() => {
     axios.get(`http://localhost:8080/api/plants`).then((response) => {
@@ -93,7 +101,7 @@ function App() {
   }, []);
 
   return (
-    <Context.Provider value={{ plants, setPlants, userPlants, setUserPlants, user, setUser, specificPlant, setSpecificPlant  }}>
+    <Context.Provider value={{ plants, setPlants, userPlants, setUserPlants, user, setUser, specificPlant, setSpecificPlant, toggleShowSpecificPlant, setToggleShowSpecificPlant  }}>
       <Header/>
       <Routes>
         <Route path="/" element={<Homepage />} />
