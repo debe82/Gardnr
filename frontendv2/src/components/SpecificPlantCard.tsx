@@ -23,6 +23,8 @@ const SpecificPlantCard = () => {
  // console.log("date: ", specificPlant.startDate);
   const stringDate = specificPlant.startDate && specificPlant.startDate;
   //const realDate = specificPlant.startDate && specificPlant.startDate.getFullYear;
+  const timeIncrement = specificPlant.startDate && specificPlant.timeIncrement;
+
 
   const showWateringTime = () =>{
     const nowDay = new Date().getDate();
@@ -34,10 +36,6 @@ const SpecificPlantCard = () => {
     const nowSec = new Date().getSeconds();
     const startSec = new Date(stringDate).getSeconds();
 
-
-
-    const timeIncrement = specificPlant.startDate && specificPlant.timeIncrement;
-  
     console.log("timeIncrement: ", timeIncrement);
     console.log("nowDatef: ", nowDay , ", ", nowHour, ", ", nowMin, ", ", nowSec);
     console.log("startDate: ", startDay);
@@ -79,7 +77,8 @@ const SpecificPlantCard = () => {
             <li key={3}>Watering: {specificPlant.plant.watering}</li>
             <li key={4}>TMax: {specificPlant.plant.tempMax}</li>
             <li key={5}>Tmin: {specificPlant.plant.tempMin}</li>
-            <li key={6} className="specific-plant-time">Time left: ({showWateringTime()})</li>
+            <li key={6}>suggested watering every {timeIncrement}</li>
+            <li key={7} className="specific-plant-time">Time passed since last watering: ({showWateringTime()})</li>
           </>
         ): null}
       
