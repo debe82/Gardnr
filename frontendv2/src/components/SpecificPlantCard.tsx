@@ -21,18 +21,50 @@ const SpecificPlantCard = () => {
   const listOfPlants: IUserPlants[] = user.listOfUserPlants;
 
  // console.log("date: ", specificPlant.startDate);
-  const date = specificPlant.startDate && specificPlant.startDate.toString();
+  const stringDate = specificPlant.startDate && specificPlant.startDate;
+  //const realDate = specificPlant.startDate && specificPlant.startDate.getFullYear;
+
+  const showWateringTime = () =>{
+    const nowDay = new Date().getDate();
+    const startDay = new Date(stringDate).getDate();
+    const nowHour = new Date().getHours();
+    const startHour = new Date(stringDate).getHours();
+    const nowMin = new Date().getMinutes();
+    const startMin = new Date(stringDate).getMinutes();
+    const nowSec = new Date().getSeconds();
+    const startSec = new Date(stringDate).getSeconds();
+
+
+
+    const timeIncrement = specificPlant.startDate && specificPlant.timeIncrement;
+  
+    console.log("timeIncrement: ", timeIncrement);
+    console.log("nowDatef: ", nowDay , ", ", nowHour, ", ", nowMin, ", ", nowSec);
+    console.log("startDate: ", startDay);
+  
+    let daysLeft = nowDay - startDay;
+    const hoursLeft = nowHour - startHour;
+    const minutesLeft = nowMin - startMin;
+    const secondsLeft = nowSec - startSec;
+
+    // do{
+       if(timeIncrement == 1) {
+        daysLeft = 1
+       }
+    // }while(timeDiff > timeIncrement)
+  
+    console.log("time diff: ", daysLeft);
+    return "" + daysLeft + "d:" + hoursLeft + "h:" + minutesLeft + "m:" + secondsLeft + "s";
+  }
 
   const deletePlant = () => {
     console.log("userId: ", user.userId);
     if(specificPlant){
       removePlant(user.userId, specificPlant.userPlantId);
     }  
-    //window.location.reload();
   }
 
   useEffect(() => {
-    //console.log(specificPlant)
   }, [specificPlant])
   
   return (
@@ -47,7 +79,7 @@ const SpecificPlantCard = () => {
             <li key={3}>Watering: {specificPlant.plant.watering}</li>
             <li key={4}>TMax: {specificPlant.plant.tempMax}</li>
             <li key={5}>Tmin: {specificPlant.plant.tempMin}</li>
-            <li className="specific-plant-time" key={6}>Last time watered ({date})</li>
+            <li key={6} className="specific-plant-time">Time left: ({showWateringTime()})</li>
           </>
         ): null}
       

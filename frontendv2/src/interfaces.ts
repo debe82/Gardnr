@@ -25,6 +25,7 @@ export interface IUserPlants {
   userPlantId: number;
   startDate: Date;
   userPlantName: string;
+  timeIncrement: number;
   user: IUser;
   plant: IPlant;
 }

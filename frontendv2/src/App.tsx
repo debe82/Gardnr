@@ -5,6 +5,14 @@ import React, {
   useEffect,
   useState,
 } from "react";
+import { getAllUserPlants } from "./api/dataManagement";
+import { IPlant, IUser, IUserPlants } from "./interfaces";
+import Homepage from "./pages/Homepage";
+import { Route, Routes } from "react-router-dom";
+import DatePicker from "react-datepicker";
+import axios from "axios";
+import Userpages from "./pages/Userpages";
+import Header from "./components/Header";
 
 const initUser = {
   userId: 0,
@@ -30,18 +38,10 @@ const initUserPlant = {
   userPlantId: 0,
   startDate: new Date(),
   userPlantName: "",
+  timeIncrement: 0,
   user: initUser,
   plant: initPlant
 }
-
-import { getAllUserPlants } from "./api/dataManagement";
-import { IPlant, IUser, IUserPlants } from "./interfaces";
-import Homepage from "./pages/Homepage";
-import { Route, Routes } from "react-router-dom";
-
-import axios from "axios";
-import Userpages from "./pages/Userpages";
-import Header from "./components/Header";
 
 export interface MyContextValue {
   plants: IPlant[];
@@ -76,6 +76,7 @@ export const Context = createContext<MyContextValue>({
     userPlantId: 0,
     startDate: new Date(),
     userPlantName: "",
+    timeIncrement: 0,
     user: initUser,
     plant: initPlant
   },
