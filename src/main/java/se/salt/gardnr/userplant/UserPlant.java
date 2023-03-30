@@ -17,6 +17,8 @@ public class UserPlant {
 
     public LocalDateTime startDate;
 
+    public int timeIncrement;
+
 
     @ManyToOne
     @JoinColumn(name = "plantId")
@@ -33,7 +35,14 @@ public class UserPlant {
         this.userPlantId = userPlantId;
         this.userPlantName = userPlantName;
         this.startDate = startDate;
+    }
 
+    public int getTimeIncrement() {
+        return timeIncrement;
+    }
+
+    public void setTimeIncrement(int timeIncrement) {
+        this.timeIncrement = timeIncrement;
     }
 
     public int getUserPlantId() {

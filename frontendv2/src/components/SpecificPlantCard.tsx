@@ -18,7 +18,6 @@ const SpecificPlantCard = () => {
     toggleShowSpecificPlant
   } = useContext(Context);
 
-  console.log("userInfo: ", user);
   const listOfPlants: IUserPlants[] = user.listOfUserPlants;
 
  // console.log("date: ", specificPlant.startDate);
@@ -48,12 +47,12 @@ const SpecificPlantCard = () => {
             <li key={3}>Watering: {specificPlant.plant.watering}</li>
             <li key={4}>TMax: {specificPlant.plant.tempMax}</li>
             <li key={5}>Tmin: {specificPlant.plant.tempMin}</li>
+            <li className="specific-plant-time" key={6}>Last time watered ({date})</li>
           </>
         ): null}
       
       <div className="specific-plant-card-status-watered">
-      <FontAwesomeIcon className="h1 specific-plant-card-trashcan" onClick={deletePlant} icon={faTrash} />
-        <p>Last time watered ({date})</p>
+        <FontAwesomeIcon className="h1 specific-plant-card-trashcan" onClick={deletePlant} icon={faTrash} />
       </div>
     </div>
   );

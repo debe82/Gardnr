@@ -15,7 +15,7 @@ export const CarouselPlants = () => {
     setSpecificPlant,
     setToggleShowSpecificPlant
   } = useContext(Context);
-  
+
   const listOfPlants: IUserPlants[] = user.listOfUserPlants;
 
   return (

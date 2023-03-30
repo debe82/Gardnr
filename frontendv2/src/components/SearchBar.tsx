@@ -29,14 +29,13 @@ export const SearchBar = () => {
     const plantsToAdd: IPlant[] = plants.filter((p) =>
       p.plantName.includes(plantname)
     );
-
     addPlant(1, plantsToAdd[0]);
     //window.location.reload();
    };
 
-  //  useEffect(() =>{
-
-  //  }, []);
+  useEffect(() =>{
+    
+    }, []);
 
   return (
     <>

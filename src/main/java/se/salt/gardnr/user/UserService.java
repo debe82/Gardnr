@@ -4,8 +4,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import se.salt.gardnr.model.UserPlantDto;
 import se.salt.gardnr.plant.Plant;
+import se.salt.gardnr.userplant.NotFoundException;
 import se.salt.gardnr.userplant.UserPlant;
 import se.salt.gardnr.userplant.UserPlantRepository;
+import se.salt.gardnr.userplant.UserPlantService;
 
 @Service
 public class UserService {
@@ -16,6 +18,8 @@ public class UserService {
     @Autowired
     UserPlantRepository userPlantRepository;
 
+    @Autowired
+    UserPlantService userPlantService;
 
     public User getUserById(int id) {
         return repo.getUserById(id);
@@ -26,14 +30,16 @@ public class UserService {
         return userPlantRepository.getUserPlantByUserId(id);
     }
 
-    public UserPlant createNewUserPlant(int id, Plant plant) {
-        System.out.println("userService->createNewUserPlant start");
+    public UserPlant createNewUserPlant(int id, Plant plant) throws NotFoundException {
         UserPlant newUserPlant = new UserPlant();
         newUserPlant.setPlant(plant);
         newUserPlant.setStartDate(null);
-        newUserPlant.setUser(getUserById(id));
+        User user = getUserById(id);
+        newUserPlant.setUser(user);
         UserPlant up = userPlantRepository.addNewUserPlant(newUserPlant);
-        System.out.println("userService->createNewUserPlant end");
+        int increment = userPlantService.setTimeIncrement(up.userPlantId, plant);
+        up.setTimeIncrement(increment);
+        userPlantRepository.addNewUserPlant(up);
         return up;
     }
 

@@ -46,7 +46,7 @@ body {
 }
 
 .specific-plant-card img {
-  border-radius: 20px;
+  /*border-radius: 20px;*/
   margin-bottom: 15px;
   height: 200px;
   width: 250px;
@@ -56,13 +56,18 @@ body {
   width: 60%;
 }
 
+.specific-plant-time {
+  background-color: rgba(157, 255, 127, 0.615);
+}
+
 .specific-plant-card-status-watered {
   padding-top: 4px;
   display: flex;
+  align-items: center;
   justify-content: space-evenly;
-  border: 1px solid rgba(0, 0, 0, 0.253);
+  /*border: 1px solid rgba(0, 0, 0, 0.253);
   border-radius: 20px;
-  background-color: rgba(157, 255, 127, 0.615);
+  background-color: rgba(157, 255, 127, 0.615); */
 }
 
 .specific-plant-card-status-watered p {

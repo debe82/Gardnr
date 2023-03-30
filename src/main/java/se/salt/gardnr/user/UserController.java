@@ -49,7 +49,7 @@ public class UserController {
 
     @PostMapping("{id}/plants")
     public ResponseEntity<UserPlant> addUserPlant(@PathVariable int id, @RequestBody Plant plant
-    ) throws NotFoundException {
+    ) throws NotFoundException, se.salt.gardnr.userplant.NotFoundException {
         //return service.createNewUserPlant(id, plant);
 
         UserPlant newUserPlant = service.createNewUserPlant(id, plant);

@@ -25,14 +25,21 @@ public class UserPlantService {
     return userPlant;
   }
 
-//  public void deleteUserPlant(int id) throws NotFoundException {
-//      UserPlant userPlant = plantRepo.getUserPlantByUserPlantId(id);
-//      System.out.println("passed id:" + id);
-//      System.out.println("id from found userPlanrts: " +userPlant.getUserPlantId());
-//      plantRepo.deleteUserPLant(userPlant);
-//  }
+  public int setTimeIncrement(int id, Plant plant) throws NotFoundException {
+      UserPlant userPlant = getUserPlantById(id);
+      String typeOfWatering = plant.getWatering();
+
+      int increment = 0;
+
+      if (typeOfWatering.equals("every week")) {
+        increment =7;
+      } else if (typeOfWatering.equals("every day")) {
+        increment = 1;
+      } else {
+        increment = 30;
+      }
+      return increment;
+  }
+
 }
 
-class NotFoundException extends Exception {
-  public NotFoundException(String msg) { super(msg);}
-}
