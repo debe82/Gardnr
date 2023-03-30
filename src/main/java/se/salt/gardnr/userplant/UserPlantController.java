@@ -31,13 +31,13 @@ public class UserPlantController {
         UserPlant userPlant = service.getUserPlantById(id);
         return ResponseEntity.ok(userPlant);
     }
-
-    @DeleteMapping("{id}")
-    ResponseEntity deleteUserPlants(@PathVariable int id) throws NotFoundException {
-        if(id < 1) return ResponseEntity.badRequest().build();
-        service.deleteUserPlant(id);
-        return ResponseEntity.noContent().build();
-    }
+//
+//    @DeleteMapping("{id}")
+//    ResponseEntity deleteUserPlants(@PathVariable int id) throws NotFoundException {
+//        if(id < 1) return ResponseEntity.badRequest().build();
+//        service.deleteUserPlant(id);
+//        return ResponseEntity.noContent().build();
+//    }
 
 
     @ExceptionHandler({ NotFoundException.class })

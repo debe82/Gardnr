@@ -34,8 +34,16 @@ public class UserPlantRepository {
     return jpaRepo.save(userPlant);
   }
 
-  public void deleteUserPLant(UserPlant userPlant) {
-      jpaRepo.delete(userPlant);
+//  public void deleteUserPLant(UserPlant userPlant) {
+//      jpaRepo.delete(userPlant);
+//  }
+
+  public void deleteUserPlant(int id) {
+      UserPlant userPlant = getUserPlantById(id);
+      if (userPlant != null){
+        jpaRepo.deleteById(id);
+      }
+
   }
 
   public UserPlant getUserPlantByUserId(int id) {

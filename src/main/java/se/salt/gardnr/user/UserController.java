@@ -32,6 +32,7 @@ public class UserController {
         User user = service.getUserById(id);
        // UserPlant up = service.getUserPlantByUserId(id);
         Map<String, Object> json = new HashMap<>();
+        json.put("userId", user.getUserId());
         json.put("name", user.getUserName());
         json.put("email", user.getUserEmail());
         //json.put("start date", up.getStartDate());
@@ -58,9 +59,9 @@ public class UserController {
         return ResponseEntity.created(location).body(newUserPlant);
     }
 
-    @DeleteMapping("{id}/plants")
-    ResponseEntity deleteUserPlants(@PathVariable int id)  {
-
+    @DeleteMapping("{userId}/{userPlantId}")
+    ResponseEntity deleteUserPlants(@PathVariable int userId, @PathVariable int userPlantId)  {
+        service.deleteUserPlant(userPlantId);
         return ResponseEntity.noContent().build();
     }
 }

@@ -23,8 +23,8 @@ export interface IUser {
 
 export interface IUserPlants {
   userPlantId: number;
-  startDate?: Date;
+  startDate: Date;
   userPlantName: string;
-  user?: IUser;
+  user: IUser;
   plant: IPlant;
 }

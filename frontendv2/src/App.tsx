@@ -14,7 +14,7 @@ const initUser = {
   listOfUserPlants: []
 }
 
-const initSpecPlant = {
+const initPlant = {
   plantId: 0,
   plantName: "",
   plantNameLatin: "",
@@ -27,11 +27,11 @@ const initSpecPlant = {
 }
 
 const initUserPlant = {
-  UserPlantId: 0,
-  startDate: {},
+  userPlantId: 0,
+  startDate: new Date(),
   userPlantName: "",
   user: initUser,
-  plant: []
+  plant: initPlant
 }
 
 import { getAllUserPlants } from "./api/dataManagement";
@@ -50,8 +50,8 @@ export interface MyContextValue {
   setUserPlants: Dispatch<SetStateAction<IUserPlants[]>>;
   user: IUser;
   setUser: Dispatch<SetStateAction<IUser>>;
-  specificPlant: IPlant;
-  setSpecificPlant: Dispatch<SetStateAction<IPlant>>;
+  specificPlant: IUserPlants;
+  setSpecificPlant: Dispatch<SetStateAction<IUserPlants>>;
 }
 
 export const Context = createContext<MyContextValue>({
@@ -67,16 +67,13 @@ export const Context = createContext<MyContextValue>({
     listOfUserPlants: []
   }, 
   setUser: () => {},
+
   specificPlant: {
-    plantId: 0,
-    plantName: "",
-    plantNameLatin: "",
-    watering: "",
-    tempMax: "",
-    tempMin: "",
-    idealLight: "",
-    description: "",
-    pictureLink: ""
+    userPlantId: 0,
+    startDate: new Date(),
+    userPlantName: "",
+    user: initUser,
+    plant: initPlant
   },
   setSpecificPlant: () => {}
 
@@ -87,7 +84,7 @@ function App() {
   const [plants, setPlants] = useState<IPlant[]>([]);
   const [userPlants, setUserPlants] = useState<IUserPlants[]>([]);
   const [user, setUser] = useState<IUser>(initUser);
-  const [specificPlant, setSpecificPlant] = useState<IPlant>(plants[0]);
+  const [specificPlant, setSpecificPlant] = useState<IUserPlants>(initUserPlant);
 
   useEffect(() => {
     axios.get(`http://localhost:8080/api/plants`).then((response) => {

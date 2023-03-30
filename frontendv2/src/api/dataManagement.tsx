@@ -4,8 +4,8 @@ import { IPlant, IUser } from "../interfaces";
 const PLANTS_API_URL = 'http://localhost:8080/api/plants';
 const USER_PLANTS_URL = 'http://localhost:8080/api/userplants';
 const USER_URL = 'http://localhost:8080/api/users';
-const REMOVE_URL = 'http://localhost:8080/api/userplants';
-
+//const REMOVE_URL = 'http://localhost:8080/api/userplants';
+const REMOVE_URL = 'http://localhost:8080/api/users';
 
 
 export const getAllApiPlants =async () => {
@@ -24,8 +24,8 @@ export const getUser = async (userId: number) => {
     return (await response).data;
   };
 
-export const removePlant = (id: number)  => {
-  axios.delete(REMOVE_URL + `/${id}`);
+export const removePlant = (userId: number, userPlantId: number)  => {
+  axios.delete(REMOVE_URL + `/${userId}/${userPlantId}`);
 }
 
 export const addPlant = (id: number, plant: IPlant) => {

@@ -25,12 +25,12 @@ public class UserPlantService {
     return userPlant;
   }
 
-  public void deleteUserPlant(int id) throws NotFoundException {
-      UserPlant userPlant = plantRepo.getUserPlantByUserPlantId(id);
-      System.out.println("passed id:" + id);
-      System.out.println("id from found userPlanrts: " +userPlant.getUserPlantId());
-      plantRepo.deleteUserPLant(userPlant);
-  }
+//  public void deleteUserPlant(int id) throws NotFoundException {
+//      UserPlant userPlant = plantRepo.getUserPlantByUserPlantId(id);
+//      System.out.println("passed id:" + id);
+//      System.out.println("id from found userPlanrts: " +userPlant.getUserPlantId());
+//      plantRepo.deleteUserPLant(userPlant);
+//  }
 }
 
 class NotFoundException extends Exception {

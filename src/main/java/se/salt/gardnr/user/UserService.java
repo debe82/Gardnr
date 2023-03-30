@@ -37,6 +37,10 @@ public class UserService {
         return up;
     }
 
+    public void deleteUserPlant(int userPlantId) {
+        userPlantRepository.deleteUserPlant(userPlantId);
+    }
+
     //  public User getUserByAuthId(String authId) {
 //        return repo.getUserByAuthId(authId);
 //    }

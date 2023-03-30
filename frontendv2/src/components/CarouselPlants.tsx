@@ -26,7 +26,7 @@ export const CarouselPlants = () => {
               <>
                 <img key={index} onClick={() => 
                   {
-                    setSpecificPlant(e.plant);
+                    setSpecificPlant(e);
                     console.log(e.userPlantId)
                   }} className="carousel-plants-img" src={e.plant.pictureLink} alt="" />
               </>

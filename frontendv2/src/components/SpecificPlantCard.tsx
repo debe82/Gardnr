@@ -17,14 +17,16 @@ const SpecificPlantCard = () => {
     specificPlant
   } = useContext(Context);
 
-  //const listOfPlants: IPlant[] = user.plants;
+  console.log("userInfo: ", user);
   const listOfPlants: IUserPlants[] = user.listOfUserPlants;
-  //console.log("userPlants:", listOfPlants.length);
-  //userPlants.map(e => console.log("plant: ", e.startDate));
+
+ // console.log("date: ", specificPlant.startDate);
+  const date = specificPlant.startDate && specificPlant.startDate.toString();
 
   const deletePlant = () => {
+    console.log("userId: ", user.userId);
     if(specificPlant){
-      removePlant(specificPlant.plantId);
+      removePlant(user.userId, specificPlant.userPlantId);
     }  
     //window.location.reload();
   }
@@ -35,21 +37,21 @@ const SpecificPlantCard = () => {
   
   return (
     <div className="specific-plant-card">
-      <img className="specific-plant-img" src={specificPlant && specificPlant.pictureLink} alt="" />
+      <img className="specific-plant-img" src={specificPlant && specificPlant.plant.pictureLink} alt="" />
       
         {specificPlant && (
           <>
-            <li key={1}>Name: {specificPlant.plantName}</li>
-            <li key={2}>Ideal light: {specificPlant.idealLight}</li>
-            <li key={3}>Watering: {specificPlant.watering}</li>
-            <li key={4}>TMax: {specificPlant.tempMax}</li>
-            <li key={5}>Tmin: {specificPlant.tempMin}</li>
+            <li key={1}>Name: {specificPlant.plant.plantName}</li>
+            <li key={2}>Ideal light: {specificPlant.plant.idealLight}</li>
+            <li key={3}>Watering: {specificPlant.plant.watering}</li>
+            <li key={4}>TMax: {specificPlant.plant.tempMax}</li>
+            <li key={5}>Tmin: {specificPlant.plant.tempMin}</li>
           </>
         )}
       
       <div className="specific-plant-card-status-watered">
       <FontAwesomeIcon className="h1 specific-plant-card-trashcan" onClick={deletePlant} icon={faTrash} />
-        <p>Last time watered ({})</p>
+        <p>Last time watered ({date})</p>
       </div>
     </div>
   );
