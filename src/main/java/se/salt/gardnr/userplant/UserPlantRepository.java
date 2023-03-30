@@ -24,19 +24,24 @@ public class UserPlantRepository {
     }
 
     public UserPlant getUserPlantByUserPlantId(int id){
+      System.out.println("userPlantRepository->getUserPlantByUserPlantId start");
       UserPlant upToDelete = jpaRepo.findUserPlantByPlant(plantRepository.getPlantById(id));
-      System.out.println("up from findUserPlantByPlant:" + upToDelete);
+      System.out.println("userPlantRepository->getUserPlantByUserPlantId end");
       return upToDelete;
     }
 
   public UserPlant addNewUserPlant(UserPlant userPlant) {
-    System.out.println("im in userPlantService.addNewUSerPlant");
-
     return jpaRepo.save(userPlant);
   }
 
   public void deleteUserPLant(UserPlant userPlant) {
       jpaRepo.delete(userPlant);
+  }
+
+  public UserPlant getUserPlantByUserId(int id) {
+      UserPlant up = jpaRepo.findUserPlantByUser(id);
+      System.out.println("userPlant found: " + up);
+      return jpaRepo.findUserPlantByUser(id);
   }
 
 //    public List<UserPlantDto> getAllPlantsForUser() {

@@ -19,11 +19,11 @@ public class UserPlantController {
     @Autowired
     UserPlantService service;
 
-    @GetMapping
-    public ResponseEntity<List<UserPlant>> getAllPlants() {
-        List<UserPlant> listOfPlants = service.getAllUserPlants();
-        return ResponseEntity.ok(listOfPlants);
-    }
+//    @GetMapping
+//    public ResponseEntity<List<UserPlant>> getAllPlants() {
+//        List<UserPlant> listOfPlants = service.getAllUserPlants();
+//        return ResponseEntity.ok(listOfPlants);
+//    }
 
 
     @GetMapping("{id}")
@@ -32,24 +32,9 @@ public class UserPlantController {
         return ResponseEntity.ok(userPlant);
     }
 
-//    @PostMapping
-//    ResponseEntity<UserPlant> addUserPlant(@RequestBody UserPlant userPlant, HttpServletRequest req){
-//        UserPlant newUserPlant = service.addUserPlant(userPlant);
-//        System.out.println("new userPlatnID: " + newUserPlant.getUserPlantId());
-//        System.out.println("new userPlatnName: " + newUserPlant.getUserPlantName());
-//        System.out.println("new userPlatnStart: " + newUserPlant.getStartDate());
-//
-//        URI location = URI.create(req.getRequestURL() + "/" + newUserPlant.getUserPlantId());
-//        return ResponseEntity.created(location).body(newUserPlant);
-//    }
-
     @DeleteMapping("{id}")
     ResponseEntity deleteUserPlants(@PathVariable int id) throws NotFoundException {
         if(id < 1) return ResponseEntity.badRequest().build();
-
-        //UserPlant userPlant = service.getUserPlantById(id);
-
-        //if(userPlant == null) return ResponseEntity.notFound().build();
         service.deleteUserPlant(id);
         return ResponseEntity.noContent().build();
     }

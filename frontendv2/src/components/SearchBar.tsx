@@ -1,11 +1,12 @@
-import axios from "axios";
 import React, {
   ChangeEvent,
   SyntheticEvent,
   useContext,
+  useEffect,
   useState,
 } from "react";
 import { Button, Dropdown, Form, InputGroup } from "react-bootstrap";
+import { addPlant } from "../api/dataManagement";
 import { Context, MyContextValue } from "../App";
 import { IPlant } from "../interfaces";
 
@@ -24,27 +25,18 @@ export const SearchBar = () => {
     setSearch(e.target.value);
   };
 
-  userPlants.map((e) => console.log("this is a plantname", e.UserPlantId));
-
   const addUserPlant = (plantname: string) => {
-    //console.log(user?.userEmail)
-    //plants.map((e) => console.log(e.plantName));
     const plantsToAdd: IPlant[] = plants.filter((p) =>
       p.plantName.includes(plantname)
     );
 
-    axios.post(`http://localhost:8080/api/users/1/plants`, {
-      plantId: plantsToAdd[0].plantId,
-      plantName: plantsToAdd[0].plantName,
-      plantNameLatin: plantsToAdd[0].plantNameLatin,
-      watering: plantsToAdd[0].watering,
-      tempMax: plantsToAdd[0].tempMax,
-      tempMin:  plantsToAdd[0].tempMin,
-      idealLight: plantsToAdd[0].idealLight,
-      description: plantsToAdd[0].description,
-      pictureLink: plantsToAdd[0].pictureLink,
-    });
-  };
+    addPlant(1, plantsToAdd[0]);
+    //window.location.reload();
+   };
+
+  //  useEffect(() =>{
+
+  //  }, []);
 
   return (
     <>

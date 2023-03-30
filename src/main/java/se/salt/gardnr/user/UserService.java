@@ -21,29 +21,19 @@ public class UserService {
         return repo.getUserById(id);
     }
 
-    public void addPlantForUser(Plant plant, User user) {
 
-
-
-    }
-
-    public User addPlantToUser(String id, UserPlantDto upDTO) {
-
-        return null;
-    }
-
-    public UserDto convertToUserDto(User user) {
-        return null;
+    public UserPlant getUserPlantByUserId(int id){
+        return userPlantRepository.getUserPlantByUserId(id);
     }
 
     public UserPlant createNewUserPlant(int id, Plant plant) {
-        System.out.println("im in userService.createNEwUserPlant");
+        System.out.println("userService->createNewUserPlant start");
         UserPlant newUserPlant = new UserPlant();
         newUserPlant.setPlant(plant);
         newUserPlant.setStartDate(null);
         newUserPlant.setUser(getUserById(id));
         UserPlant up = userPlantRepository.addNewUserPlant(newUserPlant);
-        System.out.println("im in userService.crateNewUserPlant after userPlantREpo.addNewuser");
+        System.out.println("userService->createNewUserPlant end");
         return up;
     }
 

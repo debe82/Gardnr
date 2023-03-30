@@ -42,10 +42,6 @@ body {
 }
 
 .specific-plant-card {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-wrap: wrap;
   font-size: 10px;
 }
 

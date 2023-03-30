@@ -15,4 +15,5 @@ public interface IJpaUserPlantRepository extends JpaRepository<UserPlant, Intege
   //List<UserPlantDto> gimmeEverything();
 
   UserPlant findUserPlantByPlant(Plant plant);
+  UserPlant findUserPlantByUser(int id);
 }

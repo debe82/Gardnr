@@ -27,18 +27,17 @@ public class UserController {
     @Autowired
     PlantService plantService;
 
-//    @GetMapping
-//    public ResponseEntity<List<User>> getAllUsers() {
-//        List<User> listOfPlants = service.getAllUser();
-//        return ResponseEntity.ok(listOfPlants);
-//    }
-
     @GetMapping("{id}")
     ResponseEntity<Map<String, Object>> getUserById(@PathVariable int id) {
         User user = service.getUserById(id);
+       // UserPlant up = service.getUserPlantByUserId(id);
         Map<String, Object> json = new HashMap<>();
         json.put("name", user.getUserName());
         json.put("email", user.getUserEmail());
+        //json.put("start date", up.getStartDate());
+        //json.put("user plant name", up.getUserPlantName());
+        System.out.println("user userplants:");
+        user.getUserPlants().stream().forEach(s -> System.out.println(s.userPlantId));
         json.put(
           "plants",
           user.getUserPlants().stream().map(usrPlant -> usrPlant.plant)
@@ -47,20 +46,14 @@ public class UserController {
     }
 
     @PostMapping("{id}/plants")
-    public ResponseEntity<UserPlant> addProductToCart(@PathVariable int id, @RequestBody Plant plant
+    public ResponseEntity<UserPlant> addUserPlant(@PathVariable int id, @RequestBody Plant plant
     ) throws NotFoundException {
         //return service.createNewUserPlant(id, plant);
 
         UserPlant newUserPlant = service.createNewUserPlant(id, plant);
         System.out.println("newUSerID;: " + newUserPlant.getUserPlantId());
         URI location = URI.create(("/api/users/" + newUserPlant.getUserPlantId() + "/plants"));
+        System.out.println("location: " +location);
         return ResponseEntity.created(location).body(newUserPlant);
     }
-
-//    @GetMapping("{authid}")
-//    ResponseEntity<User> getUserById(@PathVariable String authid) {
-//        User user = service.getUserByAuthId(authid);
-//        return ResponseEntity.ok().body(user);
-//    }
-
 }

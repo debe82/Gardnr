@@ -24,7 +24,7 @@ public class UserPlant {
 
     @ManyToOne
     @JoinColumn(name = "userId")
-    public User user;
+    private User user;
 
     public UserPlant() {
     }

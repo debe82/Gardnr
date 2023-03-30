@@ -5,6 +5,7 @@ import { useParams } from 'react-router-dom';
 import { IUser } from '../interfaces';
 import { Context, MyContextValue } from '../App';
 import UserProfile from '../components/UserProfile';
+import { getUser } from '../api/dataManagement';
 
 export default function Userpages() {
 
@@ -25,6 +26,7 @@ export default function Userpages() {
         .then((response) => {
          setUser(response.data);    
         });
+
       }, []);
 
   return (

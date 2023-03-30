@@ -18,22 +18,11 @@ public class UserPlantService {
       return plantRepo.getAllUserPlants();
     }
 
-//  public List<UserPlantDto> getAllPlantsInfoFor(){
-//      return plantRepo.getAllPlantsForUser();
-//  }
-
   public UserPlant getUserPlantById(int id) throws NotFoundException{
     if (id < 1) throw new IllegalArgumentException("Wrong id");
    UserPlant userPlant = plantRepo.getUserPlantById(id);
     if (userPlant == null) throw new NotFoundException("No product with id " + id);
     return userPlant;
-  }
-
-  public UserPlant addUserPlant(UserPlant userPlant) {System.out.println();
-      UserPlant newUserPlant = plantRepo.addNewUserPlant(userPlant);
-//      newUserPlant.setUser(userPlant.user);
-//      newUserPlant.setPlant(userPlant.plant);
-      return newUserPlant;
   }
 
   public void deleteUserPlant(int id) throws NotFoundException {
