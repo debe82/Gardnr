@@ -64,4 +64,10 @@ public class UserController {
         service.deleteUserPlant(userPlantId);
         return ResponseEntity.noContent().build();
     }
+
+    @PutMapping("{userId}/{userPlantId}")
+    public ResponseEntity<UserPlant> updateUserPlantData(@PathVariable int userPlantId, @RequestBody UserPlant userPlant){
+        UserPlant upToUdate =  service.updateUserPlant(userPlantId, userPlant);
+        return ResponseEntity.accepted().body(upToUdate);
+    }
 }

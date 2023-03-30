@@ -37,6 +37,17 @@ public class UserService {
         return up;
     }
 
+    public UserPlant updateUserPlant(int userPlantId, UserPlant userPlant) {
+        UserPlant upToUpdate = userPlantRepository.getUserPlantById(userPlantId);
+        if(userPlant.getUserPlantName() != null && userPlant.getUserPlantName() != "")
+            upToUpdate.setUserPlantName(userPlant.getUserPlantName());
+        if(userPlant.getStartDate() != null )
+            upToUpdate.setStartDate(userPlant.getStartDate());
+
+        UserPlant up = userPlantRepository.addNewUserPlant(upToUpdate);
+        return up;
+    }
+
     public void deleteUserPlant(int userPlantId) {
         userPlantRepository.deleteUserPlant(userPlantId);
     }
