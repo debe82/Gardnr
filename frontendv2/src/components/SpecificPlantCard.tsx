@@ -92,12 +92,10 @@ const SpecificPlantCard = () => {
     //isPlantTime = false;
     setIsPlantTime(false);
     console.log("isPlantTime?:", isPlantTime)
-    //setIsPlantTime(false); //.style.backgroundColor = "rgba(157, 255, 127, 0.615)"; // IT WORKS
   } else {
     //isPlantTime = true;
     setIsPlantTime(true);
     console.log("isPlantTime?:", isPlantTime)
-    //setIsPlantTime(true); //.style.backgroundColor = "rgba(206, 104, 46, 0.615)"; //
   }
 
   console.log("isPlantTime?:", nowDay, startDay, timeIncrement, timeRemaining);

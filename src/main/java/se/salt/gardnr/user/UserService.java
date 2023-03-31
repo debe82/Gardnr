@@ -27,11 +27,6 @@ public class UserService {
         return repo.getUserById(id);
     }
 
-
-    public UserPlant getUserPlantByUserId(int id){
-        return userPlantRepository.getUserPlantByUserId(id);
-    }
-
     public UserPlant createNewUserPlant(int id, Plant plant) throws NotFoundException {
         UserPlant newUserPlant = new UserPlant();
         newUserPlant.setPlant(plant);
