@@ -5,7 +5,8 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { BrowserRouter } from 'react-router-dom';
-import { createRoot} from 'react-dom/client'
+import { createRoot} from 'react-dom/client';
+import { CookiesProvider } from 'react-cookie';
 
 const domNode = document.getElementById('root') as HTMLElement
 const root = createRoot(domNode) 
@@ -15,9 +16,11 @@ const root = createRoot(domNode)
 // );
 root.render(
   <React.StrictMode>
+  <CookiesProvider>
     <BrowserRouter>
     <App />
     </BrowserRouter>
+    </CookiesProvider>
   </React.StrictMode>
 );
 

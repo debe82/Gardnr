@@ -17,11 +17,13 @@ const initUser = {
 import { getAllUserPlants } from "./api/dataManagement";
 import { IPlant, IUser, IUserPlants } from "./interfaces";
 import Homepage from "./pages/Homepage";
-import { Route, Routes } from "react-router-dom";
+import { Link, Route, Routes } from "react-router-dom";
+import { useCookies } from 'react-cookie';
 
 import axios from "axios";
 import Userpages from "./pages/Userpages";
 import Header from "./components/Header";
+import { Button } from "react-bootstrap";
 
 export interface MyContextValue {
   plants: IPlant[];
@@ -49,37 +51,19 @@ export const Context = createContext<MyContextValue>({
 });
 
 function App() {
-  // const value = createContext<MyContextValue>({
-  //   plants: {},
-  //   setPlants: () => {},
-  //   userPlants: {},
-  //   setUserPlants: () => {}
-  // })
 
   const userId = 1;
   const [plants, setPlants] = useState<IPlant[]>([]);
   const [userPlants, setUserPlants] = useState<IUserPlants[]>([]);
   const [user, setUser] = useState<IUser>(initUser);
+  
 
   useEffect(() => {
-    axios.get(`http://localhost:8080/api/plants`).then((response) => {
+    axios.get(`http://localhost:8080/api/users`, { withCredentials: true }).then((response) => {
       setPlants(response.data);
     });
   }, []);
 
-
-  // useEffect(() => {
-  //   axios.get(`http://localhost:8080/api/userplants`).then((response) => {
-  //     setUserPlants(response.data);
-  //   });
-  // }, []);
-
-//  console.log("userplants", userPlants)
-
-  // const getUserPlants = async () => {
-  //   const data = await getAllUserPlants();
-  //   setUserPlants(data);
-  // };
 
   return (
     <Context.Provider value={{ plants, setPlants, userPlants, setUserPlants, user, setUser }}>

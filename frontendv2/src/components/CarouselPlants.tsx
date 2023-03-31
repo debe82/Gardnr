@@ -1,4 +1,4 @@
-import React, { FC, useContext } from "react";
+import React, { FC, useContext, useEffect, useState } from "react";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import { Context } from "../App";
@@ -15,19 +15,26 @@ export const CarouselPlants = () => {
   } = useContext(Context);
   
   // const filtered = userPlants.filter(e => {
-     console.log("user: ", user.plants.length);
+     //console.log("user: ", user.plants.length);
+     console.log("user: ", user);
      const listOfPlants: IPlant[] = user.plants;
      //const plant: IPlant = user.plants[0];
     // console.log("plant: ", plant && plant.description);
 
-    listOfPlants.map(e => console.log("plant: ", e));
+    //listOfPlants.map(e => console.log("plant: ", e));
 
+    const [show, setShow] = useState(true)
+
+    if (listOfPlants.length == 0) {
+      listOfPlants.push();
+      setShow(false);
+    }
 
 
  return (
   <>
     <div className="carousel-plants-container">
-      {
+      {show ?
            listOfPlants.map(e => {
             
             return (
@@ -36,8 +43,8 @@ export const CarouselPlants = () => {
             <img src={e.pictureLink} alt="" />
 </>
             )
-           })
-      }
+           }) : null
+      } 
     </div>
     </>
   )};

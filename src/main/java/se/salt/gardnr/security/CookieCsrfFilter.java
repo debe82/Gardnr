@@ -1,3 +1,5 @@
+package se.salt.gardnr.security;
+
 import org.springframework.security.web.csrf.CsrfToken;
 
 import java.io.IOException;

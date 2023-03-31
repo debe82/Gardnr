@@ -1,6 +1,6 @@
 import React from 'react'
 import { useState } from 'react';
-import DateTimePicker from 'react-datetime-picker';
+
 
 function Calender() {
    
@@ -17,7 +17,7 @@ function Calender() {
     
       return (
         <div>
-          <DateTimePicker onChange={onChange} value={value} />
+
         </div>
       );
 }
