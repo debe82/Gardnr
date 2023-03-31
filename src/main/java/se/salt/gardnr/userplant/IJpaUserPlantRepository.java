@@ -2,6 +2,7 @@ package se.salt.gardnr.userplant;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import se.salt.gardnr.model.UserPlantDto;
+import se.salt.gardnr.plant.Plant;
 
 import java.util.List;
 
@@ -12,4 +13,8 @@ public interface IJpaUserPlantRepository extends JpaRepository<UserPlant, Intege
 //  List<Course> getCoursesForCurriculums(@Param("curriculums") List<Curriculum> currs)
 //
   //List<UserPlantDto> gimmeEverything();
+
+  UserPlant findUserPlantByPlant(Plant plant);
+  UserPlant findUserPlantByUser(int id);
+
 }

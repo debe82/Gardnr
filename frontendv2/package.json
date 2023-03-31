@@ -3,6 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@fortawesome/fontawesome-free": "^6.4.0",
+    "@fortawesome/react-fontawesome": "^0.2.0",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
@@ -10,6 +12,7 @@
     "bootstrap": "^5.2.3",
     "react": "^18.2.0",
     "react-bootstrap": "^2.7.2",
+    "react-datetime-picker": "^4.2.0",
     "react-dom": "^18.2.0",
     "react-multi-carousel": "^2.8.2",
     "react-script": "^2.0.5",
@@ -44,6 +47,7 @@
     "@types/jest": "^29.5.0",
     "@types/node": "^18.15.10",
     "@types/react": "^18.0.30",
+    "@types/react-datetime-picker": "^3.4.1",
     "@types/react-dom": "^18.0.11",
     "react-router-dom": "^6.9.0",
     "typescript": "^5.0.2"

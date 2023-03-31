@@ -1,0 +1,65 @@
+server:
+  port: 9005
+#spring:
+#  datasource:
+#    driver-class-name: org.h2.Driver
+#    url: jdbc:h2:mem:db;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
+#    username: sa
+#    password: sa
+#  jpa:
+#    show-sql: true
+#    defer-datasource-initialization: true
+#    hibernate:
+#      ddl-auto: create-drop
+#    generate-ddl: true
+#  sql:
+#    init:
+#      platform: postgresql
+#      mode: always
+#logging:
+#  level:
+#    org:
+#      springframework:
+#        boot:
+#          autoconfigure: ERROR
+
+## DB config goes here
+
+#server:
+#  port: 5432
+spring:
+  output:
+    ansi:
+      enabled: always
+  sql:
+    init:
+      platform: postgresql
+      mode: always
+  datasource:
+    url: jdbc:postgresql://localhost/prodDb
+    username: postgres
+    password: postgres
+  #    hikari:
+  #      schema: public
+  jpa:
+    show-sql: true
+    defer-datasource-initialization: true
+    hibernate:
+      ddl-auto: create
+    generate-ddl: true
+
+# Logging settings
+debug: true
+logging:
+  level:
+    org:
+      hibernate:
+        SQL: DEBUG
+      #        type:
+      #          descriptor:
+      #            sql:
+      #                BasicBinder=TRACE
+      springframework:
+        boot:
+          autoconfigure: ERROR
+

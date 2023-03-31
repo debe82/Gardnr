@@ -10,20 +10,19 @@ export interface IPlant {
   pictureLink: string;
 }
 
-
 export interface IUser {
   userId: number;
   authId: string;
   name: string;
   email: string;
-  plants: IPlant[];
+  listOfUserPlants: IUserPlants[];
 }
 
-
 export interface IUserPlants {
-  UserPlantId: number;
-  startDate?: Date;
-  pictureLink: string;
-  user?: IUser;
-  plant?: IPlant;
+  userPlantId: number;
+  startDate: Date;
+  userPlantName: string;
+  timeIncrement: number;
+  user: IUser;
+  plant: IPlant;
 }

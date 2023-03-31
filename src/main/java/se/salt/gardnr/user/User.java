@@ -16,7 +16,7 @@ public class User {
     private String authId;
     private String userName;
     private String userEmail;
-    @OneToMany(mappedBy="userPlantId")
+    @OneToMany(mappedBy="user")
     private List<UserPlant> userPlants;
 
 
