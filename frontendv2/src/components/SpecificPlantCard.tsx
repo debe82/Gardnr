@@ -138,8 +138,9 @@ const SpecificPlantCard = () => {
         Time left until your plant needs fresh water: ({timer})
       </p>
       <div className="specific-plant-card-break"></div>
+      <img src="edit.svg" className="specific-plant-card-edit" />
       <img
-        src="trashcan.png"
+        src="trashcan.svg"
         className="specific-plant-card-trashcan"
         onClick={deletePlant}
       />

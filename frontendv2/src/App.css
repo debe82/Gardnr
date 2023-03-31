@@ -63,6 +63,7 @@ body {
   overflow: scroll;
   margin-top: 20px;
   margin-bottom: 30px;
+  margin-left: 5px;
   border-top: 2px solid #ccc;
   padding-top: 15px;
 }
@@ -97,6 +98,7 @@ body {
 
 .specific-plant-card {
   display: flex;
+  padding: 10px;
   justify-content: center;
   align-items: center;
   flex-wrap: wrap;
@@ -117,20 +119,19 @@ body {
     rgba(255, 255, 255, 0.1) 0px 0px 0px 1px inset;
 }
 
-.specific-plant-card p {
-  width: 80%;
-}
-
 .specific-plant-card-list {
   list-style: none;
+  text-align: left;
   padding: 15px;
-  width: 60%;
   text-transform: uppercase;
-  font-weight: 400;
-  box-shadow: rgba(0, 0, 0, 0.25) 0px 0.0625em 0.0625em,
-    rgba(0, 0, 0, 0.25) 0px 0.125em 0.5em,
-    rgba(255, 255, 255, 0.1) 0px 0px 0px 1px inset;
+  font-family: "Roboto", sans-serif;
   border-radius: 20px;
+  font-size: 12px;
+  width: 70%;
+}
+
+.specific-plant-card-list .li {
+  word-wrap: break-word;
 }
 
 .specific-plant-time-bg-green {
@@ -156,7 +157,22 @@ body {
   height: 0;
 }
 
+.specific-plant-card-edit {
+  width: 20px;
+  height: 20px;
+  opacity: 70%;
+}
+
 .specific-plant-card-trashcan {
-  width: 25px;
-  height: 25px;
+  width: 35px;
+  height: 35px;
+  opacity: 50%;
+}
+
+.specific-plant-card-edit:hover {
+  opacity: 100%;
+}
+
+.specific-plant-card-trashcan:hover {
+  opacity: 100%;
 }
