@@ -9,6 +9,8 @@ import se.salt.gardnr.userplant.UserPlant;
 import se.salt.gardnr.userplant.UserPlantRepository;
 import se.salt.gardnr.userplant.UserPlantService;
 
+import java.time.LocalDateTime;
+
 @Service
 public class UserService {
 
@@ -33,7 +35,7 @@ public class UserService {
     public UserPlant createNewUserPlant(int id, Plant plant) throws NotFoundException {
         UserPlant newUserPlant = new UserPlant();
         newUserPlant.setPlant(plant);
-        newUserPlant.setStartDate(null);
+        newUserPlant.setStartDate(LocalDateTime.now());
         User user = getUserById(id);
         newUserPlant.setUser(user);
         UserPlant up = userPlantRepository.addNewUserPlant(newUserPlant);

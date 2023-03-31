@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Context } from "../App";
 import { IPlant, IUserPlants } from "../interfaces";
 import { faCoffee, faTrash } from '@fortawesome/free-solid-svg-icons'
@@ -18,52 +18,103 @@ const SpecificPlantCard = () => {
     toggleShowSpecificPlant
   } = useContext(Context);
 
+  const [timer, setTimer] = useState("");
+  const [refresh, setRefresh] = useState(false);
+
+  const [days, setDays] = useState(1);
+  const [hours, setHours] = useState(0);
+  const [minutes, setMinutes] = useState(0);
+  const [seconds, setSeconds] = useState(0);
+
+  const [daysLeft, setDaysLeft] = useState(0);
+  const [hoursLeft, setHoursLeft] = useState(0);
+  const [minutesLeft, setMinutesLeft] = useState(0);
+  const [secondsLeft, setSecondsLeft] = useState(0);
+
+  
   const listOfPlants: IUserPlants[] = user.listOfUserPlants;
 
- // console.log("date: ", specificPlant.startDate);
   const stringDate = specificPlant.startDate && specificPlant.startDate;
-  //const realDate = specificPlant.startDate && specificPlant.startDate.getFullYear;
   const timeIncrement = specificPlant.startDate && specificPlant.timeIncrement;
 
+  const plantTime = document.getElementById('plant-time')!;
 
   const showWateringTime = () =>{
+
     const nowDay = new Date().getDate();
     const startDay = new Date(stringDate).getDate();
+    //setDays(new Date(stringDate).getDate());
     const nowHour = new Date().getHours();
     const startHour = new Date(stringDate).getHours();
+    //setHours(new Date(stringDate).getHours());
     const nowMin = new Date().getMinutes();
     const startMin = new Date(stringDate).getMinutes();
+    //setMinutes(new Date(stringDate).getMinutes());
     const nowSec = new Date().getSeconds();
     const startSec = new Date(stringDate).getSeconds();
+    //setSeconds(new Date(stringDate).getSeconds())
 
-    console.log("timeIncrement: ", timeIncrement);
-    console.log("nowDatef: ", nowDay , ", ", nowHour, ", ", nowMin, ", ", nowSec);
-    console.log("startDate: ", startDay);
-  
-    let daysLeft = nowDay - startDay;
-    const hoursLeft = nowHour - startHour;
-    const minutesLeft = nowMin - startMin;
-    const secondsLeft = nowSec - startSec;
+    let daysLeft = Math.abs(nowDay - (startDay + timeIncrement));//nowDay - startDay;
+    let hoursLeft = Math.abs(hours - nowHour);//nowHour - startHour;
 
-    // do{
-       if(timeIncrement == 1) {
-        daysLeft = 1
-       }
-    // }while(timeDiff > timeIncrement)
-  
-    console.log("time diff: ", daysLeft);
+    const minutesLeft = Math.abs(60 - nowMin);//nowMin - startMin;
+    const secondsLeft = Math.abs(60 - nowSec);//nowSec - startSec;
+
+    if(timeIncrement == 1) {
+      daysLeft = 0
+      hoursLeft = 23;
+    }  
+    
+    if (daysLeft == timeIncrement) {
+      daysLeft -= 1;
+    }
+
+  //   console.log("increment: ", timeIncrement);
+  //   console.log("startDay: ", days);
+  //   console.log("startHours: ", hours);
+  //   console.log("startMinutes: ", minutes);
+  //   console.log("startSeconds: ", seconds);
+
+  // setDaysLeft(Math.abs(nowDay - (days + timeIncrement)));//nowDay - startDay;
+  // setHoursLeft(Math.abs(hours - nowHour));//nowHour - startHour;
+
+  // setMinutesLeft(Math.abs(60 - nowMin));//nowMin - startMin;
+  // setSecondsLeft( Math.abs(60 - nowSec));//nowSec - startSec;
+
+    if(timeIncrement == 1) {
+      setDaysLeft(0);
+      setHoursLeft(23);
+    }  
+
+    if (daysLeft == timeIncrement) {
+      setDaysLeft(daysLeft-1);
+    }
+
     return "" + daysLeft + "d:" + hoursLeft + "h:" + minutesLeft + "m:" + secondsLeft + "s";
   }
 
+/* window.addEventListener("load", () => {
+    if (hours > 3) {
+      plantTime.setAttribute("class","specific-plant-time-bg-green"); //.style.backgroundColor = "rgba(157, 255, 127, 0.615)"; // IT WORKS
+    } else {
+      plantTime.setAttribute("class","specific-plant-time-bg-orange"); //.style.backgroundColor = "rgba(206, 104, 46, 0.615)"; //
+    }
+  }); */
+
+
   const deletePlant = () => {
-    console.log("userId: ", user.userId);
     if(specificPlant){
       removePlant(user.userId, specificPlant.userPlantId);
+      //setRefresh(true);
     }  
   }
 
   useEffect(() => {
-  }, [specificPlant])
+    //const interval = setInterval(() => showWateringTime(), 1000);
+    //return () => clearInterval(interval);
+
+    setTimer(showWateringTime());
+  }, [specificPlant, refresh])
   
   return (
     <div className="specific-plant-card">
@@ -77,8 +128,10 @@ const SpecificPlantCard = () => {
             <li key={3}>Watering: {specificPlant.plant.watering}</li>
             <li key={4}>TMax: {specificPlant.plant.tempMax}</li>
             <li key={5}>Tmin: {specificPlant.plant.tempMin}</li>
-            <li key={6}>suggested watering every {timeIncrement}</li>
-            <li key={7} className="specific-plant-time">Time passed since last watering: ({showWateringTime()})</li>
+            <li key={6}>suggested watering every {timeIncrement} day(s)</li>
+            <li key={7} className="specific-plant-time" id="plant-time"  style={{/*backgroundColor: "rgba(157, 255, 127, 0.615)"*/}} >
+              Time passed since last watering: ({timer})
+            </li>
           </>
         ): null}
       

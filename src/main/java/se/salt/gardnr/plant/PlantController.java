@@ -30,7 +30,9 @@ public class PlantController {
 
     @GetMapping("{id}")
     ResponseEntity<Plant> getPlantById(@PathVariable int id) throws NotFoundException{
+        if (id < 0) return ResponseEntity.badRequest().build();
         Plant plant = service.getPlantById(id);
+        if (plant == null) return ResponseEntity.notFound().build();
         return ResponseEntity.ok(plant);
     }
 

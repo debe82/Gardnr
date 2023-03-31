@@ -57,7 +57,15 @@ body {
 }
 
 .specific-plant-time {
+  /*background-color: rgba(157, 255, 127, 0.615);*/
+}
+
+.specific-plant-time-bg-green {
   background-color: rgba(157, 255, 127, 0.615);
+}
+
+.specific-plant-time-bg-orange {
+  background-color: rgba(206, 104, 46, 0.615);
 }
 
 .specific-plant-card-status-watered {

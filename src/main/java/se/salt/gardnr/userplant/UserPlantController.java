@@ -28,7 +28,9 @@ public class UserPlantController {
 
     @GetMapping("{id}")
     ResponseEntity<UserPlant> getPlantById(@PathVariable int id) throws NotFoundException {
+        if (id < 0) return ResponseEntity.badRequest().build();
         UserPlant userPlant = service.getUserPlantById(id);
+        if (userPlant == null) return ResponseEntity.notFound().build();
         return ResponseEntity.ok(userPlant);
     }
 //
