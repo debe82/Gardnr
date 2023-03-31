@@ -1,24 +1,52 @@
-import React from "react";
-import { Container, Nav, Navbar, NavDropdown } from "react-bootstrap";
+import React, { useContext } from "react";
+import { Link } from "react-router-dom";
+import { Context } from "../App";
+import Popup from "reactjs-popup";
 import { SearchBar } from "./SearchBar";
 
 const Header = () => {
+  const { user } = useContext(Context);
+
+  const PopupExample = () => (
+    <Popup
+      trigger={
+        <a
+          href="#"
+          className="header-container-button">
+          <img
+            src="magnifier.svg"
+            alt="add plant button"
+          />
+        </a>
+      }
+      position="right center">
+      <SearchBar />
+    </Popup>
+  );
+
   return (
-    <Navbar collapseOnSelect expand="lg" bg="light" variant="light">
-      <Container>
-        <Navbar.Brand href="#home">Gardnr</Navbar.Brand>
-        <Navbar.Toggle aria-controls="responsive-navbar-nav" />
-        <Navbar.Collapse id="responsive-navbar-nav">
-          <Nav>
-            <Nav.Link href="#">Add a plant</Nav.Link>
-            <Nav.Link href="#">Features</Nav.Link>
-            <Nav.Link href="#">Subscription</Nav.Link>
-            <Nav.Link href="/1">Login</Nav.Link>
-          </Nav>
-          <SearchBar />
-        </Navbar.Collapse>
-      </Container>
-    </Navbar>
+    <>
+      <header className="header-container">
+        <Link
+          to={"/" + user.userId}
+          className="header-container-button">
+          <img
+            src="user.svg"
+            alt="user button"
+          />
+        </Link>
+        <a
+          href="/"
+          className="header-container-button">
+          <img
+            src="logo.svg"
+            alt="logotype"
+          />
+        </a>
+        <PopupExample />
+      </header>
+      <h1 className="header-main-text">Gardnr</h1>
+    </>
   );
 };
 

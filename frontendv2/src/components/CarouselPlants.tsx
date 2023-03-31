@@ -1,8 +1,8 @@
-import React, { FC, useContext, useEffect, useState } from "react";
+import React, { FC, useContext } from "react";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import { Context } from "../App";
-import { IPlant } from "../interfaces";
+import { IPlant, IUserPlants } from "../interfaces";
 
 export const CarouselPlants = () => {
   const {
@@ -12,67 +12,33 @@ export const CarouselPlants = () => {
     setUserPlants,
     user,
     setUser,
+    setSpecificPlant,
+    setToggleShowSpecificPlant,
   } = useContext(Context);
-  
-  // const filtered = userPlants.filter(e => {
-     //console.log("user: ", user.plants.length);
-     console.log("user: ", user);
-     const listOfPlants: IPlant[] = user.plants;
-     //const plant: IPlant = user.plants[0];
-    // console.log("plant: ", plant && plant.description);
 
-    //listOfPlants.map(e => console.log("plant: ", e));
+  const listOfPlants: IUserPlants[] = user.listOfUserPlants;
 
-    const [show, setShow] = useState(true)
-
-    if (listOfPlants.length == 0) {
-      listOfPlants.push();
-      setShow(false);
-    }
-
-
- return (
-  <>
-    <div className="carousel-plants-container">
-      {show ?
-           listOfPlants.map(e => {
-            
-            return (
-              <>
-            <p>{e.plantName}</p>
-            <img src={e.pictureLink} alt="" />
-</>
-            )
-           }) : null
-      } 
-    </div>
-    </>
-  )};
-
-
-   /* { <>{
-      userPlants.filter(e => e.user === user?.userId  )    }
-      <h3>Let's take care of your plants!</h3>      
+  return (
+    <>
       <div className="carousel-plants-container">
-        <a href="#image1">
-          <img src="https://picsum.photos/85/85" alt="" />
-        </a>
-        <a href="#image2">
-          <img src="https://picsum.photos/85/85" alt="" />
-        </a>
-        <a href="#image3">
-          <img src="https://picsum.photos/85/85" alt="" />
-        </a>
-        <a href="#image4">
-          <img src="https://picsum.photos/85/85" alt="" />
-        </a>
-        <a href="#image5">
-          <img src="https://picsum.photos/85/85" alt="" />
-        </a>
-        <a href="#image6">
-          <img src="https://picsum.photos/85/85" alt="" />
-        </a>
+        {listOfPlants.map((e, index: number) => {
+          return (
+            <>
+              <img
+                key={index}
+                onClick={() => {
+                  setSpecificPlant(e);
+                  setToggleShowSpecificPlant(true);
+                  //console.log(e.userPlantId)
+                }}
+                className="carousel-plants-img"
+                src={e.plant.pictureLink}
+                alt=""
+              />
+            </>
+          );
+        })}
       </div>
     </>
   );
-}; */
+};

@@ -5,7 +5,7 @@ import SpecificPlantCard from "./SpecificPlantCard";
 
 const UserProfile = () => {
   const {
-    plants, 
+    plants,
     setPlants,
     userPlants,
     setUserPlants,
@@ -14,8 +14,8 @@ const UserProfile = () => {
   } = useContext(Context);
   return (
     <div className="user-profile-card">
-      <h3>Welcome {user && user.name}!</h3>
-      
+      <h3 className="user-profile-name">Welcome {user && user.name}!</h3>
+      <h3>Let's take care of your plants!</h3>
       <CarouselPlants />
       <SpecificPlantCard />
     </div>

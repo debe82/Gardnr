@@ -26,6 +26,3 @@ public class PlantService {
 
 }
 
-class NotFoundException extends Exception {
-  public NotFoundException(String msg) { super(msg);}
-}

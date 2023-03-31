@@ -1,6 +1,5 @@
 package se.salt.gardnr.userplant;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import se.salt.gardnr.plant.Plant;
 import se.salt.gardnr.user.User;
@@ -18,6 +17,8 @@ public class UserPlant {
 
     public LocalDateTime startDate;
 
+    public int timeIncrement;
+
 
     @ManyToOne
     @JoinColumn(name = "plantId")
@@ -25,7 +26,7 @@ public class UserPlant {
 
     @ManyToOne
     @JoinColumn(name = "userId")
-    public User user;
+    private User user;
 
     public UserPlant() {
     }
@@ -34,7 +35,14 @@ public class UserPlant {
         this.userPlantId = userPlantId;
         this.userPlantName = userPlantName;
         this.startDate = startDate;
+    }
 
+    public int getTimeIncrement() {
+        return timeIncrement;
+    }
+
+    public void setTimeIncrement(int timeIncrement) {
+        this.timeIncrement = timeIncrement;
     }
 
     public int getUserPlantId() {
@@ -61,21 +69,21 @@ public class UserPlant {
         this.startDate = startDate;
     }
 
-//    public Plant getPlant() {
+    //    public Plant getPlant() {
 //        return plant;
 //    }
 //
-//    public void setPlant(Plant plant) {
-//        this.plant = plant;
-//    }
-//
+    public void setPlant(Plant plant) {
+        this.plant = plant;
+    }
+    //
 //    public User getUser() {
 //        return user;
 //    }
 //
-//    public void setUser(User user) {
-//        this.user = user;
-//    }
+    public void setUser(User user) {
+        this.user = user;
+    }
 
 
 /*    @Override

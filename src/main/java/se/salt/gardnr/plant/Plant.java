@@ -24,7 +24,7 @@ public class Plant {
     private String pictureLink;
 
 
-    @OneToMany(mappedBy="userPlantId")
+    @OneToMany(mappedBy="plant")
     private List<UserPlant> userPlants;
 
 
@@ -43,7 +43,7 @@ public class Plant {
                 ", idealLight='" + idealLight + '\'' +
                 ", description='" + description + '\'' +
                 ", pictureLink='" + pictureLink + '\'' +
-     //           ", userPlants=" + userPlants +
+                //           ", userPlants=" + userPlants +
                 '}';
     }
 
