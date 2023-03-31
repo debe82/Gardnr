@@ -10,9 +10,35 @@ const initUser = {
   userId: 0,
   authId: "",
   name: "",
+<<<<<<< Updated upstream
   email: "", 
   plants: [] 
 }
+=======
+  email: "",
+  listOfUserPlants: [],
+};
+
+const initPlant = {
+  plantId: 0,
+  plantName: "",
+  plantNameLatin: "",
+  watering: "",
+  tempMax: "",
+  tempMin: "",
+  idealLight: "",
+  description: "",
+  pictureLink: "",
+};
+
+const initUserPlant = {
+  userPlantId: 0,
+  startDate: new Date(),
+  userPlantName: "",
+  user: initUser,
+  plant: initPlant,
+};
+>>>>>>> Stashed changes
 
 import { getAllUserPlants } from "./api/dataManagement";
 import { IPlant, IUser, IUserPlants } from "./interfaces";
@@ -41,11 +67,30 @@ export const Context = createContext<MyContextValue>({
     userId: 0,
     authId: "",
     name: "",
+<<<<<<< Updated upstream
     email: "", 
     plants: []
   }, 
   setUser: () => {}
 
+=======
+    email: "",
+    listOfUserPlants: [],
+  },
+  setUser: () => {},
+
+  specificPlant: {
+    userPlantId: 0,
+    startDate: new Date(),
+    userPlantName: "",
+    user: initUser,
+    plant: initPlant,
+  },
+  setSpecificPlant: () => {},
+
+  toggleShowSpecificPlant: false,
+  setToggleShowSpecificPlant: () => {},
+>>>>>>> Stashed changes
 });
 
 function App() {
@@ -60,6 +105,13 @@ function App() {
   const [plants, setPlants] = useState<IPlant[]>([]);
   const [userPlants, setUserPlants] = useState<IUserPlants[]>([]);
   const [user, setUser] = useState<IUser>(initUser);
+<<<<<<< Updated upstream
+=======
+  const [specificPlant, setSpecificPlant] = useState<IUserPlants>(
+    initUserPlant
+  );
+  const [toggleShowSpecificPlant, setToggleShowSpecificPlant] = useState(false);
+>>>>>>> Stashed changes
 
   useEffect(() => {
     axios.get(`http://localhost:8080/api/plants`).then((response) => {
@@ -82,8 +134,26 @@ function App() {
   // };
 
   return (
+<<<<<<< Updated upstream
     <Context.Provider value={{ plants, setPlants, userPlants, setUserPlants, user, setUser }}>
       <Header/>
+=======
+    <Context.Provider
+      value={{
+        plants,
+        setPlants,
+        userPlants,
+        setUserPlants,
+        user,
+        setUser,
+        specificPlant,
+        setSpecificPlant,
+        toggleShowSpecificPlant,
+        setToggleShowSpecificPlant,
+      }}
+    >
+      <Header />
+>>>>>>> Stashed changes
       <Routes>
         <Route path="/" element={<Homepage />} />
         <Route path="/:id" element={<Userpages />} />

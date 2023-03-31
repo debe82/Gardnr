@@ -13,9 +13,8 @@ function Homepage() {
       <Header />
       {/* <SearchBar /> */}
       <section>
-        <LoginForm />      
+        <LoginForm />
       </section>
-
     </>
   );
 }

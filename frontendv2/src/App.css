@@ -1,21 +1,52 @@
 #root {
   height: 100%;
+  background: whitesmoke;
 }
 
 body {
   height: 100vh;
   width: 100%;
   margin: 0;
-  background-color: black;
-  font-family: Roboto, "Times New Roman";
+  font-family: "Roboto", sans-serif;
+}
+
+.header-main-text {
+  display: flex;
+  justify-content: center;
+  font-family: "Unna", serif;
+  margin-top: 20px;
+  margin-left: 80px;
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 0.0625em 0.0625em,
+    rgba(0, 0, 0, 0.25) 0px 0.125em 0.5em,
+    rgba(255, 255, 255, 0.1) 0px 0px 0px 1px inset;
+  width: 60%;
+  border-radius: 20px;
+}
+
+.header-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px;
+  margin-top: 10px;
+}
+
+.header-container-button img {
+  width: 25px;
+  height: 25px;
 }
 
 .user-profile-card {
-  margin-top: 30px;
   text-align: center;
+  margin-top: 30px;
 }
+
 .user-profile-card h3 {
-  font-family: Unna;
+  font-family: "Unna", serif;
+}
+
+.user-profile-name {
+  text-transform: capitalize;
 }
 
 .carousel-plants-container {
@@ -23,6 +54,8 @@ body {
   overflow: scroll;
   margin-top: 20px;
   margin-bottom: 30px;
+  border-top: 2px solid #ccc;
+  padding-top: 15px;
 }
 
 .carousel-plants-container::-webkit-scrollbar {
@@ -39,12 +72,25 @@ body {
   opacity: 100%;
 }
 
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
 .specific-plant-card {
   display: flex;
   justify-content: center;
   align-items: center;
   flex-wrap: wrap;
   font-size: 10px;
+  opacity: 0;
+  animation: fadeIn ease-in 1;
+  animation-fill-mode: forwards;
+  animation-duration: 1s;
 }
 
 .specific-plant-card img {
@@ -56,12 +102,31 @@ body {
   width: 60%;
 }
 
+.specific-plant-card-list {
+  list-style: none;
+  margin-left: 75px;
+  padding: 5px;
+  width: 60%;
+  text-transform: uppercase;
+  font-weight: 400;
+  background: rgba(131, 131, 131, 0.046);
+  border-radius: 20px;
+}
+
 .specific-plant-card-status-watered {
+<<<<<<< Updated upstream
+=======
+  padding-top: 2px;
+>>>>>>> Stashed changes
   display: flex;
   justify-content: center;
   border: 1px solid rgba(0, 0, 0, 0.253);
   border-radius: 20px;
   background-color: rgba(157, 255, 127, 0.615);
+  width: 80%;
+  align-items: center;
+  margin-left: 35px;
+  margin-top: 35px;
 }
 
 .specific-plant-card-status-watered p {
