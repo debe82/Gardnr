@@ -10,7 +10,6 @@ import { LoginForm } from "../components/LoginForm";
 function Homepage() {
   return (
     <>
-      <Header />
       {/* <SearchBar /> */}
       <section>
         <LoginForm />

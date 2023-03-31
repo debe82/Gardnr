@@ -18,17 +18,6 @@ const SpecificPlantCard = () => {
   const [timer, setTimer] = useState("");
   const [refresh, setRefresh] = useState(false);
   const [isPlantTime, setIsPlantTime] = useState(false);
-  //let isPlantTime = true;
-
-  // const [days, setDays] = useState(1);
-  // const [hours, setHours] = useState(0);
-  // const [minutes, setMinutes] = useState(0);
-  // const [seconds, setSeconds] = useState(0);
-
-  // const [daysLeft, setDaysLeft] = useState(0);
-  // const [hoursLeft, setHoursLeft] = useState(0);
-  // const [minutesLeft, setMinutesLeft] = useState(0);
-  // const [secondsLeft, setSecondsLeft] = useState(0);
 
   const listOfPlants: IUserPlants[] = user.listOfUserPlants;
 
@@ -69,39 +58,17 @@ const SpecificPlantCard = () => {
       daysLeft -= 1;
     }
 
-    //   console.log("increment: ", timeIncrement);
-    //   console.log("startDay: ", days);
-    //   console.log("startHours: ", hours);
-    //   console.log("startMinutes: ", minutes);
-    //   console.log("startSeconds: ", seconds);
-
-    // setDaysLeft(Math.abs(nowDay - (days + timeIncrement)));//nowDay - startDay;
-    // setHoursLeft(Math.abs(hours - nowHour));//nowHour - startHour;
-
-    // setMinutesLeft(Math.abs(60 - nowMin));//nowMin - startMin;
-    // setSecondsLeft( Math.abs(60 - nowSec));//nowSec - startSec;
-
     if (timeRemaining != 0) {
       //setDaysLeft(timeIncrement - timeRemaining);
       daysLeft = timeIncrement - timeRemaining;
       //isPlantTime = false;
       setIsPlantTime(false);
-      console.log("isPlantTime?:", isPlantTime);
       //setIsPlantTime(false); //.style.backgroundColor = "rgba(157, 255, 127, 0.615)"; // IT WORKS
     } else {
       //isPlantTime = true;
       setIsPlantTime(true);
-      console.log("isPlantTime?:", isPlantTime);
       //setIsPlantTime(true); //.style.backgroundColor = "rgba(206, 104, 46, 0.615)"; //
     }
-
-    console.log(
-      "isPlantTime?:",
-      nowDay,
-      startDay,
-      timeIncrement,
-      timeRemaining
-    );
 
     if (timeIncrement == 1) {
       daysLeft = 0;
@@ -118,21 +85,16 @@ const SpecificPlantCard = () => {
     return "" + daysLeft + "d:" + hoursLeft + "h:"; // + minutesLeft + "m:" + secondsLeft + "s";
   };
 
-  console.log("isTIme :", isPlantTime);
   const deletePlant = () => {
-    console.log("userId: ", user.userId);
     if (specificPlant) {
       removePlant(user.userId, specificPlant.userPlantId);
     }
-    //window.location.reload();
   };
 
   useEffect(() => {
-    //const interval = setInterval(() => showWateringTime(), 1000);
-    //return () => clearInterval(interval);
-
     setTimer(showWateringTime());
   }, [specificPlant]);
+
   return (
     <div className="specific-plant-card">
       <img
@@ -160,28 +122,27 @@ const SpecificPlantCard = () => {
             </>
           )
         : null}
-      <div className="specific-plant-card-status-watered">
-        <p
-          className={
-            isPlantTime
-              ? "specific-plant-time-bg-orange"
-              : "specific-plant-time-bg-green"
+      <p
+        className={
+          isPlantTime
+            ? "specific-plant-time-bg-orange"
+            : "specific-plant-time-bg-green"
+        }
+        id="plant-time"
+        style={
+          {
+            // backgroundColor: "rgba(157, 255, 127, 0.615)",
           }
-          id="plant-time"
-          style={
-            {
-              /*backgroundColor: "rgba(157, 255, 127, 0.615)"*/
-            }
-          }
-        >
-          Time left next watering: ({timer})
-        </p>
-      </div>
-      {/* <img
+        }
+      >
+        Time left until your plant needs fresh water: ({timer})
+      </p>
+      <div className="specific-plant-card-break"></div>
+      <img
         src="trashcan.png"
         className="specific-plant-card-trashcan"
         onClick={deletePlant}
-      /> */}
+      />
     </div>
   );
 };
