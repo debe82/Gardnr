@@ -31,6 +31,7 @@ public class UserService {
         UserPlant newUserPlant = new UserPlant();
         newUserPlant.setPlant(plant);
         newUserPlant.setStartDate(LocalDateTime.now());
+        newUserPlant.setUserPlantName(plant.getPlantName());
         User user = getUserById(id);
         newUserPlant.setUser(user);
         UserPlant up = userPlantRepository.addNewUserPlant(newUserPlant);
