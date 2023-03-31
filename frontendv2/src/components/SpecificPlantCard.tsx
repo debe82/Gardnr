@@ -20,19 +20,19 @@ const SpecificPlantCard = () => {
 
   const [timer, setTimer] = useState("");
   const [refresh, setRefresh] = useState(false);
-  //const [isPlantTime, setIsPlantTime] = useState(false);
-  let isPlantTime = false;
+  const [isPlantTime, setIsPlantTime] = useState(false);
+  //let isPlantTime = true;
  
 
-  const [days, setDays] = useState(1);
-  const [hours, setHours] = useState(0);
-  const [minutes, setMinutes] = useState(0);
-  const [seconds, setSeconds] = useState(0);
+  // const [days, setDays] = useState(1);
+  // const [hours, setHours] = useState(0);
+  // const [minutes, setMinutes] = useState(0);
+  // const [seconds, setSeconds] = useState(0);
 
-  const [daysLeft, setDaysLeft] = useState(0);
-  const [hoursLeft, setHoursLeft] = useState(0);
-  const [minutesLeft, setMinutesLeft] = useState(0);
-  const [secondsLeft, setSecondsLeft] = useState(0);
+  // const [daysLeft, setDaysLeft] = useState(0);
+  // const [hoursLeft, setHoursLeft] = useState(0);
+  // const [minutesLeft, setMinutesLeft] = useState(0);
+  // const [secondsLeft, setSecondsLeft] = useState(0);
 
   
   const listOfPlants: IUserPlants[] = user.listOfUserPlants;
@@ -40,23 +40,27 @@ const SpecificPlantCard = () => {
   const stringDate = specificPlant.startDate && specificPlant.startDate;
   const timeIncrement = specificPlant.startDate && specificPlant.timeIncrement;
 
-  const showWateringTime = () =>{
+  const nowDay = new Date().getDate();
+  const startDay = new Date(stringDate).getDate();
+  //setDays(new Date(stringDate).getDate());
+  const nowHour = new Date().getHours();
+  const startHour = new Date(stringDate).getHours();
+  //setHours(new Date(stringDate).getHours());
+  const nowMin = new Date().getMinutes();
+  const startMin = new Date(stringDate).getMinutes();
+  //setMinutes(new Date(stringDate).getMinutes());
+  const nowSec = new Date().getSeconds();
+  const startSec = new Date(stringDate).getSeconds();
+  const timeRemaining = (nowDay - startDay) % timeIncrement;
 
-    const nowDay = new Date().getDate();
-    const startDay = new Date(stringDate).getDate();
-    //setDays(new Date(stringDate).getDate());
-    const nowHour = new Date().getHours();
-    const startHour = new Date(stringDate).getHours();
-    //setHours(new Date(stringDate).getHours());
-    const nowMin = new Date().getMinutes();
-    const startMin = new Date(stringDate).getMinutes();
-    //setMinutes(new Date(stringDate).getMinutes());
-    const nowSec = new Date().getSeconds();
-    const startSec = new Date(stringDate).getSeconds();
+  let daysLeft = 0;
+  let hoursLeft = 0;
+
+  const showWateringTime = () =>{
     //setSeconds(new Date(stringDate).getSeconds())
 
-    let daysLeft = Math.abs(nowDay - (startDay + timeIncrement));//nowDay - startDay;
-    let hoursLeft = Math.abs(hours - nowHour);//nowHour - startHour;
+    daysLeft = Math.abs(nowDay - (startDay + timeIncrement));//nowDay - startDay;
+    hoursLeft = Math.abs(startHour - nowHour);//nowHour - startHour;
 
     const minutesLeft = Math.abs(60 - nowMin);//nowMin - startMin;
     const secondsLeft = Math.abs(60 - nowSec);//nowSec - startSec;
@@ -82,25 +86,36 @@ const SpecificPlantCard = () => {
   // setMinutesLeft(Math.abs(60 - nowMin));//nowMin - startMin;
   // setSecondsLeft( Math.abs(60 - nowSec));//nowSec - startSec;
 
+  if (timeRemaining != 0) {
+    //setDaysLeft(timeIncrement - timeRemaining);
+    daysLeft = timeIncrement - timeRemaining;
+    //isPlantTime = false;
+    setIsPlantTime(false);
+    console.log("isPlantTime?:", isPlantTime)
+    //setIsPlantTime(false); //.style.backgroundColor = "rgba(157, 255, 127, 0.615)"; // IT WORKS
+  } else {
+    //isPlantTime = true;
+    setIsPlantTime(true);
+    console.log("isPlantTime?:", isPlantTime)
+    //setIsPlantTime(true); //.style.backgroundColor = "rgba(206, 104, 46, 0.615)"; //
+  }
+
+  console.log("isPlantTime?:", nowDay, startDay, timeIncrement, timeRemaining);
+
+
     if(timeIncrement == 1) {
-      setDaysLeft(0);
-      setHoursLeft(23);
+      daysLeft = 0;
+      // setDaysLeft(0);
+      hoursLeft = 23;
+      // setHoursLeft(23);
     }  
 
     if (daysLeft == timeIncrement) {
-      setDaysLeft(daysLeft-1);
+      daysLeft = daysLeft-1;
+      // setDaysLeft(daysLeft-1);
     }
 
-    return "" + daysLeft + "d:" + hoursLeft + "h:" + minutesLeft + "m:" + secondsLeft + "s";
-  }
-
-
-  if (hoursLeft > 3) {
-    isPlantTime = false;
-    //setIsPlantTime(false); //.style.backgroundColor = "rgba(157, 255, 127, 0.615)"; // IT WORKS
-  } else {
-    isPlantTime = true;
-    //setIsPlantTime(true); //.style.backgroundColor = "rgba(206, 104, 46, 0.615)"; //
+    return "" + daysLeft + "d:" + hoursLeft + "h:";// + minutesLeft + "m:" + secondsLeft + "s";
   }
 
   console.log("isTIme :", isPlantTime);
@@ -117,7 +132,7 @@ const SpecificPlantCard = () => {
     //return () => clearInterval(interval);
 
     setTimer(showWateringTime());
-  }, [specificPlant, refresh])
+  }, [specificPlant])
   
   return (
     <div className="specific-plant-card">
@@ -133,7 +148,7 @@ const SpecificPlantCard = () => {
             <li key={5}>Tmin: {specificPlant.plant.tempMin}</li>
             <li key={6}>suggested watering every {timeIncrement} day(s)</li>
             <li key={7} className={isPlantTime ? "specific-plant-time-bg-orange" : "specific-plant-time-bg-green"} id="plant-time"  style={{/*backgroundColor: "rgba(157, 255, 127, 0.615)"*/}} >
-              Time passed since last watering: ({timer})
+              Time left next watering: ({timer})
             </li>
           </>
         ): null}
