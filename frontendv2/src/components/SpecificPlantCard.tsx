@@ -20,6 +20,9 @@ const SpecificPlantCard = () => {
 
   const [timer, setTimer] = useState("");
   const [refresh, setRefresh] = useState(false);
+  //const [isPlantTime, setIsPlantTime] = useState(false);
+  let isPlantTime = false;
+ 
 
   const [days, setDays] = useState(1);
   const [hours, setHours] = useState(0);
@@ -36,8 +39,6 @@ const SpecificPlantCard = () => {
 
   const stringDate = specificPlant.startDate && specificPlant.startDate;
   const timeIncrement = specificPlant.startDate && specificPlant.timeIncrement;
-
-  const plantTime = document.getElementById('plant-time')!;
 
   const showWateringTime = () =>{
 
@@ -93,14 +94,16 @@ const SpecificPlantCard = () => {
     return "" + daysLeft + "d:" + hoursLeft + "h:" + minutesLeft + "m:" + secondsLeft + "s";
   }
 
-/* window.addEventListener("load", () => {
-    if (hours > 3) {
-      plantTime.setAttribute("class","specific-plant-time-bg-green"); //.style.backgroundColor = "rgba(157, 255, 127, 0.615)"; // IT WORKS
-    } else {
-      plantTime.setAttribute("class","specific-plant-time-bg-orange"); //.style.backgroundColor = "rgba(206, 104, 46, 0.615)"; //
-    }
-  }); */
 
+  if (hoursLeft > 3) {
+    isPlantTime = false;
+    //setIsPlantTime(false); //.style.backgroundColor = "rgba(157, 255, 127, 0.615)"; // IT WORKS
+  } else {
+    isPlantTime = true;
+    //setIsPlantTime(true); //.style.backgroundColor = "rgba(206, 104, 46, 0.615)"; //
+  }
+
+  console.log("isTIme :", isPlantTime);
 
   const deletePlant = () => {
     if(specificPlant){
@@ -129,7 +132,7 @@ const SpecificPlantCard = () => {
             <li key={4}>TMax: {specificPlant.plant.tempMax}</li>
             <li key={5}>Tmin: {specificPlant.plant.tempMin}</li>
             <li key={6}>suggested watering every {timeIncrement} day(s)</li>
-            <li key={7} className="specific-plant-time" id="plant-time"  style={{/*backgroundColor: "rgba(157, 255, 127, 0.615)"*/}} >
+            <li key={7} className={isPlantTime ? "specific-plant-time-bg-orange" : "specific-plant-time-bg-green"} id="plant-time"  style={{/*backgroundColor: "rgba(157, 255, 127, 0.615)"*/}} >
               Time passed since last watering: ({timer})
             </li>
           </>
