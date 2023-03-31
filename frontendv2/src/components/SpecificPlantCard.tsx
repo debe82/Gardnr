@@ -133,6 +133,12 @@ const SpecificPlantCard = () => {
 
     setTimer(showWateringTime());
   }, [specificPlant])
+
+  /*
+  <li key={4}>TMax: {specificPlant.plant.tempMax}</li>
+  <li key={5}>Tmin: {specificPlant.plant.tempMin}</li>
+   <li key={2}>Ideal light: {specificPlant.plant.idealLight}</li>
+  */
   
   return (
     <div className="specific-plant-card">
@@ -142,10 +148,7 @@ const SpecificPlantCard = () => {
         specificPlant && (
           <>
             <li key={1}>Name: {specificPlant.plant.plantName}</li>
-            <li key={2}>Ideal light: {specificPlant.plant.idealLight}</li>
             <li key={3}>Watering: {specificPlant.plant.watering}</li>
-            <li key={4}>TMax: {specificPlant.plant.tempMax}</li>
-            <li key={5}>Tmin: {specificPlant.plant.tempMin}</li>
             <li key={6}>suggested watering every {timeIncrement} day(s)</li>
             <li key={7} className={isPlantTime ? "specific-plant-time-bg-orange" : "specific-plant-time-bg-green"} id="plant-time"  style={{/*backgroundColor: "rgba(157, 255, 127, 0.615)"*/}} >
               Time left next watering: ({timer})

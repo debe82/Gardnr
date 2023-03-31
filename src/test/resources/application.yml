@@ -36,7 +36,7 @@ spring:
       platform: postgresql
       mode: always
   datasource:
-    url: jdbc:postgresql://localhost/prodDb
+    url: jdbc:postgresql://localhost/Plants
     username: postgres
     password: postgres
   #    hikari:
