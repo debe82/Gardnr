@@ -1,0 +1,53 @@
+.addpage-container {
+  color: black;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-flow: column wrap;
+  background-image: linear-gradient(
+    174.2deg,
+    rgba(255, 244, 228, 1) 7.1%,
+    rgba(240, 246, 238, 1) 67.4%
+  );
+}
+
+.addpage-logo {
+  font-family: "Yellowtail", cursive;
+  font-size: 65px;
+  /* margin-top: -470px; */
+  margin-bottom: 20px;
+}
+
+.addpage-item-container-heading {
+  font-family: "Unna", serif;
+  font-size: 20px;
+  margin: 20px;
+}
+
+.addpage-item-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-bottom: 30px;
+}
+
+.addpage-item-img {
+  opacity: 50%;
+  width: 65px;
+  height: 60px;
+  border-radius: 5px;
+  margin: 3px;
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 0.0625em 0.0625em,
+    rgba(0, 0, 0, 0.25) 0px 0.125em 0.5em,
+    rgba(255, 255, 255, 0.1) 0px 0px 0px 1px inset;
+}
+
+.addpage-item-img:hover {
+  opacity: 1;
+}
+
+.addpage-item-container-break {
+  margin: 10px;
+}

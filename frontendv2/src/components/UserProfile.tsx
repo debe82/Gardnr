@@ -9,6 +9,7 @@ import "../App.css";
 const UserProfile = () => {
   const { plants, setPlants, userPlants, setUserPlants, user, setUser } =
     useContext(Context);
+
   return (
     <div className="user-profile-card">
       <h1 className="user-profile-logo">Gardnr</h1>
