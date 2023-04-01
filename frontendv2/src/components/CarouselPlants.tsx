@@ -23,7 +23,7 @@ export const CarouselPlants = () => {
       <div className="carousel-plants-container">
         {listOfPlants.map((e, index: number) => {
           return (
-            <>
+            <div className="carousel-plants-item">
               <img
                 key={index}
                 onClick={() => {
@@ -31,11 +31,13 @@ export const CarouselPlants = () => {
                   setToggleShowSpecificPlant(true);
                   //console.log(e.userPlantId)
                 }}
-                className="carousel-plants-img"
+                className="carousel-plants-item-img"
                 src={e.plant.pictureLink}
-                alt=""
-              />
-            </>
+                alt=""></img>
+              <p className="carousel-plant-item-name">
+                {e.plant && e.plant.plantName}
+              </p>
+            </div>
           );
         })}
       </div>

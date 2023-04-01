@@ -14,11 +14,10 @@ export const LoginForm = () => {
             type="email"
             placeholder="Enter email"
           />
-          <Form.Text className="text-muted">
+          <Form.Text className="text-light">
             We'll never share your email with anyone else.
           </Form.Text>
         </Form.Group>
-
         <Form.Group
           className="mb-3"
           controlId="formBasicPassword">
@@ -38,7 +37,7 @@ export const LoginForm = () => {
         </Form.Group>
         <Link to={"/1"}>
           <Button
-            variant="primary"
+            variant="light"
             type="submit">
             Submit
           </Button>

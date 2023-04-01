@@ -12,6 +12,8 @@ import React, {
   useEffect,
   useState,
 } from "react";
+import LabelBottomNavigation from "./components/Navbar";
+import Addpage from "./pages/Addpage";
 
 const initUser = {
   userId: 0,
@@ -90,9 +92,8 @@ function App() {
   const [plants, setPlants] = useState<IPlant[]>([]);
   const [userPlants, setUserPlants] = useState<IUserPlants[]>([]);
   const [user, setUser] = useState<IUser>(initUser);
-  const [specificPlant, setSpecificPlant] = useState<IUserPlants>(
-    initUserPlant
-  );
+  const [specificPlant, setSpecificPlant] =
+    useState<IUserPlants>(initUserPlant);
   const [toggleShowSpecificPlant, setToggleShowSpecificPlant] = useState(false);
 
   useEffect(() => {
@@ -114,13 +115,22 @@ function App() {
         setSpecificPlant,
         toggleShowSpecificPlant,
         setToggleShowSpecificPlant,
-      }}
-    >
-      <Header />
+      }}>
       <Routes>
-        <Route path="/" element={<Homepage />} />
-        <Route path="/:id" element={<Userpages />} />
+        <Route
+          path="/"
+          element={<Homepage />}
+        />
+        <Route
+          path="/:id"
+          element={<Userpages />}
+        />
+        <Route
+          path="/:id/add"
+          element={<Addpage />}
+        />
       </Routes>
+      <LabelBottomNavigation />
     </Context.Provider>
   );
 }

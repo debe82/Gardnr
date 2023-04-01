@@ -118,27 +118,25 @@ const SpecificPlantCard = () => {
                   Minimum temperature: {specificPlant.plant.tempMin}
                 </li>
                 <li key={6}>suggested watering every {timeIncrement} day(s)</li>
+                <li
+                  className={
+                    isPlantTime
+                      ? "orange specific-plant-time-bg"
+                      : "green specific-plant-time-bg"
+                  }
+                  id="plant-time"
+                  style={
+                    {
+                      // backgroundColor: "rgba(157, 255, 127, 0.615)",
+                    }
+                  }>
+                  Fresh water in: ({timer})
+                </li>
               </ul>
             </>
           )
         : null}
-      <p
-        className={
-          isPlantTime
-            ? "specific-plant-time-bg-orange"
-            : "specific-plant-time-bg-green"
-        }
-        id="plant-time"
-        style={
-          {
-            // backgroundColor: "rgba(157, 255, 127, 0.615)",
-          }
-        }
-      >
-        Time left until your plant needs fresh water: ({timer})
-      </p>
       <div className="specific-plant-card-break"></div>
-      <img src="edit.svg" className="specific-plant-card-edit" />
       <img
         src="trashcan.svg"
         className="specific-plant-card-trashcan"

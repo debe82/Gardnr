@@ -1,53 +1,51 @@
-html {
-  background: rgba(250, 240, 230, 0.635);
-}
-
 #root {
-  height: 100%;
-  background: rgba(250, 240, 230, 0.635);
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  font-family: "Lora", serif;
 }
 
-body {
-  height: 100vh;
-  width: 100%;
-  margin: 0;
-  font-family: "Roboto", sans-serif;
-}
-
-.header-main-text {
-  display: flex;
-  justify-content: center;
+.user-profile-logo {
   font-family: "Yellowtail", cursive;
-  rotate: -15deg;
+  font-size: 65px;
+  margin-top: -100px;
+  margin-bottom: 20px;
 }
-
+/* 
 .header-container {
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 15px;
   margin-top: 10px;
-}
+  background-color: rgb(127, 122, 122);
+} */
 
-.header-container-button {
+/* .header-container-button {
   border-radius: 10px;
   box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
   opacity: 60%;
   transition: 0.25s;
-}
+} */
 
-.header-container-button:hover {
+/* .header-container-button:hover {
   opacity: 100%;
 }
 
 .header-container-button img {
   width: 35px;
   height: 35px;
-}
+} */
 
 .user-profile-card {
-  text-align: center;
-  margin-top: 30px;
+  color: black;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-flow: column wrap;
 }
 
 .user-profile-card h3 {
@@ -60,31 +58,44 @@ body {
 
 .carousel-plants-container {
   display: flex;
+  justify-content: center;
   overflow: scroll;
-  margin-top: 20px;
   margin-bottom: 30px;
-  margin-left: 5px;
-  border-top: 2px solid #ccc;
-  padding-top: 15px;
+  /* border-top: 2px solid #ccc;
+  border-bottom: 2px solid #ccc; */
+  padding: 10px;
+  width: 100%;
 }
 
 .carousel-plants-container::-webkit-scrollbar {
   display: none;
 }
 
-.carousel-plants-container img {
+.carousel-plants-item {
+  max-width: 80px;
+  max-height: 60px;
   margin: 5px;
-  border-radius: 20px;
+}
+
+.carousel-plants-item-img {
   opacity: 30%;
-  width: 75px;
-  height: 75px;
+  width: 65px;
+  height: 60px;
+  border-radius: 5px;
   box-shadow: rgba(0, 0, 0, 0.25) 0px 0.0625em 0.0625em,
     rgba(0, 0, 0, 0.25) 0px 0.125em 0.5em,
     rgba(255, 255, 255, 0.1) 0px 0px 0px 1px inset;
 }
 
-.carousel-plants-container img:hover {
+.carousel-plants-item-img:hover {
   opacity: 100%;
+}
+
+.carousel-plant-item-name {
+  font-size: 10px;
+  opacity: 70%;
+  font-family: "Roboto", sans-serif;
+  text-align: center;
 }
 
 @keyframes fadeIn {
@@ -97,59 +108,44 @@ body {
 }
 
 .specific-plant-card {
-  display: flex;
-  padding: 10px;
-  justify-content: center;
-  align-items: center;
-  flex-wrap: wrap;
+  border-radius: 5px;
   font-size: 10px;
-  opacity: 0;
-  animation: fadeIn ease-in 1;
-  animation-fill-mode: forwards;
-  animation-duration: 1s;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  width: 275px;
 }
 
 .specific-plant-img {
-  border-radius: 20px;
-  margin-bottom: 15px;
-  height: 200px;
-  width: 250px;
-  box-shadow: rgba(0, 0, 0, 0.25) 0px 0.0625em 0.0625em,
-    rgba(0, 0, 0, 0.25) 0px 0.125em 0.5em,
-    rgba(255, 255, 255, 0.1) 0px 0px 0px 1px inset;
+  border-radius: 5px 5px 0 0;
+  height: 150px;
+  width: 100%;
 }
 
 .specific-plant-card-list {
   list-style: none;
-  text-align: left;
-  padding: 15px;
-  text-transform: uppercase;
-  font-family: "Roboto", sans-serif;
-  border-radius: 20px;
+  padding: 10px;
   font-size: 12px;
-  width: 70%;
+  font-weight: 500;
+  margin-top: 5px;
+  margin-bottom: 0;
+  color: rgba(0, 0, 0, 0.642);
 }
 
 .specific-plant-card-list .li {
   word-wrap: break-word;
 }
 
-.specific-plant-time-bg-green {
-  padding: 10px;
-  background-color: rgba(157, 255, 127, 0.615);
-  border-radius: 20px;
-  box-shadow: rgba(0, 0, 0, 0.25) 0px 0.0625em 0.0625em,
-    rgba(0, 0, 0, 0.25) 0px 0.125em 0.5em,
-    rgba(255, 255, 255, 0.1) 0px 0px 0px 1px inset;
+.specific-plant-time-bg {
+  padding: 2.5px;
+  border-radius: 5px;
 }
 
-.specific-plant-time-bg-orange {
-  padding: 10px;
-  background-color: rgba(245, 83, 24, 0.799);
-  border-radius: 20px;
-  box-shadow: rgba(0, 0, 0, 0.25) 0px 0.0625em 0.0625em,
-    rgba(0, 0, 0, 0.25) 0px 0.125em 0.5em,
-    rgba(255, 255, 255, 0.1) 0px 0px 0px 1px inset;
+.orange {
+  color: rgba(245, 153, 24, 0.799);
+}
+
+.green {
+  /* color: rgba(157, 255, 127, 0.615); */
+  color: green;
 }
 
 .specific-plant-card-break {
@@ -157,20 +153,11 @@ body {
   height: 0;
 }
 
-.specific-plant-card-edit {
-  width: 20px;
-  height: 20px;
-  opacity: 70%;
-}
-
 .specific-plant-card-trashcan {
   width: 35px;
   height: 35px;
-  opacity: 50%;
-}
-
-.specific-plant-card-edit:hover {
-  opacity: 100%;
+  opacity: 70%;
+  margin-left: 130px;
 }
 
 .specific-plant-card-trashcan:hover {

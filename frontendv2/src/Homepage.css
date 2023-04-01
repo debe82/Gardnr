@@ -1,0 +1,14 @@
+.landing-page-container {
+  height: 100vh;
+  background: url("/bg3.png") 50% 50% no-repeat;
+  opacity: 80%;
+  color: rgba(255, 255, 255, 0.854);
+}
+
+.landing-page-logo {
+  display: flex;
+  justify-content: center;
+  font-family: "Yellowtail", cursive;
+  font-size: 65px;
+  padding-top: 40px;
+}

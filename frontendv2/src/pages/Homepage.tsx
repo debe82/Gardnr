@@ -4,16 +4,16 @@ import Header from "../components/Header";
 import { SearchBar } from "../components/SearchBar";
 import SpecificPlantCard from "../components/SpecificPlantCard";
 import UserProfile from "../components/UserProfile";
-import "../App.css";
+import "../Homepage.css";
 import { LoginForm } from "../components/LoginForm";
 
 function Homepage() {
   return (
     <>
-      {/* <SearchBar /> */}
-      <section>
+      <div className="landing-page-container">
+        <h1 className="landing-page-logo">Gardnr</h1>
         <LoginForm />
-      </section>
+      </div>
     </>
   );
 }

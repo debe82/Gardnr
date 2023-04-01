@@ -7,23 +7,6 @@ import { SearchBar } from "./SearchBar";
 const Header = () => {
   const { user } = useContext(Context);
 
-  const PopupExample = () => (
-    <Popup
-      trigger={
-        <a
-          href="#"
-          className="header-container-button">
-          <img
-            src="magnifier.svg"
-            alt="add plant button"
-          />
-        </a>
-      }
-      position="right center">
-      <SearchBar />
-    </Popup>
-  );
-
   return (
     <>
       <header className="header-container">
@@ -43,9 +26,15 @@ const Header = () => {
             alt="logotype"
           />
         </a>
-        <PopupExample />
+        <a
+          href="#"
+          className="header-container-button">
+          <img
+            src="magnifier.svg"
+            alt="add plant button"
+          />
+        </a>
       </header>
-      <h1 className="header-main-text">Gardnr</h1>
     </>
   );
 };
