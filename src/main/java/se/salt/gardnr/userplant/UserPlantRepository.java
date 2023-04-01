@@ -22,13 +22,13 @@ public class UserPlantRepository {
     public UserPlant getUserPlantById(int id) {
         return jpaRepo.findById(id).orElse(null);
     }
-
-    public UserPlant getUserPlantByUserPlantId(int id){
-      System.out.println("userPlantRepository->getUserPlantByUserPlantId start");
-      UserPlant upToDelete = jpaRepo.findUserPlantByPlant(plantRepository.getPlantById(id));
-      System.out.println("userPlantRepository->getUserPlantByUserPlantId end");
-      return upToDelete;
-    }
+//
+//    public UserPlant getUserPlantByUserPlantId(int id){
+//      System.out.println("userPlantRepository->getUserPlantByUserPlantId start");
+//      UserPlant upToDelete = jpaRepo.findUserPlantByPlant(plantRepository.getPlantById(id));
+//      System.out.println("userPlantRepository->getUserPlantByUserPlantId end");
+//      return upToDelete;
+//    }
 
   public UserPlant addNewUserPlant(UserPlant userPlant) {
     return jpaRepo.save(userPlant);
@@ -45,12 +45,12 @@ public class UserPlantRepository {
       }
 
   }
-
-  public UserPlant getUserPlantByUserId(int id) {
-      UserPlant up = jpaRepo.findUserPlantByUser(id);
-      System.out.println("userPlant found: " + up);
-      return jpaRepo.findUserPlantByUser(id);
-  }
+//
+//  public UserPlant getUserPlantByUserId(int id) {
+//      UserPlant up = jpaRepo.findUserPlantByUser(id);
+//      System.out.println("userPlant found: " + up);
+//      return jpaRepo.findUserPlantByUser(id);
+//  }
 
 //    public List<UserPlantDto> getAllPlantsForUser() {
 //        return jpaRepo.gimmeEverything();

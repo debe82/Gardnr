@@ -22,7 +22,7 @@ export const CarouselPlants = () => {
     <>
       <div className="carousel-plants-container">
         {
-          listOfPlants.map((e, index: number) => {
+          listOfPlants && listOfPlants.map((e, index: number) => {
             return (
               <>
                 <img key={index} onClick={() => 

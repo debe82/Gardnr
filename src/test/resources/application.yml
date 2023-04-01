@@ -45,7 +45,7 @@ spring:
     show-sql: true
     defer-datasource-initialization: true
     hibernate:
-      ddl-auto: create
+      ddl-auto: update
     generate-ddl: true
 
 # Logging settings

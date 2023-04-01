@@ -14,12 +14,13 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-@CrossOrigin(origins = "http://localhost:3000")
-@Controller
+@RestController
 @RequestMapping("/api/plants")
+@CrossOrigin(origins = "http://localhost:3000" , allowCredentials = "true")
 public class PlantController {
     @Autowired
     PlantService service;
+
 
     @GetMapping
     public ResponseEntity<List<Plant>> getAllPlants() {
@@ -36,10 +37,4 @@ public class PlantController {
         return ResponseEntity.ok(plant);
     }
 
-//    @ExceptionHandler({ NotFoundException.class })
-//    public ResponseEntity notFound(Exception nfe) {
-//        Map<String, Object> json = new HashMap<>();
-//        json.put("message", nfe.getMessage());
-//        return new ResponseEntity(json, HttpStatus.NOT_FOUND);
-//    }
 }

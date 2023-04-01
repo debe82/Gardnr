@@ -1,5 +1,5 @@
 import axios from "axios";
-import { IPlant, IUser } from "../interfaces";
+import { IPlant, IUser, IUserPlants } from "../interfaces";
 
 const PLANTS_API_URL = 'http://localhost:8080/api/plants';
 const USER_PLANTS_URL = 'http://localhost:8080/api/userplants';
@@ -38,5 +38,13 @@ export const addPlant = (id: number, plant: IPlant) => {
     idealLight: plant.idealLight,
     description: plant.description,
     pictureLink: plant.pictureLink,
+  });
+}
+
+export const updateUserPlant  = (userId: number, userPlant: IUserPlants) => {
+  const response = axios.put(USER_URL + `/${userId}/${userPlant.userPlantId}`,
+  {
+    userPlanName: userPlant.userPlantName,
+    userPlant: userPlant.startDate
   });
 }

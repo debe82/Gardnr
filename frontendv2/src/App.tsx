@@ -13,6 +13,7 @@ import DatePicker from "react-datepicker";
 import axios from "axios";
 import Userpages from "./pages/Userpages";
 import Header from "./components/Header";
+import { useAuth0 } from "@auth0/auth0-react";
 
 const initUser = {
   userId: 0,
@@ -54,6 +55,8 @@ export interface MyContextValue {
   setSpecificPlant: Dispatch<SetStateAction<IUserPlants>>;
   toggleShowSpecificPlant: boolean;
   setToggleShowSpecificPlant: Dispatch<SetStateAction<boolean>>;
+  authenticated: boolean;
+  setAuthenticated: Dispatch<SetStateAction<boolean>>;
 }
 
 export const Context = createContext<MyContextValue>({
@@ -83,7 +86,10 @@ export const Context = createContext<MyContextValue>({
   setSpecificPlant: () => {},
 
   toggleShowSpecificPlant: false,
-  setToggleShowSpecificPlant: () => {}
+  setToggleShowSpecificPlant: () => {},
+
+  authenticated: false,
+  setAuthenticated: () => {}
 
 });
 
@@ -94,19 +100,36 @@ function App() {
   const [user, setUser] = useState<IUser>(initUser);
   const [specificPlant, setSpecificPlant] = useState<IUserPlants>(initUserPlant);
   const [toggleShowSpecificPlant, setToggleShowSpecificPlant] = useState(false);
+  const [authenticated, setAuthenticated] = useState(false);
+  const { isAuthenticated, getAccessTokenSilently } = useAuth0();
 
-  useEffect(() => {
-    axios.get(`http://localhost:8080/api/plants`).then((response) => {
-      setPlants(response.data);
-    });
+   useEffect(() => {
+    getAccessTokenSilently().then(token => {
+      console.log("token: ", token)
+      fetch(`http://localhost:8080/api/plants`, { 
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+      .then(res => res.json())
+      .then(data => setPlants(data))
+      .catch(err => console.log("error getching plants: ",err));
+    })
   }, []);
 
   return (
-    <Context.Provider value={{ plants, setPlants, userPlants, setUserPlants, user, setUser, specificPlant, setSpecificPlant, toggleShowSpecificPlant, setToggleShowSpecificPlant  }}>
+    <Context.Provider value={{ 
+      plants, setPlants, 
+      userPlants, setUserPlants, 
+      user, setUser, 
+      specificPlant, setSpecificPlant, 
+      toggleShowSpecificPlant, setToggleShowSpecificPlant,   
+      authenticated, setAuthenticated
+      }}>
       <Header/>
       <Routes>
-        <Route path="/" element={<Homepage />} />
-        <Route path="/:id" element={<Userpages />} />
+          <Route path="/:id" element={<Userpages />} />
+          <Route path="/" element={<Homepage />} />
       </Routes>
     </Context.Provider>
   );
