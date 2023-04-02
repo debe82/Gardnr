@@ -5,6 +5,12 @@ import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.oauth2.client.registration.ClientRegistration;
+import org.springframework.security.oauth2.client.registration.ClientRegistrationRepository;
+import org.springframework.security.oauth2.core.oidc.OidcIdToken;
+import org.springframework.security.oauth2.core.user.OAuth2User;
+
 import org.springframework.web.bind.annotation.*;
 import se.salt.gardnr.model.UserPlantDto;
 import se.salt.gardnr.plant.NotFoundException;
@@ -17,7 +23,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 @RestController
-@CrossOrigin(origins = "http://localhost:3000")
+@CrossOrigin(origins = "http://localhost:3000" , allowCredentials = "true")
 @RequestMapping("/api/users")
 public class UserController {
 
@@ -26,6 +32,45 @@ public class UserController {
 
     @Autowired
     PlantService plantService;
+
+    private ClientRegistration registration;
+
+    public UserController(ClientRegistrationRepository registrations) {
+        this.registration = registrations.findByRegistrationId("auth0");
+    }
+
+    @PostMapping("/logout")
+    public ResponseEntity<?> logout(HttpServletRequest request,
+                                    @AuthenticationPrincipal(expression = "idToken") OidcIdToken idToken) {
+        // send logout URL to client so they can initiate logout
+        String logoutUrl = this.registration.getProviderDetails()
+          .getConfigurationMetadata().get("end_session_endpoint").toString();
+
+        Map<String, String> logoutDetails = new HashMap<>();
+        logoutDetails.put("logoutUrl", logoutUrl);
+        logoutDetails.put("idToken", idToken.getTokenValue());
+        request.getSession(false).invalidate();
+        return ResponseEntity.ok().body(logoutDetails);
+    }
+
+    @CrossOrigin(origins = "http://localhost:3000")
+    @GetMapping
+    public ResponseEntity<?> getUser(@AuthenticationPrincipal OAuth2User userAuth) {
+        if (userAuth == null) {
+            return new ResponseEntity<>("", HttpStatus.BAD_REQUEST);
+        } else {
+            String authid = userAuth.getAttributes().get("aud").toString();
+            User user = service.findUserByAuthId(authid);
+            if (user == null) {
+                User newuser = service.createNewUser(userAuth);
+                System.out.println("this is user in if statement" + newuser);
+                return ResponseEntity.ok().body(newuser);
+            } else {
+                System.out.println("this is the user in the else statement" + user);
+                return ResponseEntity.ok().body(user);
+            }
+        }
+    }
 
     @GetMapping("{id}")
     ResponseEntity<Map<String, Object>> getUserById(@PathVariable int id) {

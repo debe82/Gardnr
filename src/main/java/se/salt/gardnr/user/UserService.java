@@ -1,6 +1,7 @@
 package se.salt.gardnr.user;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.oauth2.core.user.OAuth2User;
 import org.springframework.stereotype.Service;
 import se.salt.gardnr.model.UserPlantDto;
 import se.salt.gardnr.plant.Plant;
@@ -27,15 +28,19 @@ public class UserService {
         return repo.getUserById(id);
     }
 
+    public User createNewUser(OAuth2User userAuth) {
+        return repo.createNewUser(userAuth);
+    }
 
-    public UserPlant getUserPlantByUserId(int id){
-        return userPlantRepository.getUserPlantByUserId(id);
+    public User findUserByAuthId(String authid) {
+        return repo.findUserByAuthId(authid);
     }
 
     public UserPlant createNewUserPlant(int id, Plant plant) throws NotFoundException {
         UserPlant newUserPlant = new UserPlant();
         newUserPlant.setPlant(plant);
         newUserPlant.setStartDate(LocalDateTime.now());
+        newUserPlant.setUserPlantName(plant.getPlantName());
         User user = getUserById(id);
         newUserPlant.setUser(user);
         UserPlant up = userPlantRepository.addNewUserPlant(newUserPlant);
@@ -60,7 +65,5 @@ public class UserService {
         userPlantRepository.deleteUserPlant(userPlantId);
     }
 
-    //  public User getUserByAuthId(String authId) {
-//        return repo.getUserByAuthId(authId);
-//    }
+
 }

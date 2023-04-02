@@ -10,8 +10,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.web.client.RestTemplate;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.DEFINED_PORT)
-public
-class GardnrApplicationTests {
+public class GardnrApplicationTests {
 
   @Value("${server.port}")
   protected int port;

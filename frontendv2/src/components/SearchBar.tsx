@@ -1,13 +1,13 @@
 import React, {
   ChangeEvent,
-  SyntheticEvent,
   useContext,
+  useEffect,
   useEffect,
   useState,
 } from "react";
-import { Button, Dropdown, Form, InputGroup } from "react-bootstrap";
 import { addPlant } from "../api/dataManagement";
-import { Context, MyContextValue } from "../App";
+import { addPlant } from "../api/dataManagement";
+import { Context } from "../helpMethods/context";
 import { IPlant } from "../interfaces";
 
 export const SearchBar = () => {
@@ -21,6 +21,7 @@ export const SearchBar = () => {
 
   const addUserPlant = (plantname: string) => {
     const plantsToAdd: IPlant[] = plants.filter((p) =>
+    const plantsToAdd: IPlant[] = plants.filter((p) =>
       p.plantName.includes(plantname)
     );
     addPlant(1, plantsToAdd[0]);
@@ -28,6 +29,10 @@ export const SearchBar = () => {
   };
 
   useEffect(() => {}, []);
+
+  useEffect(() =>{
+    
+    }, []);
 
   return (
     <>
