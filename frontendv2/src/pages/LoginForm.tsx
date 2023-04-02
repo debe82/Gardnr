@@ -1,31 +1,33 @@
-import React from 'react'
-import { Button, Form } from 'react-bootstrap'
-import { Link } from 'react-router-dom'
+import axios from 'axios';
+import React, { SyntheticEvent, useContext, useState } from 'react'
+import { Link, useNavigate } from 'react-router-dom'
+import { Context } from '../App';
+
+
 
 export const LoginForm = () => {
-  return (
-    <>
-       <Form className='p-5' onSubmit={handleLogin}>
-      <Form.Group className="mb-3" controlId="formBasicEmail">
-        <Form.Label>Email address</Form.Label>
-        <Form.Control type="email" placeholder="Enter email" onChange={e => setMail(e.target.value)} />
-        <Form.Text className="text-muted">
-          We'll never share your email with anyone else.
-        </Form.Text>
-      </Form.Group>
 
-      <Form.Group className="mb-3" controlId="formBasicPassword">
-        <Form.Label>Password</Form.Label>
-        <Form.Control type="password" placeholder="Password" onChange={e => Password(e.target.value)}/>
-      </Form.Group>
-      <Form.Group className="mb-3" controlId="formBasicCheckbox">
-        <Form.Check type="checkbox" label="Check me out" />
-      </Form.Group>
-      <Link to={"/1"}>
-      <Button variant="primary" type="submit">
-        Submit
-      </Button>
-      </Link>
-    </Form>
-    </>
+  const { authenticated, setAuthenticated } = useContext(Context);
+  const [userName, setUserName] = useState("");
+  const [userpassword, serUserPassword] = useState("");
+  const navigate = useNavigate();
+
+  const handleSubmit = (e: SyntheticEvent) => {
+    e.preventDefault();
+    axios.post("/api/", {
+      userName: userName,
+      userpassword: userpassword
+    });
+    navigate("/");
+  };
+
+  return ( 
+    <form onSubmit={handleSubmit}>
+    <div>
+      <label htmlFor="usernameInput">Username:</label>
+      <input id="usernameInput" type="text" onChange={(e) => setUserName(e.target.value)}/>
+    </div>
+    <button type="submit">Submit</button>
+  </form>
+
 )}

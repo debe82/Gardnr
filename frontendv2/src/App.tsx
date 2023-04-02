@@ -55,6 +55,8 @@ export interface MyContextValue {
   setSpecificPlant: Dispatch<SetStateAction<IUserPlants>>;
   toggleShowSpecificPlant: boolean;
   setToggleShowSpecificPlant: Dispatch<SetStateAction<boolean>>;
+  authenticated: boolean;
+  setAuthenticated: Dispatch<SetStateAction<boolean>>;
 }
 
 export const Context = createContext<MyContextValue>({
@@ -85,6 +87,8 @@ export const Context = createContext<MyContextValue>({
 
   toggleShowSpecificPlant: false,
   setToggleShowSpecificPlant: () => {},
+  authenticated: false, 
+  setAuthenticated: () => {}
 });
 
 function App() {
@@ -95,6 +99,7 @@ function App() {
   const [specificPlant, setSpecificPlant] =
     useState<IUserPlants>(initUserPlant);
   const [toggleShowSpecificPlant, setToggleShowSpecificPlant] = useState(false);
+  const [authenticated, setAuthenticated] =  useState(false);
 
   useEffect(() => {
     axios.get(`http://localhost:8080/api/plants`).then((response) => {
@@ -115,6 +120,9 @@ function App() {
         setSpecificPlant,
         toggleShowSpecificPlant,
         setToggleShowSpecificPlant,
+        authenticated, 
+        setAuthenticated
+
       }}>
       <Routes>
         <Route
