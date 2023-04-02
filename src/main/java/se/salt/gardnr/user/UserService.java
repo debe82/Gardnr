@@ -27,15 +27,29 @@ public class UserService {
         return repo.getUserById(id);
     }
 
+    public User checkUserCredentials(User user) {
+        User checkedUserByEmail = repo.checkUserEmail(user);
+        User checkedUserByPassword = repo.checkUserPassword(user);
+        if (checkedUserByPassword != null && checkedUserByEmail != null) {
+            if ((checkedUserByEmail.getUserEmail() == checkedUserByPassword.getUserEmail() &&
+              checkedUserByPassword.getUserPassword() == checkedUserByEmail.getUserPassword())) {
+                return checkedUserByEmail;
+            }
+        }
+        return null;
+    }
 
-    public UserPlant getUserPlantByUserId(int id){
-        return userPlantRepository.getUserPlantByUserId(id);
+    public User addNewUser(User user) {
+        User checkdUser = repo.addNewUser(user);
+        System.out.println("checkedUser: " + checkdUser);
+        return checkdUser;
     }
 
     public UserPlant createNewUserPlant(int id, Plant plant) throws NotFoundException {
         UserPlant newUserPlant = new UserPlant();
         newUserPlant.setPlant(plant);
         newUserPlant.setStartDate(LocalDateTime.now());
+        newUserPlant.setUserPlantName(plant.getPlantName());
         User user = getUserById(id);
         newUserPlant.setUser(user);
         UserPlant up = userPlantRepository.addNewUserPlant(newUserPlant);
@@ -58,6 +72,10 @@ public class UserService {
 
     public void deleteUserPlant(int userPlantId) {
         userPlantRepository.deleteUserPlant(userPlantId);
+    }
+
+    public void deleteUser(User userToDelete) {
+        repo.deleteUser(userToDelete);
     }
 
     //  public User getUserByAuthId(String authId) {
