@@ -26,6 +26,9 @@ function Addpage() {
     addPlant(1, plantsToAdd[0]);
   };
 
+  console.log(user);
+  console.log(user.listOfUserPlants)
+
   useEffect(() => {}, []);
 
   const handleChange = (event: any) => {
@@ -48,14 +51,14 @@ function Addpage() {
           Edit name? Just click your plant!
         </h3>
         <div className="addpage-item-container">
-          {plants.map((e) => {
+          {user && user.listOfUserPlants && user.listOfUserPlants.map((e) => {
             return (
               <>
                 <img
-                  onClick={() => setMessage(e.plantName)}
+                  onClick={() => setMessage(e.plant.plantName)}
                   className="addpage-item-img"
-                  src={e.pictureLink}
-                  alt={e.plantName}
+                  src={e.plant.pictureLink}
+                  alt={e.plant.plantName}
                 />
               </>
             );

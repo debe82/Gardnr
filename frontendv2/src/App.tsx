@@ -14,10 +14,11 @@ import React, {
 } from "react";
 import LabelBottomNavigation from "./components/Navbar";
 import Addpage from "./pages/Addpage";
+import SignUp from "./components/SignUp";
+import { NotFoundPage } from "./pages/NotFoundPage";
 
 const initUser = {
   userId: 0,
-  authId: "",
   name: "",
   email: "",
   listOfUserPlants: [],
@@ -66,7 +67,6 @@ export const Context = createContext<MyContextValue>({
 
   user: {
     userId: 0,
-    authId: "",
     name: "",
     email: "",
     listOfUserPlants: [],
@@ -97,10 +97,13 @@ function App() {
   const [toggleShowSpecificPlant, setToggleShowSpecificPlant] = useState(false);
 
   useEffect(() => {
-    axios.get(`http://localhost:8080/api/plants`).then((response) => {
+    axios.get("http://localhost:8080/api/plants").then((response) => {
       setPlants(response.data);
     });
   }, []);
+
+//  const localUser = JSON.parse(localStorage.getItem('user'));
+//  const sss = localUser
 
   return (
     <Context.Provider
@@ -117,10 +120,15 @@ function App() {
         setToggleShowSpecificPlant,
       }}>
       <Routes>
-        <Route
-          path="/"
+      <Route
+          path='*'
+          element={<NotFoundPage />}
+        />
+        <Route path="/"
           element={<Homepage />}
         />
+        { userId ? 
+        <>
         <Route
           path="/:id"
           element={<Userpages />}
@@ -128,6 +136,12 @@ function App() {
         <Route
           path="/:id/add"
           element={<Addpage />}
+        />
+        </> : null
+}
+         <Route
+          path="/signup"
+          element={<SignUp />}
         />
       </Routes>
       <LabelBottomNavigation />

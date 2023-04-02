@@ -2,9 +2,8 @@ package se.salt.gardnr.user;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import se.salt.gardnr.model.UserPlantDto;
 import se.salt.gardnr.plant.Plant;
-import se.salt.gardnr.userplant.NotFoundException;
+import se.salt.gardnr.NotFoundException;
 import se.salt.gardnr.userplant.UserPlant;
 import se.salt.gardnr.userplant.UserPlantRepository;
 import se.salt.gardnr.userplant.UserPlantService;
@@ -27,15 +26,29 @@ public class UserService {
         return repo.getUserById(id);
     }
 
+    public User checkUserCredentials(User user) throws NotFoundException {
+        User checkedUserByEmail = repo.checkUserEmail(user);
+        User checkedUserByPassword = repo.checkUserPassword(user);
+        if (checkedUserByPassword != null && checkedUserByEmail != null) {
+            if ((checkedUserByEmail.getUserEmail().equals(checkedUserByPassword.getUserEmail())  &&
+              checkedUserByPassword.getUserPassword().equals(checkedUserByEmail.getUserPassword()))) {
+                return checkedUserByEmail;
+            }
+        }
+        throw new NotFoundException("Email or password is incorrect");
+    }
 
-    public UserPlant getUserPlantByUserId(int id){
-        return userPlantRepository.getUserPlantByUserId(id);
+    public User addNewUser(User user) {
+        User checkdUser = repo.addNewUser(user);
+        System.out.println("checkedUser: " + checkdUser);
+        return checkdUser;
     }
 
     public UserPlant createNewUserPlant(int id, Plant plant) throws NotFoundException {
         UserPlant newUserPlant = new UserPlant();
         newUserPlant.setPlant(plant);
         newUserPlant.setStartDate(LocalDateTime.now());
+        newUserPlant.setUserPlantName(plant.getPlantName());
         User user = getUserById(id);
         newUserPlant.setUser(user);
         UserPlant up = userPlantRepository.addNewUserPlant(newUserPlant);
@@ -60,7 +73,10 @@ public class UserService {
         userPlantRepository.deleteUserPlant(userPlantId);
     }
 
-    //  public User getUserByAuthId(String authId) {
-//        return repo.getUserByAuthId(authId);
-//    }
+    public void deleteUser(User userToDelete) {
+        repo.deleteUser(userToDelete);
+    }
+
 }
+
+

@@ -29,12 +29,12 @@ export default function LabelBottomNavigation() {
         <BottomNavigationAction
           label="Home"
           icon={<HomeIcon />}
-          // href={"/" + user.userId}
+          href={"/" + user.userId}
         />
         <BottomNavigationAction
           label="Add/Edit Plant"
           icon={<AddIcon />}
-          // href={"/" + user.userId + "/" + "add"}
+          href={"/" + user.userId + "/" + "add"}
         />
         <BottomNavigationAction
           label="Subscription"

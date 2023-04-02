@@ -1,0 +1,4 @@
+{
+  "appService.preDeployTask": "package:gardnr",
+  "appService.deploySubpath": "target/gardnr-0.0.1-SNAPSHOT.jar"
+}

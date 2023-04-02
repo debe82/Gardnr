@@ -12,7 +12,6 @@ export interface IPlant {
 
 export interface IUser {
   userId: number;
-  authId: string;
   name: string;
   email: string;
   listOfUserPlants: IUserPlants[];
