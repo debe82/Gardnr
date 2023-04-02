@@ -97,10 +97,13 @@ function App() {
   const [toggleShowSpecificPlant, setToggleShowSpecificPlant] = useState(false);
 
   useEffect(() => {
-    axios.get(`/api/plants`).then((response) => {
+    axios.get("http://localhost:8080/api/plants").then((response) => {
       setPlants(response.data);
     });
   }, []);
+
+//  const localUser = JSON.parse(localStorage.getItem('user'));
+//  const sss = localUser
 
   return (
     <Context.Provider
@@ -124,6 +127,8 @@ function App() {
         <Route path="/"
           element={<Homepage />}
         />
+        { userId ? 
+        <>
         <Route
           path="/:id"
           element={<Userpages />}
@@ -132,6 +137,8 @@ function App() {
           path="/:id/add"
           element={<Addpage />}
         />
+        </> : null
+}
          <Route
           path="/signup"
           element={<SignUp />}

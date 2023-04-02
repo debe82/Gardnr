@@ -20,9 +20,11 @@ export const SearchBar = () => {
   };
 
   const addUserPlant = (plantname: string) => {
+    console.log("this is userplant to add ", plantname)
     const plantsToAdd: IPlant[] = plants.filter((p) =>
       p.plantName.includes(plantname)
     );
+    console.log("this is userplant to add ", plantsToAdd[0])
     addPlant(1, plantsToAdd[0]);
     //window.location.reload();
   };
