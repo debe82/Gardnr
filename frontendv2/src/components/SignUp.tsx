@@ -13,13 +13,18 @@ import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { createTheme, Theme, ThemeProvider } from "@mui/material/styles";
 import axios from "axios";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import "../Homepage.css";
 import { Alert } from "@mui/material";
+import { Context } from "../App";
+import { useNavigate } from "react-router-dom";
 
 const theme = createTheme();
 
 export default function SignUp() {
+  const { user, setUser } =
+  useContext(Context);
+  const navigate = useNavigate();
   const [errMsg, setErrMsg] = useState("");
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
@@ -40,6 +45,7 @@ export default function SignUp() {
         userName: data.get("name"),
       }).then((response) => {
         console.log("this is respose", );
+        setUser(response.data);
       }, (error) => {
         console.log(" this is error",   error.response.data.message,"response data", error.response.data[0]);
         setErrMsg(error.response.data.message);
@@ -47,6 +53,8 @@ export default function SignUp() {
       ;
     }
   };
+
+  if(user.userId != 0){ navigate(`/${user.userId}`)}
 
   return (
     <div className="landing-page-container">
