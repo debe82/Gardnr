@@ -16,11 +16,9 @@ const root = createRoot(domNode)
 // );
 root.render(
   <React.StrictMode>
-  <CookiesProvider>
     <BrowserRouter>
     <App />
     </BrowserRouter>
-    </CookiesProvider>
   </React.StrictMode>
 );
 

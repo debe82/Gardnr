@@ -2,10 +2,8 @@ import React, {
   ChangeEvent,
   useContext,
   useEffect,
-  useEffect,
   useState,
 } from "react";
-import { addPlant } from "../api/dataManagement";
 import { addPlant } from "../api/dataManagement";
 import { Context } from "../helpMethods/context";
 import { IPlant } from "../interfaces";
@@ -20,7 +18,6 @@ export const SearchBar = () => {
   };
 
   const addUserPlant = (plantname: string) => {
-    const plantsToAdd: IPlant[] = plants.filter((p) =>
     const plantsToAdd: IPlant[] = plants.filter((p) =>
       p.plantName.includes(plantname)
     );
