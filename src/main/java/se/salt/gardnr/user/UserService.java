@@ -1,7 +1,6 @@
 package se.salt.gardnr.user;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.oauth2.core.user.OAuth2User;
 import org.springframework.stereotype.Service;
 import se.salt.gardnr.model.UserPlantDto;
 import se.salt.gardnr.plant.Plant;
@@ -28,12 +27,22 @@ public class UserService {
         return repo.getUserById(id);
     }
 
-    public User createNewUser(OAuth2User userAuth) {
-        return repo.createNewUser(userAuth);
+    public User checkUserCredentials(User user) {
+        User checkedUserByEmail = repo.checkUserEmail(user);
+        User checkedUserByPassword = repo.checkUserPassword(user);
+        if (checkedUserByPassword != null && checkedUserByEmail != null) {
+            if ((checkedUserByEmail.getUserEmail() == checkedUserByPassword.getUserEmail() &&
+              checkedUserByPassword.getUserPassword() == checkedUserByEmail.getUserPassword())) {
+                return checkedUserByEmail;
+            }
+        }
+        return null;
     }
 
-    public User findUserByAuthId(String authid) {
-        return repo.findUserByAuthId(authid);
+    public User addNewUser(User user) {
+        User checkdUser = repo.addNewUser(user);
+        System.out.println("checkedUser: " + checkdUser);
+        return checkdUser;
     }
 
     public UserPlant createNewUserPlant(int id, Plant plant) throws NotFoundException {
@@ -65,5 +74,11 @@ public class UserService {
         userPlantRepository.deleteUserPlant(userPlantId);
     }
 
+    public void deleteUser(User userToDelete) {
+        repo.deleteUser(userToDelete);
+    }
 
+    //  public User getUserByAuthId(String authId) {
+//        return repo.getUserByAuthId(authId);
+//    }
 }

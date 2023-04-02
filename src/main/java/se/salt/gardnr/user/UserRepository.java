@@ -1,7 +1,6 @@
 package se.salt.gardnr.user;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.oauth2.core.user.OAuth2User;
 import org.springframework.stereotype.Repository;
 import se.salt.gardnr.userplant.IJpaUserPlantRepository;
 
@@ -14,22 +13,38 @@ public class UserRepository {
         return jpaRepo.findById(id).orElse(null);
     }
 
-    public User createNewUser(OAuth2User userauth) {
-        User newUser = new User();
-        newUser.setAuthId(userauth.getAttributes().get("aud").toString());
-        System.out.println("aud:" + userauth.getAttributes().get("aud").toString());
-        newUser.setUserEmail(userauth.getAttributes().get("email").toString());
-        System.out.println("email:" + userauth.getAttributes().get("email").toString());
-        newUser.setUserName(userauth.getAttributes().get("name").toString());
-        System.out.println("name:" + userauth.getAttributes().get("name").toString());
-
-        return jpaRepo.save(newUser);
+    public User checkUserEmail(User user) {
+        System.out.println("user:" + user);
+        User userFound = jpaRepo.findUserByUserEmail(user.getUserEmail());
+        System.out.println("userFound: " + userFound);
+        if (userFound != null) {
+            System.out.println("user email: " + user.getUserEmail());
+            System.out.println("found email:" + userFound.getUserEmail());
+            if (userFound.getUserEmail().equals(user.getUserEmail())) {
+                return user;
+            }
+        }
+        return null;
     }
 
-    public User findUserByAuthId(String authid) {
-        return jpaRepo.findByAuthId(authid);
+    public User checkUserPassword(User user) {
+        User userFound = jpaRepo.findUserByUserPassword(user.getUserPassword());
+        if (userFound != null) {
+            if ((userFound.getUserPassword() == user.getUserPassword())) {
+                return user;
+            }
+        }
+        return null;
     }
-   // public User getUserByAuthId(String authId) {
-     //   return jpaRepo.findUserByAuthId(authId);
-   // }
+
+    public User addNewUser(User user) {
+        if (checkUserEmail(user) == null) {
+            return  jpaRepo.save(user);
+        }
+        return null;
+    }
+
+    public void deleteUser(User userToDelete) {
+        jpaRepo.delete(userToDelete);
+    }
 }

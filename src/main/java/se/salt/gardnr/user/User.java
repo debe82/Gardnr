@@ -1,7 +1,6 @@
 package se.salt.gardnr.user;
 
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import se.salt.gardnr.userplant.UserPlant;
 
@@ -13,7 +12,7 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int userId;
-    private String authId;
+    private String userPassword;
     private String userName;
     private String userEmail;
     @OneToMany(mappedBy="user")
@@ -28,12 +27,12 @@ public class User {
         this.userId = userId;
     }
 
-    public String getAuthId() {
-        return authId;
+    public String getUserPassword() {
+        return userPassword;
     }
 
-    public void setAuthId(String authId) {
-        this.authId = authId;
+    public void setUserPassword(String authId) {
+        this.userPassword = authId;
     }
 
     public String getUserName() {
@@ -66,7 +65,7 @@ public class User {
     public String toString() {
         return "User{" +
                 "userId=" + userId +
-                ", authId='" + authId + '\'' +
+                ", authId='" + userPassword + '\'' +
                 ", userName='" + userName + '\'' +
                 ", userEmail='" + userEmail + '\'' +
      //           ", userPlants=" + userPlants +

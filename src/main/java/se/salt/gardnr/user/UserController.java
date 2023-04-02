@@ -33,44 +33,25 @@ public class UserController {
     @Autowired
     PlantService plantService;
 
-    private ClientRegistration registration;
 
-    public UserController(ClientRegistrationRepository registrations) {
-        this.registration = registrations.findByRegistrationId("auth0");
-    }
-
-    @PostMapping("/logout")
-    public ResponseEntity<?> logout(HttpServletRequest request,
-                                    @AuthenticationPrincipal(expression = "idToken") OidcIdToken idToken) {
-        // send logout URL to client so they can initiate logout
-        String logoutUrl = this.registration.getProviderDetails()
-          .getConfigurationMetadata().get("end_session_endpoint").toString();
-
-        Map<String, String> logoutDetails = new HashMap<>();
-        logoutDetails.put("logoutUrl", logoutUrl);
-        logoutDetails.put("idToken", idToken.getTokenValue());
-        request.getSession(false).invalidate();
-        return ResponseEntity.ok().body(logoutDetails);
-    }
-
-    @CrossOrigin(origins = "http://localhost:3000")
-    @GetMapping
-    public ResponseEntity<?> getUser(@AuthenticationPrincipal OAuth2User userAuth) {
-        if (userAuth == null) {
-            return new ResponseEntity<>("", HttpStatus.BAD_REQUEST);
-        } else {
-            String authid = userAuth.getAttributes().get("aud").toString();
-            User user = service.findUserByAuthId(authid);
-            if (user == null) {
-                User newuser = service.createNewUser(userAuth);
-                System.out.println("this is user in if statement" + newuser);
-                return ResponseEntity.ok().body(newuser);
-            } else {
-                System.out.println("this is the user in the else statement" + user);
-                return ResponseEntity.ok().body(user);
-            }
-        }
-    }
+//    @CrossOrigin(origins = "http://localhost:3000")
+//    @GetMapping
+//    public ResponseEntity<?> getUser(@AuthenticationPrincipal OAuth2User userAuth) {
+//        if (userAuth == null) {
+//            return new ResponseEntity<>("", HttpStatus.BAD_REQUEST);
+//        } else {
+//            String authid = userAuth.getAttributes().get("aud").toString();
+//            User user = service.findUserByAuthId(authid);
+//            if (user == null) {
+//                User newuser = service.createNewUser(userAuth);
+//                System.out.println("this is user in if statement" + newuser);
+//                return ResponseEntity.ok().body(newuser);
+//            } else {
+//                System.out.println("this is the user in the else statement" + user);
+//                return ResponseEntity.ok().body(user);
+//            }
+//        }
+//    }
 
     @GetMapping("{id}")
     ResponseEntity<Map<String, Object>> getUserById(@PathVariable int id) {
@@ -88,6 +69,26 @@ public class UserController {
           user.getUserPlants().stream().map(usrPlant -> usrPlant.plant)
         );
         return ResponseEntity.ok(json);
+    }
+
+    @CrossOrigin(origins = "http://localhost:3000")
+    @PostMapping
+    public ResponseEntity<User> saveAndGetUser(@RequestBody User user) {
+
+        User checkeddUser;
+        if (user.getUserName() == null) {     //user login
+            checkeddUser = service.checkUserCredentials(user);
+            if (checkeddUser == null) return new ResponseEntity<>(null, HttpStatus.FORBIDDEN);
+            System.out.println("User exist, login granted");
+        } else { //user signIn
+            checkeddUser = service.addNewUser(user);
+            if (checkeddUser == null) return new ResponseEntity<>(null, HttpStatus.NOT_ACCEPTABLE);
+            System.out.println("User didn't exist, user cereated");
+        }
+
+        //UserDto userDto = new UserDto(user.getUserName()) ;
+
+        return ResponseEntity.ok(checkeddUser);
     }
 
     @PostMapping("{id}/plants")
@@ -116,5 +117,12 @@ public class UserController {
         UserPlant upToUdate =  service.updateUserPlant(userPlantId, userPlant);
         if (upToUdate == null) return ResponseEntity.notFound().build();
         return ResponseEntity.accepted().body(upToUdate);
+    }
+
+    @DeleteMapping("{userId}")
+    public ResponseEntity deleteUser(@PathVariable int userId){
+        User userToDelete = service.getUserById(userId);
+        service.deleteUser(userToDelete);
+        return ResponseEntity.noContent().build();
     }
 }
