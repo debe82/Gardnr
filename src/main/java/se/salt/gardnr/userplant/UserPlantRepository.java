@@ -52,34 +52,34 @@ public class UserPlantRepository {
 //      return jpaRepo.findUserPlantByUser(id);
 //  }
 
-    public UserPlant getUserPlantByUserPlantId(int id){
-      System.out.println("userPlantRepository->getUserPlantByUserPlantId start");
-      UserPlant upToDelete = jpaRepo.findUserPlantByPlant(plantRepository.getPlantById(id));
-      System.out.println("userPlantRepository->getUserPlantByUserPlantId end");
-      return upToDelete;
-    }
+//    public UserPlant getUserPlantByUserPlantId(int id){
+//      System.out.println("userPlantRepository->getUserPlantByUserPlantId start");
+//      UserPlant upToDelete = jpaRepo.findUserPlantByPlant(plantRepository.getPlantById(id));
+//      System.out.println("userPlantRepository->getUserPlantByUserPlantId end");
+//      return upToDelete;
+//    }
 
-  public UserPlant addNewUserPlant(UserPlant userPlant) {
-    return jpaRepo.save(userPlant);
-  }
+//  public UserPlant addNewUserPlant(UserPlant userPlant) {
+//    return jpaRepo.save(userPlant);
+//  }
 
 //  public void deleteUserPLant(UserPlant userPlant) {
 //      jpaRepo.delete(userPlant);
 //  }
 
-  public void deleteUserPlant(int id) {
-      UserPlant userPlant = getUserPlantById(id);
-      if (userPlant != null){
-        jpaRepo.deleteById(id);
-      }
+//  public void deleteUserPlant(int id) {
+//      UserPlant userPlant = getUserPlantById(id);
+//      if (userPlant != null){
+//        jpaRepo.deleteById(id);
+//      }
+//
+//  }
 
-  }
-
-  public UserPlant getUserPlantByUserId(int id) {
-      UserPlant up = jpaRepo.findUserPlantByUser(id);
-      System.out.println("userPlant found: " + up);
-      return jpaRepo.findUserPlantByUser(id);
-  }
+//  public UserPlant getUserPlantByUserId(int id) {
+//      UserPlant up = jpaRepo.findUserPlantByUser(id);
+//      System.out.println("userPlant found: " + up);
+//      return jpaRepo.findUserPlantByUser(id);
+//  }
 
 //    public List<UserPlantDto> getAllPlantsForUser() {
 //        return jpaRepo.gimmeEverything();

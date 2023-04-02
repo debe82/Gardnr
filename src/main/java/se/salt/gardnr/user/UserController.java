@@ -5,11 +5,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.annotation.AuthenticationPrincipal;
-import org.springframework.security.oauth2.client.registration.ClientRegistration;
-import org.springframework.security.oauth2.client.registration.ClientRegistrationRepository;
-import org.springframework.security.oauth2.core.oidc.OidcIdToken;
-import org.springframework.security.oauth2.core.user.OAuth2User;
+
 
 import org.springframework.web.bind.annotation.*;
 import se.salt.gardnr.model.UserPlantDto;
@@ -74,7 +70,6 @@ public class UserController {
     @CrossOrigin(origins = "http://localhost:3000")
     @PostMapping
     public ResponseEntity<User> saveAndGetUser(@RequestBody User user) {
-
         User checkeddUser;
         if (user.getUserName() == null) {     //user login
             checkeddUser = service.checkUserCredentials(user);

@@ -9,15 +9,15 @@ spring:
   output:
     ansi:
       enabled: always
-#  datasource:
-#    url: jdbc:postgresql://${POSTGRES_URL}:5432/postgres?sslmode=require
-#    username: ${POSTGRES_USER}
-#    password: ${POSTGRES_PWD}
-
   datasource:
-    url: jdbc:postgresql://localhost/Plants
-    username: postgres
-    password: postgres
+    url: jdbc:postgresql://${POSTGRES_URL}:5432/postgres?sslmode=require
+    username: ${POSTGRES_USER}
+    password: ${POSTGRES_PWD}
+
+#  datasource:
+#    url: jdbc:postgresql://localhost/Plants
+#    username: postgres
+#    password: postgres
 #    username: postgres
 #    password: pgpwd
     hikari:
@@ -34,18 +34,3 @@ spring:
         springframework:
           boot:
             autoconfigure: ERROR
-security:
-  oauth2:
-    client:
-      registration:
-        auth0:
-          client-id: QnI29kMHbukPpYnxyTSCNB1Pzczax3Ct
-          client-secret: 1L73RmrKpQ323gPUN67SyoWGVAwsgvrWqdS60VeqUeN5ObFX86rPnXYtlaXz6XaC
-          scope:
-            - openid
-            - profile
-            - email
-      provider:
-        auth0:
-          # trailing slash is important!
-          issuer-uri: https://dev-b1zvhq6qtydtr80k.us.auth0.com/
