@@ -13,13 +13,18 @@ import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { createTheme, Theme, ThemeProvider } from "@mui/material/styles";
 import axios from "axios";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { Alert } from "@mui/material";
+import { Context } from "../App";
+import { useNavigate } from "react-router-dom";
 
 
 const theme = createTheme();
 
 export default function SignIn() {
+  const { user, setUser } =
+ useContext(Context);
+ const navigate = useNavigate();
   const [errMsg, setErrMsg] = useState("");
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -31,13 +36,17 @@ export default function SignIn() {
     axios.post("http://localhost:8080/api/users", {
       userEmail: data.get("email"),
       userPassword: data.get("password")
-    }).then((response) => {
-      console.log("this is respose", );
+    }).then((response) => { console.log(response.data);
+      setUser(response.data);
+
     }, (error) => {
       console.log(" this is error",   error.response.data.message,"response data", error.response.data[0]);
       setErrMsg(error.response.data.message);
     });    
   };
+
+  if(user.userId != 0){ navigate(`/${user.userId}`)}
+
 
   return (
     <ThemeProvider theme={theme}>

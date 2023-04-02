@@ -38,7 +38,13 @@ export default function SignUp() {
         userEmail: data.get("email"),
         userPassword: data.get("password"),
         userName: data.get("name"),
-      });
+      }).then((response) => {
+        console.log("this is respose", );
+      }, (error) => {
+        console.log(" this is error",   error.response.data.message,"response data", error.response.data[0]);
+        setErrMsg(error.response.data.message);
+      });  
+      ;
     }
   };
 
