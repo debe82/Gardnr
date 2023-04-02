@@ -15,9 +15,9 @@ export const getAllUserPlants = async () => {
   return (await response).data;
 };
 
-export const getUser = async (userId: number) => {
-  const response = axios.get(USER_URL + `/${userId}`);
-  return (await response).data;
+export const getUser = async (userId: string) => {
+  const response = await axios.get(USER_URL + `/${userId}`);
+  return response.data;
 };
 
 export const removePlant = (userId: number, userPlantId: number) => {

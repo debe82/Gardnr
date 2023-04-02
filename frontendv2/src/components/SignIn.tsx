@@ -38,7 +38,7 @@ export default function SignIn() {
       userPassword: data.get("password")
     }).then((response) => { console.log(response.data);
       setUser(response.data);
-      //localStorage.setItem('user', response && response.data);
+      localStorage.setItem('user', JSON.stringify(response.data));
 
     }, (error) => {
       console.log(" this is error",   error.response.data.message,"response data", error.response.data[0]);

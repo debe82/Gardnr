@@ -12,8 +12,10 @@ const SpecificPlantCard = () => {
     user,
     setUser,
     specificPlant,
+    setSpecificPlant,
     toggleShowSpecificPlant,
   } = useContext(Context);
+
 
   const [timer, setTimer] = useState("");
   const [refresh, setRefresh] = useState(false);
@@ -21,8 +23,8 @@ const SpecificPlantCard = () => {
 
   const listOfPlants: IUserPlants[] = user.listOfUserPlants;
 
-  const stringDate = specificPlant.startDate && specificPlant.startDate;
-  const timeIncrement = specificPlant.startDate && specificPlant.timeIncrement;
+  const stringDate =   specificPlant  && specificPlant.startDate;
+  const timeIncrement = specificPlant &&  specificPlant.startDate && specificPlant.timeIncrement;
 
   const nowDay = new Date().getDate();
   const startDay = new Date(stringDate).getDate();
@@ -88,6 +90,7 @@ const SpecificPlantCard = () => {
   const deletePlant = () => {
     if (specificPlant) {
       removePlant(user.userId, specificPlant.userPlantId);
+      window.location.reload();
     }
   };
 
@@ -100,22 +103,19 @@ const SpecificPlantCard = () => {
       <img
         className="specific-plant-img"
         src={specificPlant && specificPlant.plant.pictureLink}
-        alt=""
+        alt={specificPlant && specificPlant.userPlantName}
       />
-      {toggleShowSpecificPlant
-        ? specificPlant && (
+      {//toggleShowSpecificPlant
+         //specificPlant && (
             <>
               <ul className="specific-plant-card-list">
-                <li key={1}>Name: {specificPlant.plant.plantName}</li>
+                <li key={1}>Name: {specificPlant && specificPlant.plant.plantName}</li>
                 <li key={2}>
-                  Ideal lighting: {specificPlant.plant.idealLight}
+                  Ideal lighting: {specificPlant && specificPlant.plant.idealLight}
                 </li>
-                <li key={3}>
-                  Frequency of water: {specificPlant.plant.watering}
-                </li>
-                <li key={4}>Max temperature: {specificPlant.plant.tempMax}</li>
+                <li key={4}>Max temperature: {specificPlant && specificPlant.plant.tempMax}</li>
                 <li key={5}>
-                  Minimum temperature: {specificPlant.plant.tempMin}
+                  Minimum temperature: {specificPlant && specificPlant.plant.tempMin}
                 </li>
                 <li key={6}>suggested watering every {timeIncrement} day(s)</li>
                 <li
@@ -134,8 +134,8 @@ const SpecificPlantCard = () => {
                 </li>
               </ul>
             </>
-          )
-        : null}
+         // )
+        }
       <div className="specific-plant-card-break"></div>
       <img
         src="trashcan.svg"

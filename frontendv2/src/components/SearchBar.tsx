@@ -1,3 +1,4 @@
+import axios from "axios";
 import React, {
   ChangeEvent,
   SyntheticEvent,
@@ -6,7 +7,8 @@ import React, {
   useState,
 } from "react";
 import { Button, Dropdown, Form, InputGroup } from "react-bootstrap";
-import { addPlant } from "../api/dataManagement";
+import { useParams } from "react-router-dom";
+import { addPlant, getUser } from "../api/dataManagement";
 import { Context, MyContextValue } from "../App";
 import { IPlant } from "../interfaces";
 
@@ -14,6 +16,22 @@ export const SearchBar = () => {
   const { plants, setPlants, userPlants, setUserPlants, user, setUser } =
     useContext(Context);
   const [search, setSearch] = useState("");
+  const params = useParams();
+
+  console.log(params.id, "this is params");
+
+
+  useEffect(() => {
+    axios.get(`http://localhost:8080/api/users/${params.id}`).then((response) => {
+      setUser(response.data);
+    });
+  }, []);
+
+  //getUser(params.id!).then(res => setUser(res));
+
+  // const localUser = localStorage.getItem('user');
+  // localUser ? console.log("this is localuser" , JSON.parse(localUser)) : null;
+  // const currentUser = localUser ?  JSON.parse(localUser) : null;
 
   const onChange = (e: ChangeEvent<HTMLInputElement>) => {
     setSearch(e.target.value);
@@ -25,8 +43,8 @@ export const SearchBar = () => {
       p.plantName.includes(plantname)
     );
     console.log("this is userplant to add ", plantsToAdd[0])
-    addPlant(1, plantsToAdd[0]);
-    //window.location.reload();
+    addPlant(user.userId , plantsToAdd[0]);
+    window.location.reload();
   };
 
   useEffect(() => {}, []);

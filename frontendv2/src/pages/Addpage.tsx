@@ -3,8 +3,8 @@ import { SearchBar } from "../components/SearchBar";
 import "../Addpage.css";
 import { CarouselPlants } from "../components/CarouselPlants";
 import { Context } from "../App";
-import { IPlant } from "../interfaces";
-import { addPlant } from "../api/dataManagement";
+import { IPlant, IUserPlants } from "../interfaces";
+import { addPlant, updateUserPlant } from "../api/dataManagement";
 import {
   Button,
   FormControl,
@@ -12,24 +12,39 @@ import {
   Input,
   InputLabel,
 } from "@mui/material";
+import { useParams } from "react-router-dom";
+import axios from "axios";
 
 function Addpage() {
-  const [message, setMessage] = useState("");
+  const [message, setMessage] = useState<IUserPlants>();
   const [updated, setUpdated] = useState(message);
   const { plants, setPlants, userPlants, setUserPlants, user, setUser } =
     useContext(Context);
+   const params = useParams();
+
+    // const localUser = localStorage.getItem('user');
+    // localUser ? console.log("this is localuser" , JSON.parse(localUser)) : null;
+    // localUser?  setUser(JSON.parse(localUser)) : null;
+    //localUser ? setUser(JSON.parse(localUser)) : null;
+// localUser ?  JSON.parse(localUser) : null;
+
+useEffect(() => {
+  axios.get(`http://localhost:8080/api/users/${params.id}`).then((response) => {
+    setUser(response.data);
+  });
+}, []);
 
   const addUserPlant = (plantname: string) => {
     const plantsToAdd: IPlant[] = plants.filter((p) =>
       p.plantName.includes(plantname)
     );
-    addPlant(1, plantsToAdd[0]);
+    addPlant(user.userId, plantsToAdd[0]); //addplant to userid, not .. it's hard coded
   };
 
   console.log(user);
   console.log(user.listOfUserPlants)
 
-  useEffect(() => {}, []);
+ //useEffect(() => {}, []);
 
   const handleChange = (event: any) => {
     setMessage(event.target.value);
@@ -37,6 +52,8 @@ function Addpage() {
 
   const handleClick = () => {
     setUpdated(message);
+    console.log("meassage: " , message);
+    //message ?  updateUserPlant(user.userId, message): null;
   };
 
   return (
@@ -55,7 +72,7 @@ function Addpage() {
             return (
               <>
                 <img
-                  onClick={() => setMessage(e.plant.plantName)}
+                  onClick={() => setMessage(e)}
                   className="addpage-item-img"
                   src={e.plant.pictureLink}
                   alt={e.plant.plantName}
@@ -70,7 +87,7 @@ function Addpage() {
             id="message"
             name="message"
             onChange={handleChange}
-            value={message}
+            value={message && message.userPlantName}
           />
           <FormHelperText id="my-helper-text">
             You can edit the above line

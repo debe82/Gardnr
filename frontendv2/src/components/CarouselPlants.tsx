@@ -17,6 +17,9 @@ export const CarouselPlants = () => {
   } = useContext(Context);
 
   const listOfPlants: IUserPlants[] = user.listOfUserPlants;
+  const firstPlant = listOfPlants[0];
+  console.log("plants0: ", firstPlant);
+  setSpecificPlant(firstPlant);
 
   return (
     <>

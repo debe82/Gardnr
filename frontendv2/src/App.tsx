@@ -16,6 +16,7 @@ import LabelBottomNavigation from "./components/Navbar";
 import Addpage from "./pages/Addpage";
 import SignUp from "./components/SignUp";
 import { NotFoundPage } from "./pages/NotFoundPage";
+import { json } from "stream/consumers";
 
 const initUser = {
   userId: 0,
@@ -102,8 +103,9 @@ function App() {
     });
   }, []);
 
-//  const localUser = JSON.parse(localStorage.getItem('user'));
-//  const sss = localUser
+  const localUser = localStorage.getItem('user');
+  console.log("this is localuser" , localUser)
+  // localUser ? setUser(JSON.parse(localUser )): null;
 
   return (
     <Context.Provider
