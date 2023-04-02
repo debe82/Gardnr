@@ -49,5 +49,5 @@ jobs:
         with:
           app-name: 'gardnr-app'
           slot-name: 'Production'
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_93EB37E4659E4D02849A948AADE46C28 }}
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_F1399F56BD414E4F8688C048785A8C9B }}
           package: '*.jar'
