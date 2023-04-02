@@ -1,12 +1,9 @@
 package se.salt.gardnr.user;
 
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import se.salt.gardnr.model.UserPlantDto;
 import se.salt.gardnr.plant.NotFoundException;
 import se.salt.gardnr.plant.Plant;
 import se.salt.gardnr.plant.PlantService;
@@ -45,6 +42,26 @@ public class UserController {
         return ResponseEntity.ok(json);
     }
 
+    @CrossOrigin(origins = "http://localhost:3000")
+    @PostMapping
+    public ResponseEntity<User> saveAndGetUser(@RequestBody User user) {
+
+        User checkeddUser;
+        if (user.getUserName() == null) {     //user login
+            checkeddUser = service.checkUserCredentials(user);
+            if (checkeddUser == null) return new ResponseEntity<>(null, HttpStatus.FORBIDDEN);
+            System.out.println("User exist, login granted for:" + user);
+        } else { //user signIn
+            checkeddUser = service.addNewUser(user);
+            if (checkeddUser == null) return new ResponseEntity<>(null, HttpStatus.NOT_ACCEPTABLE);
+            System.out.println("User didn't exist, user cereated");
+        }
+
+        //UserDto userDto = new UserDto(user.getUserName()) ;
+
+        return ResponseEntity.ok(checkeddUser);
+    }
+
     @PostMapping("{id}/plants")
     public ResponseEntity<UserPlant> addUserPlant(@PathVariable int id, @RequestBody Plant plant
     ) throws NotFoundException, se.salt.gardnr.userplant.NotFoundException {
@@ -72,4 +89,12 @@ public class UserController {
         if (upToUdate == null) return ResponseEntity.notFound().build();
         return ResponseEntity.accepted().body(upToUdate);
     }
+
+    @DeleteMapping("{userId}")
+    public ResponseEntity deleteUser(@PathVariable int userId){
+        User userToDelete = service.getUserById(userId);
+        service.deleteUser(userToDelete);
+        return ResponseEntity.noContent().build();
+    }
+
 }

@@ -1,2 +1,18 @@
-package se.salt.gardnr.login;public class FieldErrorResponse {
+package se.salt.gardnr.login;
+
+import java.util.List;
+
+public class FieldErrorResponse {
+  private List<CustomFieldError> fieldErrors;
+
+  public FieldErrorResponse() {
+  }
+
+  public List<CustomFieldError> getFieldErrors() {
+    return fieldErrors;
+  }
+
+  public void setFieldErrors(List<CustomFieldError> fieldErrors) {
+    this.fieldErrors = fieldErrors;
+  }
 }

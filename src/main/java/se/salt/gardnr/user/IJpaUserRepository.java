@@ -6,4 +6,7 @@ import se.salt.gardnr.userplant.UserPlant;
 public interface IJpaUserRepository extends JpaRepository<User, Integer> {
    // User findUserByAuthId(String authId);
 
+  User findUserByUserEmail(String email);
+  User findUserByUserPassword(String password);
+
 }

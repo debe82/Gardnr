@@ -2,9 +2,7 @@ package se.salt.gardnr.userplant;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import se.salt.gardnr.model.UserPlantDto;
 import se.salt.gardnr.plant.Plant;
-import se.salt.gardnr.plant.PlantRepository;
 
 import java.util.List;
 
