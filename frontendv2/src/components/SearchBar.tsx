@@ -7,7 +7,7 @@ import React, {
 } from "react";
 import { Button, Dropdown, Form, InputGroup } from "react-bootstrap";
 import { addPlant } from "../api/dataManagement";
-import { Context, MyContextValue } from "../App";
+import { MyContextValue, Context } from "../helper/context";
 import { IPlant } from "../interfaces";
 
 export const SearchBar = () => {

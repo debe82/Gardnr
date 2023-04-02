@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
-import { Context } from "../App";
+import { MyContextValue, Context } from "../helper/context";
 import { IPlant, IUserPlants } from "../interfaces";
 import { removePlant } from "../api/dataManagement";
 
@@ -109,9 +109,6 @@ const SpecificPlantCard = () => {
                 <li key={1}>Name: {specificPlant.plant.plantName}</li>
                 <li key={2}>
                   Ideal lighting: {specificPlant.plant.idealLight}
-                </li>
-                <li key={3}>
-                  Frequency of water: {specificPlant.plant.watering}
                 </li>
                 <li key={4}>Max temperature: {specificPlant.plant.tempMax}</li>
                 <li key={5}>

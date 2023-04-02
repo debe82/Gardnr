@@ -6,7 +6,7 @@ import HomeIcon from "@mui/icons-material/Home";
 import AddIcon from "@mui/icons-material/Add";
 import PaymentIcon from "@mui/icons-material/Payment";
 import { useContext } from "react";
-import { Context } from "../App";
+import { MyContextValue, Context } from "../helper/context";
 
 export default function LabelBottomNavigation() {
   const [value, setValue] = React.useState("recents");

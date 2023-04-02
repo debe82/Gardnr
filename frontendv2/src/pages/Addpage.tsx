@@ -2,7 +2,7 @@ import React, { SyntheticEvent, useContext, useEffect, useState } from "react";
 import { SearchBar } from "../components/SearchBar";
 import "../Addpage.css";
 import { CarouselPlants } from "../components/CarouselPlants";
-import { Context } from "../App";
+import { MyContextValue, Context } from "../helper/context";
 import { IPlant } from "../interfaces";
 import { addPlant } from "../api/dataManagement";
 import {
