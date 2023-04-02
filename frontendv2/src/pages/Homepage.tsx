@@ -5,7 +5,7 @@ import { SearchBar } from "../components/SearchBar";
 import SpecificPlantCard from "../components/SpecificPlantCard";
 import UserProfile from "../components/UserProfile";
 import "../Homepage.css";
-import { LoginForm } from "../components/LoginForm";
+import LoginForm from "../components/LoginForm";
 
 function Homepage() {
   return (

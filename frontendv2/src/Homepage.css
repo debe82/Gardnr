@@ -1,7 +1,6 @@
 .landing-page-container {
   height: 100vh;
   background: url("/bg3.png") 50% 50% no-repeat;
-  opacity: 80%;
   color: rgba(255, 255, 255, 0.854);
 }
 
