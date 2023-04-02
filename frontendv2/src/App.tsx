@@ -13,82 +13,11 @@ import DatePicker from "react-datepicker";
 import axios from "axios";
 import Userpages from "./pages/Userpages";
 import Header from "./components/Header";
-
-const initUser = {
-  userId: 0,
-  authId: "",
-  name: "",
-  email: "", 
-  listOfUserPlants: []
-}
-
-const initPlant = {
-  plantId: 0,
-  plantName: "",
-  plantNameLatin: "",
-  watering: "",
-  tempMax: "",
-  tempMin: "",
-  idealLight: "",
-  description: "",
-  pictureLink: ""
-}
-
-const initUserPlant = {
-  userPlantId: 0,
-  startDate: new Date(),
-  userPlantName: "",
-  timeIncrement: 0,
-  user: initUser,
-  plant: initPlant
-}
-
-export interface MyContextValue {
-  plants: IPlant[];
-  setPlants: Dispatch<SetStateAction<IPlant[]>>;
-  userPlants: IUserPlants[];
-  setUserPlants: Dispatch<SetStateAction<IUserPlants[]>>;
-  user: IUser;
-  setUser: Dispatch<SetStateAction<IUser>>;
-  specificPlant: IUserPlants;
-  setSpecificPlant: Dispatch<SetStateAction<IUserPlants>>;
-  toggleShowSpecificPlant: boolean;
-  setToggleShowSpecificPlant: Dispatch<SetStateAction<boolean>>;
-}
-
-export const Context = createContext<MyContextValue>({
-  plants: [],
-  setPlants: () => {},
-
-  userPlants: [],
-  setUserPlants: () => {},
-
-  user: {
-    userId: 0,
-    authId: "",
-    name: "",
-    email: "", 
-    listOfUserPlants: []
-  }, 
-  setUser: () => {},
-
-  specificPlant: {
-    userPlantId: 0,
-    startDate: new Date(),
-    userPlantName: "",
-    timeIncrement: 0,
-    user: initUser,
-    plant: initPlant
-  },
-  setSpecificPlant: () => {},
-
-  toggleShowSpecificPlant: false,
-  setToggleShowSpecificPlant: () => {}
-
-});
+import { initUser, initUserPlant } from "./helper/initializer";
+import { Context } from "./helper/context";
 
 function App() {
-  const userId = 1;
+  const userId = 6;
   const [plants, setPlants] = useState<IPlant[]>([]);
   const [userPlants, setUserPlants] = useState<IUserPlants[]>([]);
   const [user, setUser] = useState<IUser>(initUser);

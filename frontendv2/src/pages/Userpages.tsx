@@ -3,7 +3,7 @@ import axios from 'axios';
 import { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom';
 import { IUser } from '../interfaces';
-import { Context, MyContextValue } from '../App';
+import { Context, MyContextValue } from "../helper/context";
 import UserProfile from '../components/UserProfile';
 import { getUser } from '../api/dataManagement';
 

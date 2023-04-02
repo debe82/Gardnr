@@ -10,7 +10,7 @@ VALUES
       and in crevices in rocks.
      Provided they get adequate heat, humidity, and filtered sunlight, you can enjoy abundant blooms for much of the year. In general, however,
       lipstick plants flower most profusely in summer and autumn.','http://www.plantasonya.com.br/wp-content/img/Aeschynanthun-pulcher.jpg')
-    ON CONFLICT DO NOTHING;
+ON CONFLICT DO NOTHING;
 
 
 INSERT into plants
@@ -22,7 +22,7 @@ VALUES
       plants typically dont, like on rock walls and in between rock fissures where the moisture from water seepage keeps them alive. Though they are
       visually stunning throughout all stages of their growth, they are considered a slow-growing fern, typically taking up to three years to reach their
       full mature size. Plant the fern outdoors any time during the year if you live in the right USDA zone where theyll thrive.',
-    'https://s3.amazonaws.com/eit-planttoolbox-prod/media/images/Adiantum-raddianum-2--Forest-and-Kim-Starr--CC-BY.jpg') ON CONFLICT DO NOTHING;
+     'https://s3.amazonaws.com/eit-planttoolbox-prod/media/images/Adiantum-raddianum-2--Forest-and-Kim-Starr--CC-BY.jpg') ON CONFLICT DO NOTHING;
 
 INSERT into plants (plant_id, plant_name, plant_name_latin, watering, temp_max, temp_min, ideal_light, description, picture_link)
 VALUES

@@ -1,9 +1,10 @@
 import React, { useContext, useEffect, useState } from "react";
-import { Context } from "../App";
+import { Context, MyContextValue } from "../helper/context";
 import { IPlant, IUserPlants } from "../interfaces";
 import { faCoffee, faTrash } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { removePlant } from "../api/dataManagement";
+import { calcWateringTime } from "../helper/calcWateringTime";
 
 const SpecificPlantCard = () => {
 
@@ -19,7 +20,6 @@ const SpecificPlantCard = () => {
   } = useContext(Context);
 
   const [timer, setTimer] = useState("");
-  const [refresh, setRefresh] = useState(false);
   const [isPlantTime, setIsPlantTime] = useState(false);
   
   const listOfPlants: IUserPlants[] = user.listOfUserPlants;
@@ -51,17 +51,14 @@ const SpecificPlantCard = () => {
       daysLeft -= 1;
     }
 
-  if (timeRemaining != 0) {
-    daysLeft = timeIncrement - timeRemaining;
-    setIsPlantTime(false);
-    console.log("isPlantTime?:", isPlantTime)
-  } else {
-    setIsPlantTime(true);
-    console.log("isPlantTime?:", isPlantTime)
-  }
-
-  console.log("isPlantTime?:", nowDay, startDay, timeIncrement, timeRemaining);
-
+    if (timeRemaining != 0) {
+      daysLeft = timeIncrement - timeRemaining;
+      setIsPlantTime(false);
+      console.log("isPlantTime?:", isPlantTime)
+    } else {
+      setIsPlantTime(true);
+      console.log("isPlantTime?:", isPlantTime)
+    }
 
     if(timeIncrement == 1) {
       daysLeft = 0;
@@ -73,10 +70,19 @@ const SpecificPlantCard = () => {
     }
 
     return "" + daysLeft + "d:" + hoursLeft + "h:";
+    //return calcWateringTime(startDay, startHour, timeIncrement)
+   }
+
+  if (timeRemaining != 0) {
+    daysLeft = timeIncrement - timeRemaining;
+    setIsPlantTime(false);
+    console.log("isPlantTime?:", isPlantTime)
+  } else {
+    setIsPlantTime(true);
+    console.log("isPlantTime?:", isPlantTime)
   }
 
   console.log("isTIme :", isPlantTime);
-
   const deletePlant = () => {
     if(specificPlant){
       removePlant(user.userId, specificPlant.userPlantId);

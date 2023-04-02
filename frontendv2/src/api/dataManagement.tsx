@@ -1,5 +1,5 @@
 import axios from "axios";
-import { IPlant, IUser } from "../interfaces";
+import { IPlant, IUser, IUserLogin, IUserRegister } from "../interfaces";
 
 const PLANTS_API_URL = 'http://localhost:8080/api/plants';
 const USER_PLANTS_URL = 'http://localhost:8080/api/userplants';
@@ -39,4 +39,21 @@ export const addPlant = (id: number, plant: IPlant) => {
     description: plant.description,
     pictureLink: plant.pictureLink,
   });
+}
+
+export const createUser = (user: IUserRegister) => {
+  const response = axios.post(USER_URL + `/users`,
+  {
+    userName: user.userName,
+    userPassword: user.userPassword,
+    userEmail: user.userEmail,
+  });  
+}
+
+export const logUser = (user: IUserLogin) => {
+  const response = axios.post(USER_URL + `/users`,
+  {
+    userEmail: user.userEmail,
+    userPassword: user.userPassword,
+  });  
 }
