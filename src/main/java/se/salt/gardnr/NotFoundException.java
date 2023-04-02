@@ -1,4 +1,4 @@
-package se.salt.gardnr.plant;
+package se.salt.gardnr;
 
 public class NotFoundException extends Exception {
   public NotFoundException(String msg) {

@@ -14,8 +14,6 @@ function Homepage() {
       <div className="landing-page-container">
         <h1 className="landing-page-logo">Gardnr</h1>
         <SignIn/>
-        <SignUp />
-  
       </div>
     </>
   );

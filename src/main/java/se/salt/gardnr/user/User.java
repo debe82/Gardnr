@@ -1,6 +1,7 @@
 package se.salt.gardnr.user;
 
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotNull;
@@ -16,8 +17,11 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int userId;
     @NotNull(message = "Password is required.")
-    @Size(min = 6, message = "Password should be atleast 6 characters.")
+    @Size(min = 6, message = "Password should be at least 6 characters.")
+
     private String userPassword;
+
+
     private String userName;
 
     @NotNull(message = "Email is required.")

@@ -9,11 +9,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.client.RestTemplate;
 import se.salt.gardnr.GardnrApplicationTests;
 import se.salt.gardnr.plant.Plant;
-import se.salt.gardnr.userplant.NotFoundException;
 import se.salt.gardnr.userplant.UserPlant;
 import se.salt.gardnr.userplant.UserPlantService;
 
-import java.util.List;
 import static org.assertj.core.api.Assertions.assertThat;
 
 

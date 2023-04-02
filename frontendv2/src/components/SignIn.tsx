@@ -13,10 +13,14 @@ import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { createTheme, Theme, ThemeProvider } from "@mui/material/styles";
 import axios from "axios";
+import { useState } from "react";
+import { Alert } from "@mui/material";
+
 
 const theme = createTheme();
 
 export default function SignIn() {
+  const [errMsg, setErrMsg] = useState("");
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
@@ -27,7 +31,13 @@ export default function SignIn() {
     axios.post("http://localhost:8080/api/users", {
       userEmail: data.get("email"),
       userPassword: data.get("password")
+    }).then((response) => {
+      console.log("this is respose", );
+    }, (error) => {
+      console.log(" this is error",   error.response.data);
+      setErrMsg(error.response.data)
     });
+    
   };
 
   return (
@@ -80,15 +90,7 @@ export default function SignIn() {
               id="password"
               autoComplete="current-password"
             />
-            <FormControlLabel
-              control={
-                <Checkbox
-                  value="remember"
-                  sx={{ borderColor: "white" }}
-                />
-              }
-              label="Remember me"
-            />
+            {errMsg ? <Alert severity="error"><p>{errMsg}</p></Alert> : null}
             <Button
               type="submit"
               fullWidth
@@ -115,7 +117,7 @@ export default function SignIn() {
               <Grid item>
                 <Link
                   sx={{ color: "white" }}
-                  href="#"
+                  href="/signup"
                   variant="body2">
                   {"Don't have an account? Sign Up"}
                 </Link>

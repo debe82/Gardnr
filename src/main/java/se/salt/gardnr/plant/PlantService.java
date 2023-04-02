@@ -2,6 +2,7 @@ package se.salt.gardnr.plant;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import se.salt.gardnr.NotFoundException;
 
 
 import java.util.List;
@@ -16,13 +17,11 @@ public class PlantService {
       return plantRepo.getAllPlants();
   }
 
-  public Plant getPlantById(int id) throws NotFoundException{
+  public Plant getPlantById(int id) throws NotFoundException {
     if (id < 1) throw new IllegalArgumentException("Wrong id");
    Plant plant = plantRepo.getPlantById(id);
     if (plant == null) throw new NotFoundException("No product with id " + id);
     return plant;
   }
-
-
 }
 

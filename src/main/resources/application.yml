@@ -10,19 +10,19 @@ spring:
     ansi:
       enabled: always
   datasource:
-#    url: jdbc:postgresql://${POSTGRES_URL}:5432/postgres?sslmode=require
-#    username: ${POSTGRES_USER}
-#    password: ${POSTGRES_PWD}
-    url: jdbc:postgresql://localhost:5432/postgres
-    username: salt-dev
-    password:
+    url: jdbc:postgresql://${POSTGRES_URL}:5432/postgres?sslmode=require
+    username: ${POSTGRES_USER}
+    password: ${POSTGRES_PWD}
+#    url: jdbc:postgresql://localhost:5432/postgres
+#    username: salt-dev
+#    password:
     hikari:
       connectionTimeout: 20000
       maximumPoolSize: 5
   jpa:
     show-sql: true
     hibernate:
-      ddl-auto: create
+      ddl-auto: update
     defer-datasource-initialization: true
   logging:
     level:

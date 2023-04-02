@@ -2,9 +2,8 @@ package se.salt.gardnr.user;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import se.salt.gardnr.model.UserPlantDto;
 import se.salt.gardnr.plant.Plant;
-import se.salt.gardnr.userplant.NotFoundException;
+import se.salt.gardnr.NotFoundException;
 import se.salt.gardnr.userplant.UserPlant;
 import se.salt.gardnr.userplant.UserPlantRepository;
 import se.salt.gardnr.userplant.UserPlantService;
@@ -27,16 +26,16 @@ public class UserService {
         return repo.getUserById(id);
     }
 
-    public User checkUserCredentials(User user) {
+    public User checkUserCredentials(User user) throws NotFoundException {
         User checkedUserByEmail = repo.checkUserEmail(user);
         User checkedUserByPassword = repo.checkUserPassword(user);
         if (checkedUserByPassword != null && checkedUserByEmail != null) {
-            if ((checkedUserByEmail.getUserEmail() == checkedUserByPassword.getUserEmail() &&
-              checkedUserByPassword.getUserPassword() == checkedUserByEmail.getUserPassword())) {
+            if ((checkedUserByEmail.getUserEmail().equals(checkedUserByPassword.getUserEmail())  &&
+              checkedUserByPassword.getUserPassword().equals(checkedUserByEmail.getUserPassword()))) {
                 return checkedUserByEmail;
             }
         }
-        return null;
+        throw new NotFoundException("Email or password is incorrect");
     }
 
     public User addNewUser(User user) {
@@ -78,7 +77,6 @@ public class UserService {
         repo.deleteUser(userToDelete);
     }
 
-    //  public User getUserByAuthId(String authId) {
-//        return repo.getUserByAuthId(authId);
-//    }
 }
+
+

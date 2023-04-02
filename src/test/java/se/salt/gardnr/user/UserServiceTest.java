@@ -2,9 +2,7 @@ package se.salt.gardnr.user;
 
 import org.junit.jupiter.api.*;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
 import se.salt.gardnr.GardnrApplicationTests;
-import se.salt.gardnr.plant.NotFoundException;
 import se.salt.gardnr.plant.Plant;
 import se.salt.gardnr.plant.PlantService;
 import se.salt.gardnr.userplant.UserPlant;
@@ -12,7 +10,6 @@ import se.salt.gardnr.userplant.UserPlant;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
 
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 class UserServiceTest extends GardnrApplicationTests {

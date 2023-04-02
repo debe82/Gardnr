@@ -2,6 +2,7 @@ package se.salt.gardnr.userplant;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import se.salt.gardnr.NotFoundException;
 import se.salt.gardnr.model.UserPlantDto;
 import se.salt.gardnr.plant.Plant;
 import se.salt.gardnr.plant.PlantRepository;
@@ -18,7 +19,7 @@ public class UserPlantService {
       return plantRepo.getAllUserPlants();
     }
 
-  public UserPlant getUserPlantById(int id) throws NotFoundException{
+  public UserPlant getUserPlantById(int id) throws NotFoundException {
     if (id < 1) throw new IllegalArgumentException("Wrong id");
    UserPlant userPlant = plantRepo.getUserPlantById(id);
     if (userPlant == null) throw new NotFoundException("No product with id " + id);

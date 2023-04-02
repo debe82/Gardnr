@@ -21,7 +21,7 @@ public class UserRepository {
             System.out.println("user email: " + user.getUserEmail());
             System.out.println("found email:" + userFound.getUserEmail());
             if (userFound.getUserEmail().equals(user.getUserEmail())) {
-                return user;
+                return userFound;
             }
         }
         return null;
@@ -30,8 +30,8 @@ public class UserRepository {
     public User checkUserPassword(User user) {
         User userFound = jpaRepo.findUserByUserPassword(user.getUserPassword());
         if (userFound != null) {
-            if ((userFound.getUserPassword() == user.getUserPassword())) {
-                return user;
+            if ((userFound.getUserPassword().equals(user.getUserPassword()))) {
+                return userFound;
             }
         }
         return null;

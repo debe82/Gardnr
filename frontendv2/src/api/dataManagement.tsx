@@ -1,9 +1,9 @@
 import axios from "axios";
 import { IPlant, IUser, IUserPlants } from "../interfaces";
 
-const PLANTS_API_URL = "http://localhost:8080/api/plants";
-const USER_PLANTS_URL = "http://localhost:8080/api/userplants";
-const USER_URL = "http://localhost:8080/api/users";
+const PLANTS_API_URL = "/api/plants";
+const USER_PLANTS_URL = "/api/userplants";
+const USER_URL = "/api/users";
 
 export const getAllApiPlants = async () => {
   const response = axios.get(PLANTS_API_URL);

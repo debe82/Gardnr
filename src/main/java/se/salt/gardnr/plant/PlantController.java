@@ -9,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import se.salt.gardnr.NotFoundException;
 
 import java.util.HashMap;
 import java.util.List;
@@ -29,17 +30,17 @@ public class PlantController {
 
 
     @GetMapping("{id}")
-    ResponseEntity<Plant> getPlantById(@PathVariable int id) throws NotFoundException{
+    ResponseEntity<Plant> getPlantById(@PathVariable int id) throws NotFoundException {
         if (id < 0) return ResponseEntity.badRequest().build();
         Plant plant = service.getPlantById(id);
         if (plant == null) return ResponseEntity.notFound().build();
         return ResponseEntity.ok(plant);
     }
 
-//    @ExceptionHandler({ NotFoundException.class })
-//    public ResponseEntity notFound(Exception nfe) {
-//        Map<String, Object> json = new HashMap<>();
-//        json.put("message", nfe.getMessage());
-//        return new ResponseEntity(json, HttpStatus.NOT_FOUND);
-//    }
+    @ExceptionHandler({ NotFoundException.class })
+    public ResponseEntity notFound(Exception nfe) {
+        Map<String, Object> json = new HashMap<>();
+        json.put("message", nfe.getMessage());
+        return new ResponseEntity(json, HttpStatus.NOT_FOUND);
+    }
 }
