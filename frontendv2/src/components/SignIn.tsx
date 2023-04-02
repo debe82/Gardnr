@@ -34,10 +34,9 @@ export default function SignIn() {
     }).then((response) => {
       console.log("this is respose", );
     }, (error) => {
-      console.log(" this is error",   error.response.data);
-      setErrMsg(error.response.data)
-    });
-    
+      console.log(" this is error",   error.response.data.message,"response data", error.response.data[0]);
+      setErrMsg(error.response.data.message);
+    });    
   };
 
   return (
@@ -90,7 +89,9 @@ export default function SignIn() {
               id="password"
               autoComplete="current-password"
             />
+            
             {errMsg ? <Alert severity="error"><p>{errMsg}</p></Alert> : null}
+            
             <Button
               type="submit"
               fullWidth
