@@ -30,14 +30,18 @@ spring:
         springframework:
           boot:
             autoconfigure: ERROR
-  security:
-    oauth2:
-      resourceserver:
-        jwt:
-            issuer-uri: https://dev-leddoa8c1xzu7p1w.us.auth0.com/
-auth0:
-  audience: http://grdnr.com
-
-
-          #            client-id: QnI29kMHbukPpYnxyTSCNB1Pzczax3Ct
-          #            client-secret: 1L73RmrKpQ323gPUN67SyoWGVAwsgvrWqdS60VeqUeN5ObFX86rPnXYtlaXz6XaC
+security:
+  oauth2:
+    client:
+      registration:
+        auth0:
+          client-id: QnI29kMHbukPpYnxyTSCNB1Pzczax3Ct
+          client-secret: 1L73RmrKpQ323gPUN67SyoWGVAwsgvrWqdS60VeqUeN5ObFX86rPnXYtlaXz6XaC
+          scope:
+            - openid
+            - profile
+            - email
+      provider:
+        auth0:
+          # trailing slash is important!
+          issuer-uri: https://dev-b1zvhq6qtydtr80k.us.auth0.com/

@@ -1,12 +1,18 @@
 package se.salt.gardnr.user;
 
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.oauth2.client.registration.ClientRegistration;
+import org.springframework.security.oauth2.client.registration.ClientRegistrationRepository;
+import org.springframework.security.oauth2.core.oidc.OidcIdToken;
 import org.springframework.security.oauth2.core.user.OAuth2User;
 
 import org.springframework.web.bind.annotation.*;
+import se.salt.gardnr.model.UserPlantDto;
 import se.salt.gardnr.plant.NotFoundException;
 import se.salt.gardnr.plant.Plant;
 import se.salt.gardnr.plant.PlantService;
@@ -27,12 +33,31 @@ public class UserController {
     @Autowired
     PlantService plantService;
 
+    private ClientRegistration registration;
 
+    public UserController(ClientRegistrationRepository registrations) {
+        this.registration = registrations.findByRegistrationId("auth0");
+    }
 
+    @PostMapping("/logout")
+    public ResponseEntity<?> logout(HttpServletRequest request,
+                                    @AuthenticationPrincipal(expression = "idToken") OidcIdToken idToken) {
+        // send logout URL to client so they can initiate logout
+        String logoutUrl = this.registration.getProviderDetails()
+          .getConfigurationMetadata().get("end_session_endpoint").toString();
+
+        Map<String, String> logoutDetails = new HashMap<>();
+        logoutDetails.put("logoutUrl", logoutUrl);
+        logoutDetails.put("idToken", idToken.getTokenValue());
+        request.getSession(false).invalidate();
+        return ResponseEntity.ok().body(logoutDetails);
+    }
+
+    @CrossOrigin(origins = "http://localhost:3000")
     @GetMapping
     public ResponseEntity<?> getUser(@AuthenticationPrincipal OAuth2User userAuth) {
         if (userAuth == null) {
-            return new ResponseEntity<>("", HttpStatus.OK);
+            return new ResponseEntity<>("", HttpStatus.BAD_REQUEST);
         } else {
             String authid = userAuth.getAttributes().get("aud").toString();
             User user = service.findUserByAuthId(authid);

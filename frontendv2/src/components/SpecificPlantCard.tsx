@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
-import { Context } from "../App";
-import { IPlant, IUserPlants } from "../interfaces";
-import { faCoffee, faTrash } from '@fortawesome/free-solid-svg-icons'
+import { Context } from "../helpMethods/context";
+import { IUserPlants } from "../interfaces";
+import { faTrash } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { removePlant } from "../api/dataManagement";
 

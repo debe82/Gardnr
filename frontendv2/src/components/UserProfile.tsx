@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { Context } from "../App";
+import { Context, MyContextValue } from "../helpMethods/context";
 import { CarouselPlants } from "./CarouselPlants";
 import SpecificPlantCard from "./SpecificPlantCard";
 

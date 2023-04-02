@@ -1,8 +1,7 @@
 import React, { FC, useContext } from "react";
-import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
-import { Context } from "../App";
-import { IPlant, IUserPlants } from "../interfaces";
+import { Context } from "../helpMethods/context";
+import { IUserPlants } from "../interfaces";
 
 export const CarouselPlants = () => {
   const {
