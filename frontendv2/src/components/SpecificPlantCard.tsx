@@ -1,8 +1,8 @@
+import { Alert } from "@mui/material";
 import React, { useContext, useEffect, useState } from "react";
 import { Context, initUserPlant } from "../App";
-import { IPlant, IUserPlants } from "../interfaces";
 import { removePlant } from "../api/dataManagement";
-import { Alert } from "@mui/material";
+import { IUserPlants } from "../interfaces";
 
 const SpecificPlantCard = () => {
   const {
@@ -20,10 +20,8 @@ const SpecificPlantCard = () => {
   const [timer, setTimer] = useState("");
   const [refresh, setRefresh] = useState(false);
   const [isPlantTime, setIsPlantTime] = useState(false);
-  // const [currSeverity, setCurrSetverity] = useState(true)
 
   const listOfPlants: IUserPlants[] = user.listOfUserPlants;
-
   const stringDate = specificPlant && specificPlant.startDate;
   const timeIncrement =
     specificPlant && specificPlant.startDate && specificPlant.timeIncrement;
@@ -31,7 +29,6 @@ const SpecificPlantCard = () => {
   const showWateringTime = () => {
     const nowDay = new Date().getDate();
     const startDay = new Date(stringDate).getDate();
-
     const nowHour = new Date().getHours();
     const startHour = new Date(stringDate).getHours();
 
@@ -75,13 +72,7 @@ const SpecificPlantCard = () => {
       daysLeft = daysLeft - 1;
       setIsPlantTime(false);
     }
-
-    console.log("daysLeft:", daysLeft);
-    console.log("hoursLeft:", hoursLeft);
-    console.log("timeIncremnent:", timeIncrement);
-    console.log("isPlantTime:", isPlantTime);
-
-    return "" + daysLeft + "d: " + hoursLeft + "h:";
+    return "" + daysLeft + "d, " + hoursLeft + "h";
   };
 
   const deletePlant = () => {
@@ -111,38 +102,30 @@ const SpecificPlantCard = () => {
         src={specificPlant && specificPlant.plant.pictureLink}
         alt={specificPlant && specificPlant.userPlantName}
       />
-      {
-        //toggleShowSpecificPlant
-        specificPlant && (
-          <>
-            <ul className="specific-plant-card-list">
-              <li key={1}>Name: {specificPlant.userPlantName}</li>
-              <li key={2}>Ideal lighting: {specificPlant.plant.idealLight}</li>
-              <li key={4}>Max temperature: {specificPlant.plant.tempMax}</li>
-              <li key={5}>Min temperature: {specificPlant.plant.tempMin}</li>
-              <li key={6}>suggested watering every {timeIncrement} day(s)</li>
-              <li
-                className={
-                  isPlantTime
-                    ? "orange specific-plant-time-bg"
-                    : "green specific-plant-time-bg"
-                }
-                id="plant-time"
-                style={
-                  {
-                    // backgroundColor: "rgba(157, 255, 127, 0.615)",
-                  }
-                }>
-                {isPlantTime ? (
-                  <Alert severity="success">Fresh water in: ({timer})</Alert>
-                ) : (
-                  <Alert severity="error">Fresh water in: ({timer})</Alert>
-                )}
-              </li>
-            </ul>
-          </>
-        )
-      }
+      {specificPlant && (
+        <>
+          <ul className="specific-plant-card-list">
+            <li key={1}>Name: {specificPlant.userPlantName}</li>
+            <li key={2}>Ideal lighting: {specificPlant.plant.idealLight}</li>
+            <li key={4}>Max temperature: {specificPlant.plant.tempMax}</li>
+            <li key={5}>Min temperature: {specificPlant.plant.tempMin}</li>
+            <li key={6}>suggested watering every {timeIncrement} day(s)</li>
+            <li
+              className={
+                isPlantTime
+                  ? "orange specific-plant-time-bg"
+                  : "green specific-plant-time-bg"
+              }
+              id="plant-time">
+              {isPlantTime ? (
+                <Alert severity="success">Fresh water in: ({timer})</Alert>
+              ) : (
+                <Alert severity="error">Fresh water in: ({timer})</Alert>
+              )}
+            </li>
+          </ul>
+        </>
+      )}
       <div className="specific-plant-card-break"></div>
       <img
         src="trashcan.svg"

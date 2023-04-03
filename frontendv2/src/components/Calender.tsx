@@ -10,7 +10,10 @@ function Calender() {
 
   return (
     <div>
-      <DateTimePicker onChange={onChange} value={value} />
+      <DateTimePicker
+        onChange={onChange}
+        value={value}
+      />
     </div>
   );
 }

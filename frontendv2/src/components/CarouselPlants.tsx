@@ -1,8 +1,6 @@
-import React, { FC, useContext, useEffect, useState } from "react";
-import Carousel from "react-multi-carousel";
+import React, { useContext, useEffect, useState } from "react";
 import "react-multi-carousel/lib/styles.css";
 import { Context } from "../App";
-import { IPlant, IUserPlants } from "../interfaces";
 
 export const CarouselPlants = () => {
   const {
@@ -18,10 +16,10 @@ export const CarouselPlants = () => {
   } = useContext(Context);
 
   const [listOfPlants, setListOfPlants] = useState(user.listOfUserPlants);
-  
+
   useEffect(() => {
-    setListOfPlants(user.listOfUserPlants)
-    console.log("in useeffect carousel", specificPlant)
+    setListOfPlants(user.listOfUserPlants);
+    console.log("in useeffect carousel", specificPlant);
     if (!specificPlant || specificPlant.userPlantName === "") {
       setSpecificPlant(user.listOfUserPlants && user.listOfUserPlants[0]);
     }
@@ -33,8 +31,9 @@ export const CarouselPlants = () => {
         {listOfPlants &&
           listOfPlants.map((e, index: number) => {
             return (
-              <div className="carousel-plants-item" 
-              key={index}>
+              <div
+                className="carousel-plants-item"
+                key={index}>
                 <img
                   onClick={() => {
                     setSpecificPlant(e);
@@ -42,8 +41,7 @@ export const CarouselPlants = () => {
                   }}
                   className="carousel-plants-item-img"
                   src={e.plant.pictureLink}
-                  alt=""
-                ></img>
+                  alt=""></img>
                 <p className="carousel-plant-item-name">
                   {e.plant && e.plant.plantName}
                 </p>

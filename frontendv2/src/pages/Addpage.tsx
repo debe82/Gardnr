@@ -1,20 +1,12 @@
-import React, { SyntheticEvent, useContext, useEffect, useState } from "react";
-import { SearchBar } from "../components/SearchBar";
-import "../Addpage.css";
-import { CarouselPlants } from "../components/CarouselPlants";
-import { Context } from "../App";
-import { IPlant, IUserPlants } from "../interfaces";
-import { addPlant, updateUserPlant } from "../api/dataManagement";
-import { IUserPlantToUpdate } from "../interfaces";
-import {
-  Button,
-  FormControl,
-  FormHelperText,
-  Input,
-  InputLabel,
-} from "@mui/material";
-import { useParams } from "react-router-dom";
+import { Button, FormControl, FormHelperText, Input } from "@mui/material";
 import axios from "axios";
+import React, { useContext, useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
+import "../Addpage.css";
+import { Context } from "../App";
+import { addPlant, updateUserPlant } from "../api/dataManagement";
+import { SearchBar } from "../components/SearchBar";
+import { IPlant, IUserPlants } from "../interfaces";
 
 function Addpage() {
   const [message, setMessage] = useState("");
@@ -40,29 +32,15 @@ function Addpage() {
     addPlant(user.userId, plantsToAdd[0]);
   };
 
-  console.log(user);
-  console.log(user.listOfUserPlants);
-
-  //useEffect(() => {}, []);
-
   const handleChange = (event: any) => {
     setMessage(event.target.value);
     console.log("message:", message);
   };
 
   const handleClick = () => {
-    //console.log("this is plant with new name" , newPlantname);
     console.log("oldName: ", currPlant);
-
     currPlant ? (currPlant.userPlantName = message) : null;
-
-    //console.log("this is plant with new name" , currPlant?.userPlantName);
-
     currPlant ? updateUserPlant(user.userId, currPlant) : null;
-
-    //newPlantname([user] )
-    //console.log("meassage: " , message);
-    //message ?  updateUserPlant(user.userId, message): null;
   };
 
   return (

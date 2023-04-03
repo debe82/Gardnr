@@ -1,10 +1,10 @@
-import * as React from "react";
+import AddIcon from "@mui/icons-material/Add";
+import HomeIcon from "@mui/icons-material/Home";
+import PaymentIcon from "@mui/icons-material/Payment";
 import BottomNavigation from "@mui/material/BottomNavigation";
 import BottomNavigationAction from "@mui/material/BottomNavigationAction";
 import Paper from "@mui/material/Paper";
-import HomeIcon from "@mui/icons-material/Home";
-import AddIcon from "@mui/icons-material/Add";
-import PaymentIcon from "@mui/icons-material/Payment";
+import * as React from "react";
 import { useContext } from "react";
 import { Context } from "../App";
 

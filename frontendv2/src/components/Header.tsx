@@ -1,8 +1,6 @@
 import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import { Context } from "../App";
-import Popup from "reactjs-popup";
-import { SearchBar } from "./SearchBar";
 
 const Header = () => {
   const { user } = useContext(Context);

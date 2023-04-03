@@ -1,23 +1,20 @@
-import { getAllUserPlants } from "./api/dataManagement";
-import { IPlant, IUser, IUserPlants } from "./interfaces";
-import Homepage from "./pages/Homepage";
-import { Route, Routes } from "react-router-dom";
 import axios from "axios";
-import Userpages from "./pages/Userpages";
-import Header from "./components/Header";
 import React, {
-  createContext,
   Dispatch,
   SetStateAction,
+  createContext,
   useEffect,
   useState,
 } from "react";
+import { Route, Routes } from "react-router-dom";
 import LabelBottomNavigation from "./components/Navbar";
-import Addpage from "./pages/Addpage";
 import SignUp from "./components/SignUp";
+import { IPlant, IUser, IUserPlants } from "./interfaces";
+import Addpage from "./pages/Addpage";
+import Homepage from "./pages/Homepage";
 import { NotFoundPage } from "./pages/NotFoundPage";
-import { json } from "stream/consumers";
 import Subscription from "./pages/Subscription";
+import Userpages from "./pages/Userpages";
 
 export const initUser = {
   userId: 0,
@@ -105,7 +102,6 @@ function App() {
   }, []);
 
   const localUser = localStorage.getItem("user");
-  // localUser ? setUser(JSON.parse(localUser )): null;
 
   return (
     <Context.Provider

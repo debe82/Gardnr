@@ -1,10 +1,8 @@
-import React, { useContext, useRef, useState } from "react";
+import React, { useContext } from "react";
 import { Context } from "../App";
+import "../App.css";
 import { CarouselPlants } from "./CarouselPlants";
 import SpecificPlantCard from "./SpecificPlantCard";
-import Header from "./Header";
-import LabelBottomNavigation from "./Navbar";
-import "../App.css";
 
 const UserProfile = () => {
   const { plants, setPlants, userPlants, setUserPlants, user, setUser } =

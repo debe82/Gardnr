@@ -1,9 +1,7 @@
-import React, { useContext } from "react";
 import axios from "axios";
-import { useEffect, useState } from "react";
+import React, { useContext, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import { IUser } from "../interfaces";
-import { Context, MyContextValue } from "../App";
+import { Context } from "../App";
 import UserProfile from "../components/UserProfile";
 
 export default function Userpages() {

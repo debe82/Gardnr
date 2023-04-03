@@ -1,11 +1,22 @@
-import React, { useContext } from "react";
-import Stripe from "react-stripe-checkout";
 import axios from "axios";
-import "../Subscription.css";
-import Fab from "@mui/material/Fab";
-import StripeCheckout from "react-stripe-checkout";
+import React, { useContext, useEffect } from "react";
+import { useParams } from "react-router-dom";
+import Stripe from "react-stripe-checkout";
 import { Context } from "../App";
+import "../Subscription.css";
 function Subscription() {
+  const { plants, setPlants, userPlants, setUserPlants, user, setUser } =
+    useContext(Context);
+  const params = useParams();
+
+  useEffect(() => {
+    axios
+      .get(`http://localhost:8080/api/users/${params.id}`)
+      .then((response) => {
+        setUser(response.data);
+      });
+  }, []);
+
   async function handleToken(token: any) {
     console.log(token);
     await axios
@@ -22,6 +33,7 @@ function Subscription() {
         alert(error);
       });
   }
+
   return (
     <div className="subscription-container">
       <h1 className="subscription-logo">Gardnr</h1>
