@@ -68,7 +68,7 @@ export const SearchBar = () => {
                 key={index}
                 onClick={() => addUserPlant(e.plantName)}>
                 {" "}
-                <img src={e.pictureLink}/>{ e.plantName}{" "}
+                {e.plantName}{" "}
                 <FontAwesomeIcon icon={faPlusCircle} />
               </li>
             ))}
