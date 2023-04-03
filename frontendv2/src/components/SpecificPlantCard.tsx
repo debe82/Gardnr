@@ -58,6 +58,7 @@ const SpecificPlantCard = () => {
 
     if (daysLeft == timeIncrement) {
       daysLeft -= 1;
+      hoursLeft = 23;
     }
 
     if (timeRemaining != 0) {
@@ -81,22 +82,34 @@ const SpecificPlantCard = () => {
 
     if (daysLeft == timeIncrement) {
       daysLeft = daysLeft - 1;
-      // setDaysLeft(daysLeft-1);
     }
+
+    console.log("daysLeft:", daysLeft);
+    console.log("hoursLeft:", hoursLeft);
+    console.log("timeIncremnent:", timeIncrement);
+    console.log("isPlantTime:", isPlantTime);
 
     return "" + daysLeft + "d:" + hoursLeft + "h:"; // + minutesLeft + "m:" + secondsLeft + "s";
   };
 
   const deletePlant = () => {
     if (specificPlant) {
+      console.log("deleting specific plant")
       removePlant(user.userId, specificPlant.userPlantId);
-      window.location.reload();
+      const updatedPlantList = listOfPlants.filter(e => e.userPlantId != specificPlant.userPlantId)
+      user.listOfUserPlants = updatedPlantList;
+      setUser(JSON.parse(JSON.stringify(user)))
+      setSpecificPlant(null);
     }
   };
 
   useEffect(() => {
+    if (user)
+    console.log("updating timer")
     setTimer(showWateringTime());
-  }, [specificPlant]);
+  }, [specificPlant, user]);
+
+  if(specificPlant == null){return <p> There are no plants!</p>}
 
   return (
     <div className="specific-plant-card">
