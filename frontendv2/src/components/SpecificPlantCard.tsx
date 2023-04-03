@@ -119,16 +119,16 @@ const SpecificPlantCard = () => {
         alt={specificPlant && specificPlant.userPlantName}
       />
       {//toggleShowSpecificPlant
-         //specificPlant && (
+         specificPlant && (
             <>
               <ul className="specific-plant-card-list">
-                <li key={1}>Name: {specificPlant && specificPlant.plant.plantName}</li>
+                <li key={1}>Name: {specificPlant.plant.plantName}</li>
                 <li key={2}>
-                  Ideal lighting: {specificPlant && specificPlant.plant.idealLight}
+                  Ideal lighting: {specificPlant.plant.idealLight}
                 </li>
-                <li key={4}>Max temperature: {specificPlant && specificPlant.plant.tempMax}</li>
+                <li key={4}>Max temperature: {specificPlant.plant.tempMax}</li>
                 <li key={5}>
-                  Minimum temperature: {specificPlant && specificPlant.plant.tempMin}
+                  Minimum temperature: {specificPlant.plant.tempMin}
                 </li>
                 <li key={6}>suggested watering every {timeIncrement} day(s)</li>
                 <li
@@ -147,7 +147,7 @@ const SpecificPlantCard = () => {
                 </li>
               </ul>
             </>
-         // )
+          )
         }
       <div className="specific-plant-card-break"></div>
       <img

@@ -44,10 +44,11 @@ export const SearchBar = () => {
     );
     console.log("this is userplant to add ", plantsToAdd[0])
     addPlant(user.userId , plantsToAdd[0]);
-    window.location.reload();
+    setPlants(JSON.parse(JSON.stringify([...plants,plantsToAdd[0]])));
+    setSearch("");
   };
 
-  useEffect(() => {}, []);
+  useEffect(() => {}, [search, plants]);
 
   return (
     <>

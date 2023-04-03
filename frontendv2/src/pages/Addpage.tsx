@@ -32,7 +32,7 @@ useEffect(() => {
   axios.get(`http://localhost:8080/api/users/${params.id}`).then((response) => {
     setUser(response.data);
   });
-}, []);
+}, [plants]);
 
   const addUserPlant = (plantname: string) => {
     const plantsToAdd: IPlant[] = plants.filter((p) =>
