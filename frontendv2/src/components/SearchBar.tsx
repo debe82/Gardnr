@@ -6,11 +6,13 @@ import React, {
   useEffect,
   useState,
 } from "react";
-import { Button, Dropdown, Form, InputGroup } from "react-bootstrap";
 import { useParams } from "react-router-dom";
 import { addPlant, getUser } from "../api/dataManagement";
 import { Context, MyContextValue } from "../App";
 import { IPlant } from "../interfaces";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPlusCircle } from '@fortawesome/free-solid-svg-icons';
+import "../Addpage.css";
 
 export const SearchBar = () => {
   const { plants, setPlants, userPlants, setUserPlants, user, setUser } =
@@ -18,34 +20,24 @@ export const SearchBar = () => {
   const [search, setSearch] = useState("");
   const params = useParams();
 
-  console.log(params.id, "this is params");
-
-
   useEffect(() => {
     axios.get(`http://localhost:8080/api/users/${params.id}`).then((response) => {
       setUser(response.data);
     });
   }, []);
 
-  //getUser(params.id!).then(res => setUser(res));
-
-  // const localUser = localStorage.getItem('user');
-  // localUser ? console.log("this is localuser" , JSON.parse(localUser)) : null;
-  // const currentUser = localUser ?  JSON.parse(localUser) : null;
-
   const onChange = (e: ChangeEvent<HTMLInputElement>) => {
     setSearch(e.target.value);
   };
 
   const addUserPlant = (plantname: string) => {
-    console.log("this is userplant to add ", plantname)
-    const plantsToAdd: IPlant[] = plants.filter((p) =>
+    let plantsToAdd: IPlant[] = plants.filter((p) =>
       p.plantName.includes(plantname)
     );
-    console.log("this is userplant to add ", plantsToAdd[0])
     addPlant(user.userId , plantsToAdd[0]);
-    setPlants(JSON.parse(JSON.stringify([...plants,plantsToAdd[0]])));
+    setUserPlants(JSON.parse(JSON.stringify([...userPlants,plantsToAdd[0]])));
     setSearch("");
+    plantsToAdd = [];
   };
 
   useEffect(() => {}, [search, plants]);
@@ -68,16 +60,16 @@ export const SearchBar = () => {
               if (search === "") {
                 return plantNames.startsWith("type here to start searching...");
               } else {
-                console.log("-- this is search", search);
                 return plantNames.startsWith(search.toLowerCase());
               }
             })
             .map((e, index: number) => (
-              <li
+              <li className="addlist-item"
                 key={index}
                 onClick={() => addUserPlant(e.plantName)}>
                 {" "}
                 {e.plantName}{" "}
+                <FontAwesomeIcon icon={faPlusCircle} />
               </li>
             ))}
         </div>
