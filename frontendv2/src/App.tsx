@@ -19,14 +19,14 @@ import { NotFoundPage } from "./pages/NotFoundPage";
 import { json } from "stream/consumers";
 import Subscription from "./pages/Subscription";
 
-const initUser = {
+export const initUser = {
   userId: 0,
   name: "",
   email: "",
   listOfUserPlants: [],
 };
 
-const initPlant = {
+export const initPlant = {
   plantId: 0,
   plantName: "",
   plantNameLatin: "",
@@ -38,7 +38,7 @@ const initPlant = {
   pictureLink: "",
 };
 
-const initUserPlant = {
+export const initUserPlant = {
   userPlantId: 0,
   startDate: new Date(),
   userPlantName: "",

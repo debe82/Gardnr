@@ -81,7 +81,7 @@ function Addpage() {
             user.listOfUserPlants &&
             user.listOfUserPlants.map((e) => {
               return (
-                <>
+                <div className="addpage-item-container-button">
                   <img
                     onClick={() => {
                       setMessage(e.userPlantName);
@@ -91,7 +91,10 @@ function Addpage() {
                     src={e.plant.pictureLink}
                     alt={e.plant.plantName}
                   />
-                </>
+                  <p className="addpage-item-name">
+                    {e.plant && e.plant.plantName}
+                  </p>
+                </div>
               );
             })}
         </div>

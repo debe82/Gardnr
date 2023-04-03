@@ -1,9 +1,10 @@
-import React from "react";
+import React, { useContext } from "react";
 import Stripe from "react-stripe-checkout";
 import axios from "axios";
 import "../Subscription.css";
 import Fab from "@mui/material/Fab";
 import StripeCheckout from "react-stripe-checkout";
+import { Context } from "../App";
 function Subscription() {
   async function handleToken(token: any) {
     console.log(token);
