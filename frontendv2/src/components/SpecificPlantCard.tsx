@@ -29,8 +29,6 @@ const SpecificPlantCard = () => {
   const stringDate =   specificPlant  && specificPlant.startDate;
   const timeIncrement = specificPlant &&  specificPlant.startDate && specificPlant.timeIncrement;
 
-
-
   const showWateringTime = () => {
     console.log("setting timer")
 
@@ -39,56 +37,75 @@ const SpecificPlantCard = () => {
   
     const nowHour = new Date().getHours();
     const startHour = new Date(stringDate).getHours();
-  
+
+// var eventStartTime = new Date(stringDate);
+// var eventEndTime = new Date();
+// var duration = eventEndTime.valueOf() - eventStartTime.valueOf();
+
+// console.log("uration time:", new Date(duration).getDate(), new Date(duration).getHours());
+
+// console.log("duration:", duration);
   
     let daysLeft = 0;
     let hoursLeft = 0;
 
+// daysLeft = timeIncrement - new Date(duration).getDate();
+// hoursLeft = 24 - new Date(duration).getHours();
 
     let timeRemaining: number = (nowDay - startDay) % timeIncrement;
 
-    if (nowDay == startDay) {
-      timeRemaining = timeIncrement;
-    }
-    console.log("tinerennainfi:", timeRemaining);
+     if (nowDay == startDay) {
+       timeRemaining = 3//timeIncrement;
+       hoursLeft = timeRemaining;
+     }
 
-    daysLeft = Math.abs(nowDay - (startDay + timeIncrement));
-    hoursLeft = Math.abs(startHour - nowHour); 
+     hoursLeft = Math.abs(startHour - nowHour); 
 
-    if (timeIncrement == 1) {
-      daysLeft = 0;
-      hoursLeft = 23;
-    }
-
-    if (daysLeft == timeIncrement) {
-      daysLeft -= 1;
-      hoursLeft = 23;
-    }
-
-    if (timeRemaining != 0) {
-      daysLeft = timeIncrement -1;
-      setIsPlantTime(false);
-    } else {
+     if (hoursLeft < 3 && hoursLeft > 0) {
       setIsPlantTime(true);
-    }
-
-    if (timeIncrement == 1) {
-      setIsPlantTime(true);
-      daysLeft = 0;
-      hoursLeft = 23;
-    }
-
-    if (daysLeft == timeIncrement) {
-      daysLeft = daysLeft - 1;
+     } else {
+      hoursLeft = 3;
       setIsPlantTime(false);
-    }
+     }
+    // console.log("tinerennainfi:", timeRemaining);
 
-    console.log("daysLeft:", daysLeft);
-    console.log("hoursLeft:", hoursLeft);
-    console.log("timeIncremnent:", timeIncrement);
-    console.log("isPlantTime:", isPlantTime);
+    // daysLeft = Math.abs(nowDay - (startDay + timeIncrement));
+    // hoursLeft = Math.abs(startHour - nowHour); 
 
-    return "" + daysLeft + "d: " + hoursLeft + "h:"; 
+    // if (timeIncrement == 1) {
+    //   daysLeft = 0;
+    //   hoursLeft = 3//23;
+    // }
+
+    // if (daysLeft == timeIncrement) {
+    //   daysLeft -= 1;
+    //   hoursLeft = 3//23;
+    // }
+
+    // if (timeRemaining != 0) {
+    //   //daysLeft = timeIncrement -1;
+    //   setIsPlantTime(false);
+    // } else {
+    //   setIsPlantTime(true);
+    // }
+
+    // if (timeIncrement == 1) {
+    //   setIsPlantTime(true);
+    //   daysLeft = 0;
+    //   hoursLeft = 2;
+    // }
+
+    // if (daysLeft == timeIncrement) {
+    //   daysLeft = daysLeft - 1;
+    //   setIsPlantTime(false);
+    // }
+
+    // console.log("daysLeft:", daysLeft);
+    // console.log("hoursLeft:", hoursLeft);
+    // console.log("timeIncremnent:", timeIncrement);
+    // console.log("isPlantTime:", isPlantTime);
+
+     return hoursLeft +"h" //"" + daysLeft + "d: " + hoursLeft + "h:"; 
   };
 
   const deletePlant = () => {
@@ -104,7 +121,6 @@ const SpecificPlantCard = () => {
   const refreshTime = () => {
       specificPlant.startDate = new Date();
       specificPlant ?  updateUserPlant(user.userId, specificPlant) : null;
-      console.log(specificPlant.startDate);
       setSpecificPlant(JSON.parse(JSON.stringify(specificPlant)));
   }
 
@@ -112,6 +128,8 @@ const SpecificPlantCard = () => {
     if (user)
     setTimer(showWateringTime());
   }, [specificPlant, user, isPlantTime]);
+
+  specificPlant ? console.log("this is startdate",specificPlant.startDate) : null; 
 
   if(specificPlant == null){return <p> There are no plants!</p>}
 
@@ -148,9 +166,9 @@ const SpecificPlantCard = () => {
                     }
                   }>
                  { isPlantTime ? 
-                 <Alert severity="success" onClick={refreshTime}>Fresh water in: ({timer})</Alert> 
+                 <Alert severity="error" onClick={refreshTime}>Fresh water in: ({timer})</Alert> 
                  : 
-                 <Alert severity="error" onClick={refreshTime}>Fresh water in: ({timer})</Alert>}
+                 <Alert severity="success" onClick={refreshTime}>Fresh water in: ({timer})</Alert>}
                 </li>
               </ul>
             </>
