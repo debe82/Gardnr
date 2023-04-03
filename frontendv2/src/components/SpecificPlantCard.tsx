@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Context } from "../App";
 import { IPlant, IUserPlants } from "../interfaces";
-import { removePlant } from "../api/dataManagement";
+import { removePlant, updateUserPlant } from "../api/dataManagement";
 import { Alert } from "@mui/material";
 
 
@@ -32,6 +32,7 @@ const SpecificPlantCard = () => {
 
 
   const showWateringTime = () => {
+    console.log("setting timer")
 
     const nowDay = new Date().getDate();
     const startDay = new Date(stringDate).getDate();
@@ -100,6 +101,13 @@ const SpecificPlantCard = () => {
     }
   };
 
+  const refreshTime = () => {
+      specificPlant.startDate = new Date();
+      specificPlant ?  updateUserPlant(user.userId, specificPlant) : null;
+      console.log(specificPlant.startDate);
+      setSpecificPlant(JSON.parse(JSON.stringify(specificPlant)));
+  }
+
   useEffect(() => {
     if (user)
     setTimer(showWateringTime());
@@ -140,9 +148,9 @@ const SpecificPlantCard = () => {
                     }
                   }>
                  { isPlantTime ? 
-                 <Alert severity="success">Fresh water in: ({timer})</Alert> 
+                 <Alert severity="success" onClick={refreshTime}>Fresh water in: ({timer})</Alert> 
                  : 
-                 <Alert severity="error">Fresh water in: ({timer})</Alert>}
+                 <Alert severity="error" onClick={refreshTime}>Fresh water in: ({timer})</Alert>}
                 </li>
               </ul>
             </>
