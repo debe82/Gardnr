@@ -11,7 +11,6 @@ export default function Userpages() {
     useContext(Context);
 
   const param = useParams();
-  console.log("this is userid", param);
 
   useEffect(() => {
     axios

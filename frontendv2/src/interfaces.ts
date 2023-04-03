@@ -25,3 +25,8 @@ export interface IUserPlants {
   user: IUser;
   plant: IPlant;
 }
+
+export interface IUserPlantToUpdate {
+  userPlantName: string;
+  startDate: Date;
+}

@@ -105,7 +105,6 @@ function App() {
   }, []);
 
   const localUser = localStorage.getItem("user");
-  console.log("this is localuser", localUser);
   // localUser ? setUser(JSON.parse(localUser )): null;
 
   return (

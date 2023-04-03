@@ -5,6 +5,7 @@ import { CarouselPlants } from "../components/CarouselPlants";
 import { Context } from "../App";
 import { IPlant, IUserPlants } from "../interfaces";
 import { addPlant, updateUserPlant } from "../api/dataManagement";
+import { IUserPlantToUpdate } from "../interfaces";
 import {
   Button,
   FormControl,
@@ -16,17 +17,13 @@ import { useParams } from "react-router-dom";
 import axios from "axios";
 
 function Addpage() {
-  const [message, setMessage] = useState<IUserPlants>();
+  const [message, setMessage] = useState("");
   const [updated, setUpdated] = useState(message);
+  const [newPlantname, setNewPlantName] = useState<IUserPlants>();
+  const [currPlant, setCurrPlant] = useState<IUserPlants>();
   const { plants, setPlants, userPlants, setUserPlants, user, setUser } =
     useContext(Context);
   const params = useParams();
-
-  // const localUser = localStorage.getItem('user');
-  // localUser ? console.log("this is localuser" , JSON.parse(localUser)) : null;
-  // localUser?  setUser(JSON.parse(localUser)) : null;
-  //localUser ? setUser(JSON.parse(localUser)) : null;
-  // localUser ?  JSON.parse(localUser) : null;
 
   useEffect(() => {
     axios
@@ -34,13 +31,13 @@ function Addpage() {
       .then((response) => {
         setUser(response.data);
       });
-  }, []);
+  }, [userPlants]);
 
   const addUserPlant = (plantname: string) => {
     const plantsToAdd: IPlant[] = plants.filter((p) =>
       p.plantName.includes(plantname)
     );
-    addPlant(user.userId, plantsToAdd[0]); //addplant to userid, not .. it's hard coded
+    addPlant(user.userId, plantsToAdd[0]);
   };
 
   console.log(user);
@@ -50,11 +47,21 @@ function Addpage() {
 
   const handleChange = (event: any) => {
     setMessage(event.target.value);
+    console.log("message:", message);
   };
 
   const handleClick = () => {
-    setUpdated(message);
-    console.log("meassage: ", message);
+    //console.log("this is plant with new name" , newPlantname);
+    console.log("oldName: ", currPlant);
+
+    currPlant ? (currPlant.userPlantName = message) : null;
+
+    //console.log("this is plant with new name" , currPlant?.userPlantName);
+
+    currPlant ? updateUserPlant(user.userId, currPlant) : null;
+
+    //newPlantname([user] )
+    //console.log("meassage: " , message);
     //message ?  updateUserPlant(user.userId, message): null;
   };
 
@@ -74,17 +81,17 @@ function Addpage() {
             user.listOfUserPlants &&
             user.listOfUserPlants.map((e) => {
               return (
-                <div className="addpage-item-container-button">
+                <>
                   <img
-                    onClick={() => setMessage(e)}
+                    onClick={() => {
+                      setMessage(e.userPlantName);
+                      setCurrPlant(e);
+                    }}
                     className="addpage-item-img"
                     src={e.plant.pictureLink}
                     alt={e.plant.plantName}
                   />
-                  <p className="addpage-item-name">
-                    {e.plant && e.plant.plantName}
-                  </p>
-                </div>
+                </>
               );
             })}
         </div>
@@ -94,7 +101,7 @@ function Addpage() {
             id="message"
             name="message"
             onChange={handleChange}
-            value={message && message.userPlantName}
+            value={message}
           />
           <FormHelperText id="my-helper-text">
             You can edit the above line

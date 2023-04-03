@@ -33,11 +33,6 @@ export default function SignUp() {
     if (data.get("password") != data.get("password2")) {
       setErrMsg("Passwords do NOT match"), console.log("error", errMsg);
     } else {
-      console.log({
-        email: data.get("email"),
-        password: data.get("password"),
-        userName: data.get("name"),
-      });
       axios
         .post("http://localhost:8080/api/users", {
           userEmail: data.get("email"),
@@ -46,16 +41,9 @@ export default function SignUp() {
         })
         .then(
           (response) => {
-            console.log("this is respose");
             setUser(response.data);
           },
           (error) => {
-            console.log(
-              " this is error",
-              error.response.data.message,
-              "response data",
-              error.response.data[0]
-            );
             setErrMsg(error.response.data.message);
           }
         );
