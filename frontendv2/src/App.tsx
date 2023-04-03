@@ -17,6 +17,7 @@ import Addpage from "./pages/Addpage";
 import SignUp from "./components/SignUp";
 import { NotFoundPage } from "./pages/NotFoundPage";
 import { json } from "stream/consumers";
+import Subscription from "./pages/Subscription";
 
 const initUser = {
   userId: 0,
@@ -103,8 +104,8 @@ function App() {
     });
   }, []);
 
-  const localUser = localStorage.getItem('user');
-  console.log("this is localuser" , localUser)
+  const localUser = localStorage.getItem("user");
+  console.log("this is localuser", localUser);
   // localUser ? setUser(JSON.parse(localUser )): null;
 
   return (
@@ -122,26 +123,31 @@ function App() {
         setToggleShowSpecificPlant,
       }}>
       <Routes>
-      <Route
-          path='*'
+        <Route
+          path="*"
           element={<NotFoundPage />}
         />
-        <Route path="/"
+        <Route
+          path="/"
           element={<Homepage />}
         />
-        { userId ? 
-        <>
+        {userId ? (
+          <>
+            <Route
+              path="/:id"
+              element={<Userpages />}
+            />
+            <Route
+              path="/:id/add"
+              element={<Addpage />}
+            />
+            <Route
+              path="/:id/subscription"
+              element={<Subscription />}
+            />
+          </>
+        ) : null}
         <Route
-          path="/:id"
-          element={<Userpages />}
-        />
-        <Route
-          path="/:id/add"
-          element={<Addpage />}
-        />
-        </> : null
-}
-         <Route
           path="/signup"
           element={<SignUp />}
         />

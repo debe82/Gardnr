@@ -22,8 +22,7 @@ import { useNavigate } from "react-router-dom";
 const theme = createTheme();
 
 export default function SignUp() {
-  const { user, setUser } =
-  useContext(Context);
+  const { user, setUser } = useContext(Context);
   const navigate = useNavigate();
   const [errMsg, setErrMsg] = useState("");
 
@@ -39,40 +38,54 @@ export default function SignUp() {
         password: data.get("password"),
         userName: data.get("name"),
       });
-      axios.post("http://localhost:8080/api/users", {
-        userEmail: data.get("email"),
-        userPassword: data.get("password"),
-        userName: data.get("name"),
-      }).then((response) => {
-        console.log("this is respose", );
-        setUser(response.data);
-      }, (error) => {
-        console.log(" this is error",   error.response.data.message,"response data", error.response.data[0]);
-        setErrMsg(error.response.data.message);
-      });  
-      ;
+      axios
+        .post("http://localhost:8080/api/users", {
+          userEmail: data.get("email"),
+          userPassword: data.get("password"),
+          userName: data.get("name"),
+        })
+        .then(
+          (response) => {
+            console.log("this is respose");
+            setUser(response.data);
+          },
+          (error) => {
+            console.log(
+              " this is error",
+              error.response.data.message,
+              "response data",
+              error.response.data[0]
+            );
+            setErrMsg(error.response.data.message);
+          }
+        );
     }
   };
 
-  if(user.userId != 0){ navigate(`/${user.userId}`)}
+  if (user.userId != 0) {
+    navigate(`/${user.userId}`);
+  }
 
   return (
     <div className="landing-page-container">
+      <h1 className="landing-page-logo">Gardnr</h1>
       <ThemeProvider theme={theme}>
-        <Container component="main" maxWidth="xs">
+        <Container
+          component="main"
+          maxWidth="xs">
           <CssBaseline />
           <Box
             sx={{
-              marginTop: 8,
               display: "flex",
               flexDirection: "column",
               alignItems: "center",
-            }}
-          >
+            }}>
             <Avatar sx={{ m: 1, bgcolor: "secondary" }}>
               <LockOutlinedIcon />
             </Avatar>
-            <Typography component="h1" variant="h5">
+            <Typography
+              component="h1"
+              variant="h5">
               Sign up
             </Typography>
             <Box
@@ -81,8 +94,7 @@ export default function SignUp() {
               noValidate
               sx={{
                 mt: 1,
-              }}
-            >
+              }}>
               <TextField
                 sx={{ input: { color: "white" }, label: { color: "white" } }}
                 margin="normal"
@@ -112,7 +124,7 @@ export default function SignUp() {
                 required
                 fullWidth
                 name="password2"
-                label="Password2"
+                label="Rewrite your password"
                 type="password2"
                 id="password2"
                 autoComplete="second-password"
@@ -124,13 +136,17 @@ export default function SignUp() {
                 required
                 fullWidth
                 id="name"
-                label="Name"
+                label="First name and last name"
                 name="name"
                 autoComplete="name"
                 autoFocus
               />
-              {errMsg ? <Alert severity="error"><p>{errMsg}</p></Alert> : null}
-  
+              {errMsg ? (
+                <Alert severity="error">
+                  <p>{errMsg}</p>
+                </Alert>
+              ) : null}
+
               <Button
                 type="submit"
                 fullWidth
@@ -140,8 +156,7 @@ export default function SignUp() {
                   mb: 2,
                   bgcolor: "white",
                   color: "gray",
-                }}
-              >
+                }}>
                 Sign Up
               </Button>
             </Box>

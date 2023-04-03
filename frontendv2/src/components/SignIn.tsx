@@ -17,14 +17,13 @@ import { useContext, useState } from "react";
 import { Alert } from "@mui/material";
 import { Context } from "../App";
 import { useNavigate } from "react-router-dom";
-
+import { bgcolor, borderColor } from "@mui/system";
 
 const theme = createTheme();
 
 export default function SignIn() {
-  const { user, setUser } =
- useContext(Context);
- const navigate = useNavigate();
+  const { user, setUser } = useContext(Context);
+  const navigate = useNavigate();
   const [errMsg, setErrMsg] = useState("");
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -33,21 +32,32 @@ export default function SignIn() {
       email: data.get("email"),
       password: data.get("password"),
     });
-    axios.post("http://localhost:8080/api/users", {
-      userEmail: data.get("email"),
-      userPassword: data.get("password")
-    }).then((response) => { console.log(response.data);
-      setUser(response.data);
-      localStorage.setItem('user', JSON.stringify(response.data));
-
-    }, (error) => {
-      console.log(" this is error",   error.response.data.message,"response data", error.response.data[0]);
-      setErrMsg(error.response.data.message);
-    });    
+    axios
+      .post("http://localhost:8080/api/users", {
+        userEmail: data.get("email"),
+        userPassword: data.get("password"),
+      })
+      .then(
+        (response) => {
+          console.log(response.data);
+          setUser(response.data);
+          localStorage.setItem("user", JSON.stringify(response.data));
+        },
+        (error) => {
+          console.log(
+            " this is error",
+            error.response.data.message,
+            "response data",
+            error.response.data[0]
+          );
+          setErrMsg(error.response.data.message);
+        }
+      );
   };
 
-  if(user.userId != 0){ navigate(`/${user.userId}`)}
-
+  if (user.userId != 0) {
+    navigate(`/${user.userId}`);
+  }
 
   return (
     <ThemeProvider theme={theme}>
@@ -99,9 +109,13 @@ export default function SignIn() {
               id="password"
               autoComplete="current-password"
             />
-            
-            {errMsg ? <Alert severity="error"><p>{errMsg}</p></Alert> : null}
-            
+
+            {errMsg ? (
+              <Alert severity="error">
+                <p>{errMsg}</p>
+              </Alert>
+            ) : null}
+
             <Button
               type="submit"
               fullWidth
@@ -121,6 +135,8 @@ export default function SignIn() {
                 <Link
                   sx={{ color: "white" }}
                   href="#"
+                  fontSize={"16px"}
+                  fontWeight={"bolder"}
                   variant="body2">
                   Forgot password?
                 </Link>
@@ -129,8 +145,10 @@ export default function SignIn() {
                 <Link
                   sx={{ color: "white" }}
                   href="/signup"
+                  fontSize={"16px"}
+                  fontWeight={"bolder"}
                   variant="body2">
-                  {"Don't have an account? Sign Up"}
+                  {"Sign up here!"}
                 </Link>
               </Grid>
             </Grid>

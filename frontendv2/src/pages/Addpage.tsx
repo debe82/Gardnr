@@ -20,19 +20,21 @@ function Addpage() {
   const [updated, setUpdated] = useState(message);
   const { plants, setPlants, userPlants, setUserPlants, user, setUser } =
     useContext(Context);
-   const params = useParams();
+  const params = useParams();
 
-    // const localUser = localStorage.getItem('user');
-    // localUser ? console.log("this is localuser" , JSON.parse(localUser)) : null;
-    // localUser?  setUser(JSON.parse(localUser)) : null;
-    //localUser ? setUser(JSON.parse(localUser)) : null;
-// localUser ?  JSON.parse(localUser) : null;
+  // const localUser = localStorage.getItem('user');
+  // localUser ? console.log("this is localuser" , JSON.parse(localUser)) : null;
+  // localUser?  setUser(JSON.parse(localUser)) : null;
+  //localUser ? setUser(JSON.parse(localUser)) : null;
+  // localUser ?  JSON.parse(localUser) : null;
 
-useEffect(() => {
-  axios.get(`http://localhost:8080/api/users/${params.id}`).then((response) => {
-    setUser(response.data);
-  });
-}, []);
+  useEffect(() => {
+    axios
+      .get(`http://localhost:8080/api/users/${params.id}`)
+      .then((response) => {
+        setUser(response.data);
+      });
+  }, []);
 
   const addUserPlant = (plantname: string) => {
     const plantsToAdd: IPlant[] = plants.filter((p) =>
@@ -42,9 +44,9 @@ useEffect(() => {
   };
 
   console.log(user);
-  console.log(user.listOfUserPlants)
+  console.log(user.listOfUserPlants);
 
- //useEffect(() => {}, []);
+  //useEffect(() => {}, []);
 
   const handleChange = (event: any) => {
     setMessage(event.target.value);
@@ -52,7 +54,7 @@ useEffect(() => {
 
   const handleClick = () => {
     setUpdated(message);
-    console.log("meassage: " , message);
+    console.log("meassage: ", message);
     //message ?  updateUserPlant(user.userId, message): null;
   };
 
@@ -68,18 +70,23 @@ useEffect(() => {
           Edit name? Just click your plant!
         </h3>
         <div className="addpage-item-container">
-          {user && user.listOfUserPlants && user.listOfUserPlants.map((e) => {
-            return (
-              <>
-                <img
-                  onClick={() => setMessage(e)}
-                  className="addpage-item-img"
-                  src={e.plant.pictureLink}
-                  alt={e.plant.plantName}
-                />
-              </>
-            );
-          })}
+          {user &&
+            user.listOfUserPlants &&
+            user.listOfUserPlants.map((e) => {
+              return (
+                <div className="addpage-item-container-button">
+                  <img
+                    onClick={() => setMessage(e)}
+                    className="addpage-item-img"
+                    src={e.plant.pictureLink}
+                    alt={e.plant.plantName}
+                  />
+                  <p className="addpage-item-name">
+                    {e.plant && e.plant.plantName}
+                  </p>
+                </div>
+              );
+            })}
         </div>
         <FormControl className="addpage-item-container-form">
           <Input

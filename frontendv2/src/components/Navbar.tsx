@@ -39,7 +39,7 @@ export default function LabelBottomNavigation() {
         <BottomNavigationAction
           label="Subscription"
           icon={<PaymentIcon />}
-          // href="/"
+          href={"/" + user.userId + "/" + "subscription"}
         />
       </BottomNavigation>
     </Paper>
