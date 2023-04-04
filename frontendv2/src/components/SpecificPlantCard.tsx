@@ -27,6 +27,39 @@ const SpecificPlantCard = () => {
     specificPlant && specificPlant.startDate && specificPlant.timeIncrement;
 
   const showWateringTime = () => {
+    /*
+
+    console.log("setting timer")
+
+    const nowDay = new Date().getDate();
+    const startDay = new Date(stringDate).getDate();
+  
+    const nowHour = new Date().getHours();
+    const startHour = new Date(stringDate).getHours();
+  
+    let daysLeft = 0;
+    let hoursLeft = 0;
+
+    let timeRemaining: number = (nowDay - startDay) % timeIncrement;
+
+     if (nowDay == startDay) {
+       timeRemaining = 3//timeIncrement;
+       hoursLeft = timeRemaining;
+     }
+
+     hoursLeft = Math.abs(startHour - nowHour); 
+
+     if (hoursLeft < 3 && hoursLeft > 0) {
+      setIsPlantTime(true);
+     } else {
+      hoursLeft = 3;
+      setIsPlantTime(false);
+     }
+
+     return hoursLeft +"h" //"" + daysLeft + "d: " + hoursLeft + "h:"; 
+
+    */
+
     const nowDay = new Date().getDate();
     const startDay = new Date(stringDate).getDate();
     const nowHour = new Date().getHours();

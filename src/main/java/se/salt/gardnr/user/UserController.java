@@ -85,6 +85,7 @@ public class UserController {
 
     @PutMapping("{userId}/{userPlantId}")
     public ResponseEntity<UserPlant> updateUserPlantData(@PathVariable int userPlantId, @RequestBody UserPlant userPlant){
+        System.out.println("userPlamnt name: "  + userPlant.getUserPlantName());
         if (userPlantId < 0) return ResponseEntity.badRequest().build();
         if (userPlant == null) return ResponseEntity.badRequest().build();
         UserPlant upToUdate =  service.updateUserPlant(userPlantId, userPlant);

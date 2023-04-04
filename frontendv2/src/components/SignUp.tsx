@@ -14,6 +14,7 @@ import { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Context } from "../App";
 import "../Homepage.css";
+import { log } from "console";
 
 const theme = createTheme();
 
@@ -38,8 +39,9 @@ export default function SignUp() {
         .then(
           (response) => {
             setUser(response.data);
-          },
-          (error) => {
+          })
+        .catch((error) => {
+          console.log(error.response.data.message);
             setErrMsg(error.response.data.message);
           }
         );
@@ -109,7 +111,7 @@ export default function SignUp() {
                 fullWidth
                 name="password2"
                 label="Rewrite your password"
-                type="password2"
+                type="password"
                 id="password2"
                 autoComplete="second-password"
               />

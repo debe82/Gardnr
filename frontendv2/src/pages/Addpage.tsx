@@ -30,6 +30,8 @@ function Addpage() {
       p.plantName.includes(plantname)
     );
     addPlant(user.userId, plantsToAdd[0]);
+    setUserPlants(JSON.parse(JSON.stringify(userPlants)));
+    window.location.reload();
   };
 
   const handleChange = (event: any) => {

@@ -38,6 +38,8 @@ export const SearchBar = () => {
     setUserPlants(JSON.parse(JSON.stringify([...userPlants,plantsToAdd[0]])));
     setSearch("");
     plantsToAdd = [];
+    window.location.reload();
+
   };
 
   useEffect(() => {}, [search, plants]);
@@ -69,7 +71,6 @@ export const SearchBar = () => {
                 onClick={() => addUserPlant(e.plantName)}>
                 {" "}
                 {e.plantName}{" "}
-                <FontAwesomeIcon icon={faPlusCircle} />
               </li>
             ))}
         </div>

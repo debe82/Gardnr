@@ -41,7 +41,7 @@ export const addPlant = (id: number, plant: IPlant) => {
 export const updateUserPlant = (userId: number, userPlant: IUserPlants) => {
   console.log("userPlant:", userPlant);
   const response = axios.put(USER_URL + `/${userId}/${userPlant.userPlantId}`, {
-    userPlanName: userPlant.userPlantName,
+    userPlantName: userPlant.userPlantName,
     startDate: userPlant.startDate,
   });
 };

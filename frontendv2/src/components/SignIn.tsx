@@ -31,13 +31,13 @@ export default function SignIn() {
         userEmail: data.get("email"),
         userPassword: data.get("password"),
       })
-      .then(
-        (response) => {
+      .then((response) => {
           console.log(response.data);
           setUser(response.data);
           localStorage.setItem("user", JSON.stringify(response.data));
-        },
-        (error) => {
+        })
+      .catch(error => {
+          console.log(error);
           console.log(
             " this is error",
             error.response.data.message,

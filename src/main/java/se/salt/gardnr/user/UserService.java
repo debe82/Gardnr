@@ -26,6 +26,31 @@ public class UserService {
         return repo.getUserById(id);
     }
 
+/*
+
+PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+
+    public User checkUserCredentials(User user) throws NotFoundException {
+        User checkedUserByEmail = repo.checkUserEmail(user);
+        //User checkedUserByPassword = repo.checkUserPassword(user);
+        String userInDbPassword = checkedUserByEmail.getUserPassword();
+            if ((checkedUserByEmail.getUserEmail().equals(user.getUserEmail())  &&
+              passwordEncoder.matches(user.getUserPassword(), userInDbPassword))){
+                return checkedUserByEmail;
+            }
+        throw new NotFoundException("Email or password is incorrect");
+    }
+
+    public User addNewUser(User user) {
+        String encodedPassword = passwordEncoder.encode(user.getUserPassword());
+        user.setUserPassword(encodedPassword);
+        User checkdUser = repo.addNewUser(user);
+        return checkdUser;
+    }
+
+ */
+
+
     public User checkUserCredentials(User user) throws NotFoundException {
         User checkedUserByEmail = repo.checkUserEmail(user);
         User checkedUserByPassword = repo.checkUserPassword(user);

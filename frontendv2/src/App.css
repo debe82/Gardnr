@@ -14,6 +14,10 @@
   margin-bottom: 20px;
 }
 
+.addlist-item:hover {
+  cursor: pointer;
+}
+
 .user-profile-card {
   color: black;
   height: 100vh;
