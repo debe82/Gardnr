@@ -1,8 +1,5 @@
 import axios from "axios";
 import React, {
-  Dispatch,
-  SetStateAction,
-  createContext,
   useEffect,
   useState,
 } from "react";
@@ -15,76 +12,8 @@ import Homepage from "./pages/Homepage";
 import { NotFoundPage } from "./pages/NotFoundPage";
 import Subscription from "./pages/Subscription";
 import Userpages from "./pages/Userpages";
-
-export const initUser = {
-  userId: 0,
-  name: "",
-  email: "",
-  listOfUserPlants: [],
-};
-
-export const initPlant = {
-  plantId: 0,
-  plantName: "",
-  plantNameLatin: "",
-  watering: "",
-  tempMax: "",
-  tempMin: "",
-  idealLight: "",
-  description: "",
-  pictureLink: "",
-};
-
-export const initUserPlant = {
-  userPlantId: 0,
-  startDate: new Date(),
-  userPlantName: "",
-  timeIncrement: 0,
-  user: initUser,
-  plant: initPlant,
-};
-
-export interface MyContextValue {
-  plants: IPlant[];
-  setPlants: Dispatch<SetStateAction<IPlant[]>>;
-  userPlants: IUserPlants[];
-  setUserPlants: Dispatch<SetStateAction<IUserPlants[]>>;
-  user: IUser;
-  setUser: Dispatch<SetStateAction<IUser>>;
-  specificPlant: IUserPlants;
-  setSpecificPlant: Dispatch<SetStateAction<IUserPlants>>;
-  toggleShowSpecificPlant: boolean;
-  setToggleShowSpecificPlant: Dispatch<SetStateAction<boolean>>;
-}
-
-export const Context = createContext<MyContextValue>({
-  plants: [],
-  setPlants: () => {},
-
-  userPlants: [],
-  setUserPlants: () => {},
-
-  user: {
-    userId: 0,
-    name: "",
-    email: "",
-    listOfUserPlants: [],
-  },
-  setUser: () => {},
-
-  specificPlant: {
-    userPlantId: 0,
-    startDate: new Date(),
-    userPlantName: "",
-    timeIncrement: 0,
-    user: initUser,
-    plant: initPlant,
-  },
-  setSpecificPlant: () => {},
-
-  toggleShowSpecificPlant: false,
-  setToggleShowSpecificPlant: () => {},
-});
+import { initUser, initUserPlant } from "./helperMethods/initializer";
+import { Context } from "./helperMethods/context";
 
 function App() {
   const userId = 1;
@@ -100,8 +29,6 @@ function App() {
       setPlants(response.data);
     });
   }, []);
-
-  const localUser = localStorage.getItem("user");
 
   return (
     <Context.Provider

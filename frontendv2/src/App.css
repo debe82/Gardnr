@@ -111,6 +111,10 @@
   border-radius: 5px;
 }
 
+.plant-time-notification:hover {
+  cursor: pointer;
+}
+
 .orange {
   color: rgba(245, 153, 24, 0.799);
 }

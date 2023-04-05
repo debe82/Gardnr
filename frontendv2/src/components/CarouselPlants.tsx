@@ -1,15 +1,10 @@
 import React, { useContext, useEffect, useState } from "react";
 import "react-multi-carousel/lib/styles.css";
-import { Context } from "../App";
+import { Context } from "../helperMethods/context";
 
 export const CarouselPlants = () => {
   const {
-    plants,
-    setPlants,
-    userPlants,
-    setUserPlants,
     user,
-    setUser,
     setSpecificPlant,
     specificPlant,
     setToggleShowSpecificPlant,
@@ -19,7 +14,6 @@ export const CarouselPlants = () => {
 
   useEffect(() => {
     setListOfPlants(user.listOfUserPlants);
-    console.log("in useeffect carousel", specificPlant);
     if (!specificPlant || specificPlant.userPlantName === "") {
       setSpecificPlant(user.listOfUserPlants && user.listOfUserPlants[0]);
     }

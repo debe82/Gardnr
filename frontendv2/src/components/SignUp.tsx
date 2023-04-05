@@ -12,7 +12,7 @@ import axios from "axios";
 import * as React from "react";
 import { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { Context } from "../App";
+import { Context } from "../helperMethods/context";
 import "../Homepage.css";
 import { log } from "console";
 

@@ -1,8 +1,10 @@
 import { Alert } from "@mui/material";
 import React, { useContext, useEffect, useState } from "react";
-import { Context, initUserPlant } from "../App";
-import { removePlant } from "../api/dataManagement";
+import { Context } from "../helperMethods/context";
+import { initUserPlant} from "../helperMethods/initializer"
+import { removePlant, updateUserPlant } from "../api/dataManagement";
 import { IUserPlants } from "../interfaces";
+import { showWateringTime } from "../helperMethods/watering";
 
 const SpecificPlantCard = () => {
   const {
@@ -25,88 +27,21 @@ const SpecificPlantCard = () => {
   const stringDate = specificPlant && specificPlant.startDate;
   const timeIncrement =
     specificPlant && specificPlant.startDate && specificPlant.timeIncrement;
+ 
 
-  const showWateringTime = () => {
-    /*
+  const calcWater = () => {
+    const arrVal = showWateringTime(stringDate, timeIncrement);
 
-    console.log("setting timer")
-
-    const nowDay = new Date().getDate();
-    const startDay = new Date(stringDate).getDate();
-  
-    const nowHour = new Date().getHours();
-    const startHour = new Date(stringDate).getHours();
-  
-    let daysLeft = 0;
-    let hoursLeft = 0;
-
-    let timeRemaining: number = (nowDay - startDay) % timeIncrement;
-
-     if (nowDay == startDay) {
-       timeRemaining = 3//timeIncrement;
-       hoursLeft = timeRemaining;
-     }
-
-     hoursLeft = Math.abs(startHour - nowHour); 
-
-     if (hoursLeft < 3 && hoursLeft > 0) {
-      setIsPlantTime(true);
-     } else {
-      hoursLeft = 3;
+    if (arrVal[0] != 0) {
       setIsPlantTime(false);
-     }
-
-     return hoursLeft +"h" //"" + daysLeft + "d: " + hoursLeft + "h:"; 
-
-    */
-
-    const nowDay = new Date().getDate();
-    const startDay = new Date(stringDate).getDate();
-    const nowHour = new Date().getHours();
-    const startHour = new Date(stringDate).getHours();
-
-    let daysLeft = 0;
-    let hoursLeft = 0;
-
-    let timeRemaining: number = (nowDay - startDay) % timeIncrement;
-
-    if (nowDay == startDay) {
-      timeRemaining = timeIncrement;
-    }
-    console.log("tinerennainfi:", timeRemaining);
-
-    daysLeft = Math.abs(nowDay - (startDay + timeIncrement));
-    hoursLeft = Math.abs(startHour - nowHour);
-
-    if (timeIncrement == 1) {
-      daysLeft = 0;
-      hoursLeft = 23;
-    }
-
-    if (daysLeft == timeIncrement) {
-      daysLeft -= 1;
-      hoursLeft = 23;
-    }
-
-    if (timeRemaining != 0) {
-      daysLeft = timeIncrement - 1;
-      setIsPlantTime(false);
+      console.log("i'm, false")
     } else {
       setIsPlantTime(true);
-    }
+      console.log("i'm, true")
+    } 
 
-    if (timeIncrement == 1) {
-      setIsPlantTime(true);
-      daysLeft = 0;
-      hoursLeft = 23;
-    }
-
-    if (daysLeft == timeIncrement) {
-      daysLeft = daysLeft - 1;
-      setIsPlantTime(false);
-    }
-    return "" + daysLeft + "d, " + hoursLeft + "h";
-  };
+    return arrVal[0] + "d:" + arrVal[1] + "h";
+  } 
 
   const deletePlant = () => {
     if (specificPlant) {
@@ -120,8 +55,15 @@ const SpecificPlantCard = () => {
     }
   };
 
+  const refreshTimer = () => {
+    const newDate = new Date()
+    setTimer(newDate.getDate() + "d:" + newDate.getHours()  + "h");
+    specificPlant.startDate = newDate;
+    specificPlant ? updateUserPlant(user.userId, specificPlant) : null;
+  }
+
   useEffect(() => {
-    if (user) setTimer(showWateringTime());
+    if (user) setTimer(calcWater());
   }, [specificPlant, user, isPlantTime]);
 
   if (specificPlant == null) {
@@ -144,16 +86,12 @@ const SpecificPlantCard = () => {
             <li key={5}>Min temperature: {specificPlant.plant.tempMin}</li>
             <li key={6}>suggested watering every {timeIncrement} day(s)</li>
             <li
-              className={
-                isPlantTime
-                  ? "orange specific-plant-time-bg"
-                  : "green specific-plant-time-bg"
-              }
+              className="plant-time-notification"
               id="plant-time">
               {isPlantTime ? (
-                <Alert severity="success">Fresh water in: ({timer})</Alert>
+                <Alert severity="success" onClick={refreshTimer}>Fresh water in: ({timer})</Alert>
               ) : (
-                <Alert severity="error">Fresh water in: ({timer})</Alert>
+                <Alert severity="error" onClick={refreshTimer}>Fresh water in: ({timer})</Alert>
               )}
             </li>
           </ul>

@@ -2,10 +2,10 @@ import axios from "axios";
 import React, { useContext, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import Stripe from "react-stripe-checkout";
-import { Context } from "../App";
+import { Context } from "../helperMethods/context";
 import "../Subscription.css";
 function Subscription() {
-  const { plants, setPlants, userPlants, setUserPlants, user, setUser } =
+  const { setUser } =
     useContext(Context);
   const params = useParams();
 

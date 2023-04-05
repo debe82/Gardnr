@@ -6,15 +6,11 @@ import BottomNavigationAction from "@mui/material/BottomNavigationAction";
 import Paper from "@mui/material/Paper";
 import * as React from "react";
 import { useContext } from "react";
-import { Context } from "../App";
+import { Context } from "../helperMethods/context";
 
 export default function LabelBottomNavigation() {
   const [value, setValue] = React.useState("recents");
   const { user } = useContext(Context);
-
-  const handleChange = (event: React.SyntheticEvent, newValue: string) => {
-    setValue(newValue);
-  };
 
   return (
     <Paper

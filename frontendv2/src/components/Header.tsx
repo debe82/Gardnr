@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import { Link } from "react-router-dom";
-import { Context } from "../App";
+import { Context } from "../helperMethods/context";
 
 const Header = () => {
   const { user } = useContext(Context);

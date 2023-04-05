@@ -3,17 +3,15 @@ import axios from "axios";
 import React, { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import "../Addpage.css";
-import { Context } from "../App";
+import { Context } from "../helperMethods/context";
 import { addPlant, updateUserPlant } from "../api/dataManagement";
 import { SearchBar } from "../components/SearchBar";
 import { IPlant, IUserPlants } from "../interfaces";
 
 function Addpage() {
   const [message, setMessage] = useState("");
-  const [updated, setUpdated] = useState(message);
-  const [newPlantname, setNewPlantName] = useState<IUserPlants>();
   const [currPlant, setCurrPlant] = useState<IUserPlants>();
-  const { plants, setPlants, userPlants, setUserPlants, user, setUser } =
+  const { plants, userPlants, setUserPlants, user, setUser } =
     useContext(Context);
   const params = useParams();
 
@@ -24,23 +22,12 @@ function Addpage() {
         setUser(response.data);
       });
   }, [userPlants]);
-
-  const addUserPlant = (plantname: string) => {
-    const plantsToAdd: IPlant[] = plants.filter((p) =>
-      p.plantName.includes(plantname)
-    );
-    addPlant(user.userId, plantsToAdd[0]);
-    setUserPlants(JSON.parse(JSON.stringify(userPlants)));
-    window.location.reload();
-  };
-
+  
   const handleChange = (event: any) => {
     setMessage(event.target.value);
-    console.log("message:", message);
   };
 
   const handleClick = () => {
-    console.log("oldName: ", currPlant);
     currPlant ? (currPlant.userPlantName = message) : null;
     currPlant ? updateUserPlant(user.userId, currPlant) : null;
   };

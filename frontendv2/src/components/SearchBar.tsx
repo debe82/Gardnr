@@ -1,21 +1,19 @@
 import axios from "axios";
 import React, {
   ChangeEvent,
-  SyntheticEvent,
   useContext,
   useEffect,
   useState,
 } from "react";
 import { useParams } from "react-router-dom";
-import { addPlant, getUser } from "../api/dataManagement";
-import { Context, MyContextValue } from "../App";
+import { addPlant } from "../api/dataManagement";
+import { Context } from "../helperMethods/context";
 import { IPlant } from "../interfaces";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPlusCircle } from '@fortawesome/free-solid-svg-icons';
 import "../Addpage.css";
 
+
 export const SearchBar = () => {
-  const { plants, setPlants, userPlants, setUserPlants, user, setUser } =
+  const { plants, userPlants, setUserPlants, user, setUser } =
     useContext(Context);
   const [search, setSearch] = useState("");
   const params = useParams();

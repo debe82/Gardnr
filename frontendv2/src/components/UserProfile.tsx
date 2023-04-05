@@ -1,11 +1,11 @@
 import React, { useContext } from "react";
-import { Context } from "../App";
+import { Context } from "../helperMethods/context";
 import "../App.css";
 import { CarouselPlants } from "./CarouselPlants";
 import SpecificPlantCard from "./SpecificPlantCard";
 
 const UserProfile = () => {
-  const { plants, setPlants, userPlants, setUserPlants, user, setUser } =
+  const { user } =
     useContext(Context);
 
   return (
