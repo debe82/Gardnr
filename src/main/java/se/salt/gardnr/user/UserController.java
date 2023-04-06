@@ -50,17 +50,14 @@ public class UserController {
         System.out.println(user.getUserPassword());
 
         User checkeddUser;
-        if (user.getUserName() == null) {     //user login
+        if (user.getUserName() == null) {
             checkeddUser = service.checkUserCredentials(user);
-            System.out.println("User exist, login granted");
             if (checkeddUser == null) return new ResponseEntity<>(null, HttpStatus.FORBIDDEN);
-        } else { //user signIn
+        } else {
             checkeddUser = service.addNewUser(user);
             if (checkeddUser == null) return new ResponseEntity<>(null, HttpStatus.NOT_ACCEPTABLE);
-            System.out.println("User didn't exist, user created");
         }
 
-        //UserDto userDto = new UserDto(user.getUserName()) ;
         return ResponseEntity.ok(checkeddUser);
     }
 

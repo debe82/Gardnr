@@ -16,7 +16,6 @@ export const showWateringTime = (stringDate: Date, timeIncrement: number) => {
 
   if (timeIncrement == 1) {
     daysLeft = 0;
-    hoursLeft = 23
   }
 
   if (timeIncrement == 7) {

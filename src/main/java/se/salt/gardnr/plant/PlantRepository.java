@@ -16,7 +16,6 @@ public class PlantRepository {
     }
 
     public Plant getPlantById(int id) {
-        System.out.println("plantRepository->getPlantById");
         return jpaRepo.findById(id).orElse(null);
 
     }

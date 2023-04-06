@@ -68,32 +68,11 @@ public class UserPlant {
     public void setStartDate(LocalDateTime startDate) {
         this.startDate = startDate;
     }
-
-//    public Plant getPlant() {
-//        return plant;
-//    }
-//
     public void setPlant(Plant plant) {
         this.plant = plant;
     }
-//
-//    public User getUser() {
-//        return user;
-//    }
-//
     public void setUser(User user) {
         this.user = user;
     }
 
-
-/*    @Override
-    public String toString() {
-        return "UserPlant{" +
-                "userPlantId=" + userPlantId +
-                ", userPlantName='" + userPlantName + '\'' +
-                ", startDate=" + startDate +
-                ", plant=" + plant +
-                ", user=" + user +
-                '}';
-    }*/
 }

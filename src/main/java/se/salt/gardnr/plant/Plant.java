@@ -1,10 +1,7 @@
 package se.salt.gardnr.plant;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import se.salt.gardnr.userplant.UserPlant;
-
-import java.time.LocalDateTime;
 import java.util.List;
 
 @Entity
@@ -118,12 +115,5 @@ public class Plant {
     public void setPictureLink(String pictureLink) {
         this.pictureLink = pictureLink;
     }
-//
-//    public List<UserPlant> getUserPlants() {
-//        return userPlants;
-//    }
-//
-//    public void setUserPlants(List<UserPlant> userPlants) {
-//        this.userPlants = userPlants;
-//    }
+
 }

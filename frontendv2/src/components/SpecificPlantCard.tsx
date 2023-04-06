@@ -30,17 +30,17 @@ const SpecificPlantCard = () => {
  
 
   const calcWater = () => {
-    const arrVal = showWateringTime(stringDate, timeIncrement);
+    const dayAndHour = showWateringTime(stringDate, timeIncrement);
 
-    if (arrVal[0] != 0) {
+    if (dayAndHour[0] != 0) {
       setIsPlantTime(false);
       console.log("i'm, false")
-    } else {
+    } else if (dayAndHour[0] == 0 && dayAndHour[1] < 11) {
       setIsPlantTime(true);
       console.log("i'm, true")
     } 
 
-    return arrVal[0] + "d:" + arrVal[1] + "h";
+    return dayAndHour[0] + "d:" + dayAndHour[1] + "h";
   } 
 
   const deletePlant = () => {
@@ -89,9 +89,9 @@ const SpecificPlantCard = () => {
               className="plant-time-notification"
               id="plant-time">
               {isPlantTime ? (
-                <Alert severity="success" onClick={refreshTimer}>Fresh water in: ({timer})</Alert>
-              ) : (
                 <Alert severity="error" onClick={refreshTimer}>Fresh water in: ({timer})</Alert>
+              ) : (
+                <Alert severity="success" onClick={refreshTimer}>Fresh water in: ({timer})</Alert>
               )}
             </li>
           </ul>

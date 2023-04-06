@@ -3,6 +3,7 @@ package se.salt.gardnr.user;
 import org.junit.jupiter.api.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import se.salt.gardnr.GardnrApplicationTests;
+import se.salt.gardnr.NotFoundException;
 import se.salt.gardnr.plant.Plant;
 import se.salt.gardnr.plant.PlantService;
 import se.salt.gardnr.userplant.UserPlant;
@@ -40,14 +41,14 @@ class UserServiceTest extends GardnrApplicationTests {
 
   @Order(2)
   @Test
-  void shouldCreateNewUserPlant() throws se.salt.gardnr.userplant.NotFoundException {
+  void shouldCreateNewUserPlant() throws NotFoundException {
     UserPlant userPlant = userService.createNewUserPlant(testUser.getUserId(), testPlant);
     assertThat(userPlant).isNotEqualTo(null);
   }
 
   @Order(3)
   @Test
-  void shouldUpdateUserPlant () throws se.salt.gardnr.userplant.NotFoundException {
+  void shouldUpdateUserPlant () throws NotFoundException {
     String newName = "New plant name";
     UserPlant userPlant = userService.createNewUserPlant(testUser.getUserId(), testPlant);
     int userPlantId = userPlant.getUserPlantId();
@@ -60,7 +61,7 @@ class UserServiceTest extends GardnrApplicationTests {
 
   @Order(4)
   @Test
-  void shoulDeleteUserPlant() throws se.salt.gardnr.userplant.NotFoundException {
+  void shoulDeleteUserPlant() throws NotFoundException {
     UserPlant userPlant = userService.createNewUserPlant(testUser.getUserId(), testPlant);
     List<UserPlant> listOfUserPlants = testUser.getUserPlants();
     int initialLength = listOfUserPlants.size();

@@ -14,12 +14,8 @@ public class UserRepository {
     }
 
     public User checkUserEmail(User user) {
-        System.out.println("user:" + user);
         User userFound = jpaRepo.findUserByUserEmail(user.getUserEmail());
-        System.out.println("userFound: " + userFound);
         if (userFound != null) {
-            System.out.println("user email: " + user.getUserEmail());
-            System.out.println("found email:" + userFound.getUserEmail());
             if (userFound.getUserEmail().equals(user.getUserEmail())) {
                 return userFound;
             }
