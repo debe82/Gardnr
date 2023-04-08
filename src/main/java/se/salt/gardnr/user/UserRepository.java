@@ -43,8 +43,4 @@ public class UserRepository {
     public void deleteUser(User userToDelete) {
         jpaRepo.delete(userToDelete);
     }
-
-   // public User getUserByAuthId(String authId) {
-     //   return jpaRepo.findUserByAuthId(authId);
-   // }
 }

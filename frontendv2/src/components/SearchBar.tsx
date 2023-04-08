@@ -1,33 +1,46 @@
+import axios from "axios";
 import React, {
   ChangeEvent,
-  SyntheticEvent,
   useContext,
   useEffect,
   useState,
 } from "react";
-import { Button, Dropdown, Form, InputGroup } from "react-bootstrap";
+import { useParams } from "react-router-dom";
 import { addPlant } from "../api/dataManagement";
-import { MyContextValue, Context } from "../helper/context";
+import { Context } from "../helperMethods/context";
 import { IPlant } from "../interfaces";
+import "../Addpage.css";
+
 
 export const SearchBar = () => {
-  const { plants, setPlants, userPlants, setUserPlants, user, setUser } =
+  const { plants, userPlants, setUserPlants, user, setUser } =
     useContext(Context);
   const [search, setSearch] = useState("");
+  const params = useParams();
+
+  useEffect(() => {
+    axios.get(`http://localhost:8080/api/users/${params.id}`).then((response) => {
+      setUser(response.data);
+    });
+  }, []);
 
   const onChange = (e: ChangeEvent<HTMLInputElement>) => {
     setSearch(e.target.value);
   };
 
   const addUserPlant = (plantname: string) => {
-    const plantsToAdd: IPlant[] = plants.filter((p) =>
+    let plantsToAdd: IPlant[] = plants.filter((p) =>
       p.plantName.includes(plantname)
     );
-    addPlant(1, plantsToAdd[0]);
-    //window.location.reload();
+    addPlant(user.userId , plantsToAdd[0]);
+    setUserPlants(JSON.parse(JSON.stringify([...userPlants,plantsToAdd[0]])));
+    setSearch("");
+    plantsToAdd = [];
+    window.location.reload();
+
   };
 
-  useEffect(() => {}, []);
+  useEffect(() => {}, [search, plants]);
 
   return (
     <>
@@ -47,12 +60,11 @@ export const SearchBar = () => {
               if (search === "") {
                 return plantNames.startsWith("type here to start searching...");
               } else {
-                console.log("-- this is search", search);
                 return plantNames.startsWith(search.toLowerCase());
               }
             })
             .map((e, index: number) => (
-              <li
+              <li className="addlist-item"
                 key={index}
                 onClick={() => addUserPlant(e.plantName)}>
                 {" "}

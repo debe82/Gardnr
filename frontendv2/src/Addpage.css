@@ -5,40 +5,49 @@
   justify-content: center;
   align-items: center;
   flex-flow: column wrap;
-  background-image: linear-gradient(
-    174.2deg,
-    rgba(255, 244, 228, 1) 7.1%,
-    rgba(240, 246, 238, 1) 67.4%
-  );
+  background-image: linear-gradient(174.2deg,
+      rgba(255, 244, 228, 1) 7.1%,
+      rgba(240, 246, 238, 1) 67.4%);
 }
 
 .addpage-logo {
   font-family: "Yellowtail", cursive;
   font-size: 65px;
-  /* margin-top: -470px; */
+  margin-top: -230px;
   margin-bottom: 20px;
 }
 
 .addpage-item-container-heading {
   font-family: "Unna", serif;
   font-size: 20px;
-  margin: 20px;
+  margin: 10px;
 }
 
 .addpage-item-container {
   display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-wrap: wrap;
+  justify-content: space-between;
+  overflow: scroll;
+  margin-top: -10px;
   margin-bottom: 30px;
+  padding: 10px;
+  max-width: 90vw;
+}
+
+.addpage-item-container::-webkit-scrollbar {
+  display: none;
+}
+
+.addpage-item-container-button {
+  max-width: 80px;
+  max-height: 60px;
+  margin: 5px;
 }
 
 .addpage-item-img {
-  opacity: 50%;
+  opacity: 30%;
   width: 65px;
   height: 60px;
   border-radius: 5px;
-  margin: 3px;
   box-shadow: rgba(0, 0, 0, 0.25) 0px 0.0625em 0.0625em,
     rgba(0, 0, 0, 0.25) 0px 0.125em 0.5em,
     rgba(255, 255, 255, 0.1) 0px 0px 0px 1px inset;
@@ -48,6 +57,85 @@
   opacity: 1;
 }
 
+.addpage-item-name {
+  font-size: 10px;
+  opacity: 70%;
+  font-family: "Roboto", sans-serif;
+  text-align: center;
+}
+
 .addpage-item-container-break {
   margin: 10px;
+}
+
+/* Media queries for bigger phones and tablets */
+@media only screen and (min-width: 768px) {
+  .addpage-item-container {
+    display: grid;
+    grid-template-columns: 140px 140px 140px 140px;
+    grid-row: auto auto;
+    overflow: scroll;
+    max-height: 270px;
+  }
+
+  .addpage-item-container-heading {
+    font-family: "Unna", serif;
+    font-size: 30px;
+    margin: 20px;
+  }
+
+  .addpage-item-container-button {
+    max-width: 140px;
+    max-height: 120px;
+  }
+
+  .addpage-item-img {
+    width: 120px;
+    height: 100px;
+  }
+}
+
+/* Media queries for desktop */
+@media only screen and (min-width: 992px) {
+  .addpage-logo {
+    font-family: "Yellowtail", cursive;
+    font-size: 65px;
+    margin-bottom: 20px;
+  }
+
+  .addpage-container {
+    flex-flow: column;
+  }
+
+  .addpage-item-container {
+    display: grid;
+    grid-template-columns: 150px 150px 150px 150px;
+    grid-row: auto auto;
+    row-gap: 20px;
+    min-height: 300px;
+    overflow: scroll;
+  }
+
+  .addpage-item-container-heading {
+    font-family: "Unna", serif;
+    font-size: 20px;
+    margin: 10px;
+  }
+
+  .addpage-item-container-button {
+    max-width: 150px;
+    max-height: 130px;
+  }
+
+  .addpage-item-img {
+    width: 140px;
+    height: 120px;
+  }
+
+  .addpage-item-name {
+    font-size: 12px;
+    opacity: 70%;
+    font-family: "Roboto", sans-serif;
+    text-align: left;
+  }
 }

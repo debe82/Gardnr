@@ -1,6 +1,7 @@
 .landing-page-container {
   height: 100vh;
   background: url("/bg3.png") 50% 50% no-repeat;
+  opacity: 80%;
   color: rgba(255, 255, 255, 0.854);
 }
 
@@ -10,4 +11,15 @@
   font-family: "Yellowtail", cursive;
   font-size: 65px;
   padding-top: 40px;
+}
+
+.MuiOutlinedInput-notchedOutline {
+  background-color: rgba(0, 0, 0, 0.495);
+}
+
+/* Media queries */
+@media only screen and (min-width: 768px) {
+  .landing-page-container {
+    background: url("/bg4.png") 50% 50% no-repeat;
+  }
 }

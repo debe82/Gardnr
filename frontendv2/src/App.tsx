@@ -1,23 +1,19 @@
-import { getAllUserPlants } from "./api/dataManagement";
-import { IPlant, IUser, IUserPlants } from "./interfaces";
-import Homepage from "./pages/Homepage";
-import { Route, Routes } from "react-router-dom";
 import axios from "axios";
-import Userpages from "./pages/Userpages";
-import Header from "./components/Header";
-import { initUser, initPlant, initUserPlant } from "./helper/initializer";
-import { MyContextValue, Context } from "./helper/context";
-
 import React, {
-  createContext,
-  Dispatch,
-  SetStateAction,
   useEffect,
   useState,
 } from "react";
+import { Route, Routes } from "react-router-dom";
 import LabelBottomNavigation from "./components/Navbar";
+import SignUp from "./components/SignUp";
+import { IPlant, IUser, IUserPlants } from "./interfaces";
 import Addpage from "./pages/Addpage";
-
+import Homepage from "./pages/Homepage";
+import { NotFoundPage } from "./pages/NotFoundPage";
+import Subscription from "./pages/Subscription";
+import Userpages from "./pages/Userpages";
+import { initUser, initUserPlant } from "./helperMethods/initializer";
+import { Context } from "./helperMethods/context";
 
 function App() {
   const userId = 1;
@@ -29,7 +25,7 @@ function App() {
   const [toggleShowSpecificPlant, setToggleShowSpecificPlant] = useState(false);
 
   useEffect(() => {
-    axios.get(`http://localhost:8080/api/plants`).then((response) => {
+    axios.get("http://localhost:8080/api/plants").then((response) => {
       setPlants(response.data);
     });
   }, []);
@@ -50,16 +46,32 @@ function App() {
       }}>
       <Routes>
         <Route
+          path="*"
+          element={<NotFoundPage />}
+        />
+        <Route
           path="/"
           element={<Homepage />}
         />
+        {userId ? (
+          <>
+            <Route
+              path="/:id"
+              element={<Userpages />}
+            />
+            <Route
+              path="/:id/add"
+              element={<Addpage />}
+            />
+            <Route
+              path="/:id/subscription"
+              element={<Subscription />}
+            />
+          </>
+        ) : null}
         <Route
-          path="/:id"
-          element={<Userpages />}
-        />
-        <Route
-          path="/:id/add"
-          element={<Addpage />}
+          path="/signup"
+          element={<SignUp />}
         />
       </Routes>
       <LabelBottomNavigation />

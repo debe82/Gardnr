@@ -1,45 +1,47 @@
-import React, { FC, useContext } from "react";
-import Carousel from "react-multi-carousel";
+import React, { useContext, useEffect, useState } from "react";
 import "react-multi-carousel/lib/styles.css";
-import { MyContextValue, Context } from "../helper/context";
-import { IPlant, IUserPlants } from "../interfaces";
+import { Context } from "../helperMethods/context";
 
 export const CarouselPlants = () => {
   const {
-    plants,
-    setPlants,
-    userPlants,
-    setUserPlants,
     user,
-    setUser,
     setSpecificPlant,
+    specificPlant,
     setToggleShowSpecificPlant,
   } = useContext(Context);
 
-  const listOfPlants: IUserPlants[] = user.listOfUserPlants;
+  const [listOfPlants, setListOfPlants] = useState(user.listOfUserPlants);
+
+  useEffect(() => {
+    setListOfPlants(user.listOfUserPlants);
+    if (!specificPlant || specificPlant.userPlantName === "") {
+      setSpecificPlant(user.listOfUserPlants && user.listOfUserPlants[0]);
+    }
+  }, [specificPlant, user]);
 
   return (
     <>
       <div className="carousel-plants-container">
-        {listOfPlants.map((e, index: number) => {
-          return (
-            <div className="carousel-plants-item">
-              <img
-                key={index}
-                onClick={() => {
-                  setSpecificPlant(e);
-                  setToggleShowSpecificPlant(true);
-                  //console.log(e.userPlantId)
-                }}
-                className="carousel-plants-item-img"
-                src={e.plant.pictureLink}
-                alt=""></img>
-              <p className="carousel-plant-item-name">
-                {e.plant && e.plant.plantName}
-              </p>
-            </div>
-          );
-        })}
+        {listOfPlants &&
+          listOfPlants.map((e, index: number) => {
+            return (
+              <div
+                className="carousel-plants-item"
+                key={index}>
+                <img
+                  onClick={() => {
+                    setSpecificPlant(e);
+                    setToggleShowSpecificPlant(true);
+                  }}
+                  className="carousel-plants-item-img"
+                  src={e.plant.pictureLink}
+                  alt=""></img>
+                <p className="carousel-plant-item-name">
+                  {e.plant && e.plant.plantName}
+                </p>
+              </div>
+            );
+          })}
       </div>
     </>
   );

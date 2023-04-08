@@ -1,17 +1,14 @@
-import React, { useContext } from "react";
 import axios from "axios";
-import { useEffect, useState } from "react";
+import React, { useContext, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import { IUser } from "../interfaces";
-import { MyContextValue, Context } from "../helper/context";
+import { Context } from "../helperMethods/context";
 import UserProfile from "../components/UserProfile";
 
 export default function Userpages() {
-  const { plants, setPlants, userPlants, setUserPlants, user, setUser } =
+  const { setUser } =
     useContext(Context);
 
   const param = useParams();
-  console.log("this is userid", param);
 
   useEffect(() => {
     axios

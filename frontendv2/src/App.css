@@ -13,31 +13,10 @@
   margin-top: -100px;
   margin-bottom: 20px;
 }
-/* 
-.header-container {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 15px;
-  margin-top: 10px;
-  background-color: rgb(127, 122, 122);
-} */
 
-/* .header-container-button {
-  border-radius: 10px;
-  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
-  opacity: 60%;
-  transition: 0.25s;
-} */
-
-/* .header-container-button:hover {
-  opacity: 100%;
+.addlist-item:hover {
+  cursor: pointer;
 }
-
-.header-container-button img {
-  width: 35px;
-  height: 35px;
-} */
 
 .user-profile-card {
   color: black;
@@ -46,11 +25,9 @@
   justify-content: center;
   align-items: center;
   flex-flow: column wrap;
-  background-image: linear-gradient(
-    174.2deg,
-    rgba(255, 244, 228, 1) 7.1%,
-    rgba(240, 246, 238, 1) 67.4%
-  );
+  background-image: linear-gradient(174.2deg,
+      rgba(255, 244, 228, 1) 7.1%,
+      rgba(240, 246, 238, 1) 67.4%);
 }
 
 .user-profile-card h3 {
@@ -63,13 +40,11 @@
 
 .carousel-plants-container {
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   overflow: scroll;
   margin-bottom: 30px;
-  /* border-top: 2px solid #ccc;
-  border-bottom: 2px solid #ccc; */
   padding: 10px;
-  width: 100%;
+  max-width: 90vw;
 }
 
 .carousel-plants-container::-webkit-scrollbar {
@@ -103,21 +78,12 @@
   text-align: center;
 }
 
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
-
 .specific-plant-card {
   border-radius: 5px;
   font-size: 10px;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
   width: 275px;
-  height: 360px;
+  /* height: 360px; */
 }
 
 .specific-plant-img {
@@ -145,12 +111,15 @@
   border-radius: 5px;
 }
 
+.plant-time-notification:hover {
+  cursor: pointer;
+}
+
 .orange {
   color: rgba(245, 153, 24, 0.799);
 }
 
 .green {
-  /* color: rgba(157, 255, 127, 0.615); */
   color: green;
 }
 
@@ -164,8 +133,74 @@
   height: 35px;
   opacity: 70%;
   margin-left: 118px;
+  margin-top: -10px;
 }
 
 .specific-plant-card-trashcan:hover {
   opacity: 100%;
+}
+
+/* Media queries */
+@media only screen and (min-width: 768px) {
+  .carousel-plants-container {
+    display: grid;
+    grid-template-columns: 140px 140px 140px 140px;
+    grid-row: auto auto;
+    overflow: scroll;
+    max-height: 270px;
+  }
+
+  .carousel-plants-item {
+    max-width: 140px;
+    max-height: 120px;
+  }
+
+  .carousel-plants-item-img {
+    width: 120px;
+    height: 100px;
+  }
+
+  .specific-plant-card {
+    width: 350px;
+  }
+
+  .specific-plant-card-trashcan {
+    width: 50px;
+    height: 50px;
+    opacity: 70%;
+    margin-left: 148px;
+  }
+}
+
+/* Media queries for desktop */
+@media only screen and (min-width: 992px) {
+  .user-profile-logo {
+    font-family: "Yellowtail", cursive;
+    font-size: 65px;
+  }
+
+  .carousel-plants-container {
+    grid-template-columns: 150px 150px 150px 150px;
+  }
+
+  .carousel-plants-item {
+    max-width: 150px;
+    max-height: 130px;
+  }
+
+  .carousel-plants-item-img {
+    width: 140px;
+    height: 120px;
+  }
+
+  .specific-plant-card {
+    width: 350px;
+  }
+
+  .specific-plant-card-trashcan {
+    width: 50px;
+    height: 50px;
+    opacity: 70%;
+    margin-left: 148px;
+  }
 }

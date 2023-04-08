@@ -1,39 +1,35 @@
-import React, { SyntheticEvent, useContext, useEffect, useState } from "react";
-import { SearchBar } from "../components/SearchBar";
+import { Button, FormControl, FormHelperText, Input } from "@mui/material";
+import axios from "axios";
+import React, { useContext, useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 import "../Addpage.css";
-import { CarouselPlants } from "../components/CarouselPlants";
-import { MyContextValue, Context } from "../helper/context";
-import { IPlant } from "../interfaces";
-import { addPlant } from "../api/dataManagement";
-import {
-  Button,
-  FormControl,
-  FormHelperText,
-  Input,
-  InputLabel,
-} from "@mui/material";
+import { Context } from "../helperMethods/context";
+import { addPlant, updateUserPlant } from "../api/dataManagement";
+import { SearchBar } from "../components/SearchBar";
+import { IPlant, IUserPlants } from "../interfaces";
 
 function Addpage() {
   const [message, setMessage] = useState("");
-  const [updated, setUpdated] = useState(message);
-  const { plants, setPlants, userPlants, setUserPlants, user, setUser } =
+  const [currPlant, setCurrPlant] = useState<IUserPlants>();
+  const { plants, userPlants, setUserPlants, user, setUser } =
     useContext(Context);
+  const params = useParams();
 
-  const addUserPlant = (plantname: string) => {
-    const plantsToAdd: IPlant[] = plants.filter((p) =>
-      p.plantName.includes(plantname)
-    );
-    addPlant(1, plantsToAdd[0]);
-  };
-
-  useEffect(() => {}, []);
-
+  useEffect(() => {
+    axios
+      .get(`http://localhost:8080/api/users/${params.id}`)
+      .then((response) => {
+        setUser(response.data);
+      });
+  }, [userPlants]);
+  
   const handleChange = (event: any) => {
     setMessage(event.target.value);
   };
 
   const handleClick = () => {
-    setUpdated(message);
+    currPlant ? (currPlant.userPlantName = message) : null;
+    currPlant ? updateUserPlant(user.userId, currPlant) : null;
   };
 
   return (
@@ -48,18 +44,26 @@ function Addpage() {
           Edit name? Just click your plant!
         </h3>
         <div className="addpage-item-container">
-          {plants.map((e) => {
-            return (
-              <>
-                <img
-                  onClick={() => setMessage(e.plantName)}
-                  className="addpage-item-img"
-                  src={e.pictureLink}
-                  alt={e.plantName}
-                />
-              </>
-            );
-          })}
+          {user &&
+            user.listOfUserPlants &&
+            user.listOfUserPlants.map((e) => {
+              return (
+                <div className="addpage-item-container-button">
+                  <img
+                    onClick={() => {
+                      setMessage(e.userPlantName);
+                      setCurrPlant(e);
+                    }}
+                    className="addpage-item-img"
+                    src={e.plant.pictureLink}
+                    alt={e.plant.plantName}
+                  />
+                  <p className="addpage-item-name">
+                    {e.plant && e.plant.plantName}
+                  </p>
+                </div>
+              );
+            })}
         </div>
         <FormControl className="addpage-item-container-form">
           <Input

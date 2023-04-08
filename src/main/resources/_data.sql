@@ -1,7 +1,7 @@
 INSERT into plants
 (plant_id, plant_name, plant_name_latin, watering, temp_max, temp_min, ideal_light, description, picture_link)
 VALUES
-    (1, 'Lipstick', 'Aeschynanthus lobianus', 'every day1', '32', '14', 'Bright light',
+    (1, 'Lipstick', 'Aeschynanthus lobianus', 'every day', '32', '14', 'Bright light',
      'Aeschynanthus Radicans, more commonly known as lipstick plant, is a popular and striking evergreen tropical houseplant.
      It gets its name from the vibrant red and tubular flowers that appear above a burgundy bud. These flowers grow in clusters and, along
       with the waxy, glossy, green foliage, have a cascading, vine-like habit. This makes them an ideal choice for use in hanging baskets or tall
@@ -34,7 +34,7 @@ VALUES
 
 INSERT into plants (plant_id, plant_name, plant_name_latin, watering, temp_max, temp_min, ideal_light, description, picture_link)
 VALUES
-    (4, 'ariegated Carabbean Agave', 'Agave angustilolia Marginata', 'every week', '35', '5', '6 or more hours of direct sunlight per day',
+    (4, 'Ariegated Carabbean Agave', 'Agave angustilolia Marginata', 'every week', '35', '5', '6 or more hours of direct sunlight per day',
      'Agave angustifolia Marginata is a succulent plant that forms dense rosettes atop a short trunk usually hidden until the plant gets some age. The
      rosettes grow up to 4 feet (1.2 m) in diameter. Leaves are fairly stiff, up to 2 feet (60 cm) long, narrow and concave towards the middle with a
      broad central band colored pale green and strong creamy-white margins that often have a flush of pink. When in flower, which does not occur until the
@@ -50,7 +50,7 @@ VALUES
 
 INSERT into plants (plant_id, plant_name, plant_name_latin, watering, temp_max, temp_min, ideal_light, description, picture_link)
 VALUES
-    (6, 'Thread Agave', 'Agave filifera', 'every day5', '35', '5', '6 or more hours of direct sunlight per day.',
+    (6, 'Thread Agave', 'Agave filifera', 'every day', '35', '5', '6 or more hours of direct sunlight per day.',
      'Agave filifera is a succulent indigenous to the unforgiving landscape of Central Mexico. It is commonly known as Thread agave due to the thin,
          filament-like threads adorning the leaves. These ornamental threads serve to distinguish this species from countless others, earning it the valued
          Royal Horticultural Society’s Award of Garden Merit.', 'https://cdn.pixabay.com/photo/2014/04/05/11/40/succulent-316701_1280.jpg') ON CONFLICT DO NOTHING;

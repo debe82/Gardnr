@@ -1,10 +1,9 @@
 export const initUser = {
   userId: 0,
-  userPassword: "",
-  userName: "",
-  userEmail: "", 
-  listOfUserPlants: []
-}
+  name: "",
+  email: "",
+  listOfUserPlants: [],
+};
 
 export const initPlant = {
   plantId: 0,
@@ -15,8 +14,8 @@ export const initPlant = {
   tempMin: "",
   idealLight: "",
   description: "",
-  pictureLink: ""
-}
+  pictureLink: "",
+};
 
 export const initUserPlant = {
   userPlantId: 0,
@@ -24,5 +23,5 @@ export const initUserPlant = {
   userPlantName: "",
   timeIncrement: 0,
   user: initUser,
-  plant: initPlant
-}
+  plant: initPlant,
+};

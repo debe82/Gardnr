@@ -3,27 +3,47 @@ import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import CssBaseline from "@mui/material/CssBaseline";
 import TextField from "@mui/material/TextField";
-import FormControlLabel from "@mui/material/FormControlLabel";
-import Checkbox from "@mui/material/Checkbox";
 import Link from "@mui/material/Link";
 import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
-import { createTheme, Theme, ThemeProvider } from "@mui/material/styles";
+import { createTheme, ThemeProvider } from "@mui/material/styles";
+import axios from "axios";
+import { useContext, useState } from "react";
+import { Alert } from "@mui/material";
+import { Context } from "../helperMethods/context";
+import { useNavigate } from "react-router-dom";
 
 const theme = createTheme();
 
 export default function SignIn() {
+  const { user, setUser } = useContext(Context);
+  const navigate = useNavigate();
+  const [errMsg, setErrMsg] = useState("");
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get("email"),
-      password: data.get("password"),
-    });
+    axios
+      .post("http://localhost:8080/api/users", {
+        userEmail: data.get("email"),
+        userPassword: data.get("password"),
+      })
+      .then((response) => {
+          setUser(response.data);
+          localStorage.setItem("user", JSON.stringify(response.data));
+        })
+      .catch(error => {
+          console.log(error);
+          setErrMsg(error.response.data.message);
+        }
+      );
   };
+
+  if (user.userId != 0) {
+    navigate(`/${user.userId}`);
+  }
 
   return (
     <ThemeProvider theme={theme}>
@@ -75,15 +95,13 @@ export default function SignIn() {
               id="password"
               autoComplete="current-password"
             />
-            <FormControlLabel
-              control={
-                <Checkbox
-                  value="remember"
-                  sx={{ borderColor: "white" }}
-                />
-              }
-              label="Remember me"
-            />
+
+            {errMsg ? (
+              <Alert severity="error">
+                <p>{errMsg}</p>
+              </Alert>
+            ) : null}
+
             <Button
               type="submit"
               fullWidth
@@ -103,6 +121,8 @@ export default function SignIn() {
                 <Link
                   sx={{ color: "white" }}
                   href="#"
+                  fontSize={"16px"}
+                  fontWeight={"bolder"}
                   variant="body2">
                   Forgot password?
                 </Link>
@@ -110,9 +130,11 @@ export default function SignIn() {
               <Grid item>
                 <Link
                   sx={{ color: "white" }}
-                  href="#"
+                  href="/signup"
+                  fontSize={"16px"}
+                  fontWeight={"bolder"}
                   variant="body2">
-                  {"Don't have an account? Sign Up"}
+                  {"Sign up here!"}
                 </Link>
               </Grid>
             </Grid>

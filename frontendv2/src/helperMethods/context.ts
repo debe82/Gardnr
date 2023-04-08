@@ -1,6 +1,10 @@
-import { Dispatch, SetStateAction, createContext } from "react";
 import { IPlant, IUser, IUserPlants } from "../interfaces";
 import { initPlant, initUser } from "./initializer";
+import {
+  Dispatch,
+  SetStateAction,
+  createContext,
+} from "react";
 
 export interface MyContextValue {
   plants: IPlant[];
@@ -24,11 +28,10 @@ export const Context = createContext<MyContextValue>({
 
   user: {
     userId: 0,
-    userPassword: "",
-    userName: "",
-    userEmail: "", 
-    listOfUserPlants: []
-  }, 
+    name: "",
+    email: "",
+    listOfUserPlants: [],
+  },
   setUser: () => {},
 
   specificPlant: {
@@ -37,11 +40,10 @@ export const Context = createContext<MyContextValue>({
     userPlantName: "",
     timeIncrement: 0,
     user: initUser,
-    plant: initPlant
+    plant: initPlant,
   },
   setSpecificPlant: () => {},
 
   toggleShowSpecificPlant: false,
-  setToggleShowSpecificPlant: () => {}
-
+  setToggleShowSpecificPlant: () => {},
 });

@@ -1,20 +1,16 @@
-import * as React from "react";
+import AddIcon from "@mui/icons-material/Add";
+import HomeIcon from "@mui/icons-material/Home";
+import PaymentIcon from "@mui/icons-material/Payment";
 import BottomNavigation from "@mui/material/BottomNavigation";
 import BottomNavigationAction from "@mui/material/BottomNavigationAction";
 import Paper from "@mui/material/Paper";
-import HomeIcon from "@mui/icons-material/Home";
-import AddIcon from "@mui/icons-material/Add";
-import PaymentIcon from "@mui/icons-material/Payment";
+import * as React from "react";
 import { useContext } from "react";
-import { MyContextValue, Context } from "../helper/context";
+import { Context } from "../helperMethods/context";
 
 export default function LabelBottomNavigation() {
   const [value, setValue] = React.useState("recents");
   const { user } = useContext(Context);
-
-  const handleChange = (event: React.SyntheticEvent, newValue: string) => {
-    setValue(newValue);
-  };
 
   return (
     <Paper
@@ -29,17 +25,17 @@ export default function LabelBottomNavigation() {
         <BottomNavigationAction
           label="Home"
           icon={<HomeIcon />}
-          // href={"/" + user.userId}
+          href={"/" + user.userId}
         />
         <BottomNavigationAction
           label="Add/Edit Plant"
           icon={<AddIcon />}
-          // href={"/" + user.userId + "/" + "add"}
+          href={"/" + user.userId + "/" + "add"}
         />
         <BottomNavigationAction
           label="Subscription"
           icon={<PaymentIcon />}
-          // href="/"
+          href={"/" + user.userId + "/" + "subscription"}
         />
       </BottomNavigation>
     </Paper>

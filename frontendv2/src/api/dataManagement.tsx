@@ -1,5 +1,5 @@
 import axios from "axios";
-import { IPlant, IUser, IUserLogin, IUserPlants, IUserRegister } from "../interfaces";
+import { IPlant, IUser, IUserPlants } from "../interfaces";
 
 const PLANTS_API_URL = "http://localhost:8080/api/plants";
 const USER_PLANTS_URL = "http://localhost:8080/api/userplants";
@@ -15,9 +15,9 @@ export const getAllUserPlants = async () => {
   return (await response).data;
 };
 
-export const getUser = async (userId: number) => {
-  const response = axios.get(USER_URL + `/${userId}`);
-  return (await response).data;
+export const getUser = async (userId: string) => {
+  const response = await axios.get(USER_URL + `/${userId}`);
+  return response.data;
 };
 
 export const removePlant = (userId: number, userPlantId: number) => {
@@ -36,30 +36,14 @@ export const addPlant = (id: number, plant: IPlant) => {
     description: plant.description,
     pictureLink: plant.pictureLink,
   });
+  return response;
 };
 
 export const updateUserPlant = (userId: number, userPlant: IUserPlants) => {
+  console.log("userPlant:", userPlant);
   const response = axios.put(USER_URL + `/${userId}/${userPlant.userPlantId}`, {
-    userPlanName: userPlant.userPlantName,
-    userPlant: userPlant.startDate,
+    userPlantName: userPlant.userPlantName,
+    startDate: userPlant.startDate,
   });
-}
-
-export const createUser = (user: IUserRegister) => {
-  const response = axios.post(USER_URL + `/users`,
-  {
-    userName: user.userName,
-    userPassword: user.userPassword,
-    userEmail: user.userEmail,
-  });
-  return response;  
-}
-  
-export const logUser = (user: IUserLogin) => {
-  const response = axios.post(USER_URL + `/users`,
-  {
-    userEmail: user.userEmail,
-    userPassword: user.userPassword,
-  }); 
   return response;
-}
+};
